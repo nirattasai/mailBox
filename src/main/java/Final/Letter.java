@@ -1,5 +1,5 @@
 package Final;
-// testtest
+
 public class Letter {
     String ReceiverName;
     String RoomNumber;
