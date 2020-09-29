@@ -33,6 +33,17 @@ public class Letter {
     {
         return Picture;
     }
+
+    @Override
+    public String toString() {
+        return "Letter{" +
+                "ReceiverName='" + ReceiverName + '\'' +
+                ", RoomNumber='" + RoomNumber + '\'' +
+                ", SenderName='" + SenderName + '\'' +
+                ", Size='" + Size + '\'' +
+                ", Picture='" + Picture + '\'' +
+                '}';
+    }
 }
 
 class Document extends Letter{
@@ -45,6 +56,13 @@ class Document extends Letter{
     public String getPrivacy()
     {
         return Privacy;
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" +
+                "Privacy='" + Privacy + '\'' +
+                "} " + super.toString();
     }
 }
 
@@ -64,5 +82,13 @@ class Package extends Letter{
     public String getTrackNumber()
     {
         return TrackNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Package{" +
+                "Carrier='" + Carrier + '\'' +
+                ", TrackNumber='" + TrackNumber + '\'' +
+                "} " + super.toString();
     }
 }
