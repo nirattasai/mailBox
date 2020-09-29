@@ -1,5 +1,5 @@
 package Final;
-
+// i already write inheritance no commit update
 public class Letter {
     String ReceiverName;
     String RoomNumber;
