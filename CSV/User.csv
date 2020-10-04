@@ -1,6 +1,2 @@
-admin,admin,password
-staff,staff1,pass
-staff,staff2,pass
-staff,staff3,pass
-roomOwner,roomowner1,pass
-roomOwner,roomowner2,pass
+admin,admin,admin
+staff,a,b

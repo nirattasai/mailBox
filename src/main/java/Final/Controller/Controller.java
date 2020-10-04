@@ -2,9 +2,12 @@ package Final.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.Buffer;
@@ -30,6 +33,7 @@ public class Controller {
             String[] tmp = line.split(",");
             username.add(tmp[1]);
         }
+        fileReader.close();
         return username;
     }
 
@@ -44,6 +48,7 @@ public class Controller {
             String[] tmp = line.split(",");
             password.add(tmp[2]);
         }
+        fileReader.close();
         return password;
     }
 
@@ -58,6 +63,7 @@ public class Controller {
             String[] tmp = line.split(",");
             permission.add(tmp[0]);
         }
+        fileReader.close();
         return permission;
     }
 
@@ -85,7 +91,14 @@ public class Controller {
         if(permission.equals("admin"))
         {
             System.out.println("Admin");
-            //send to admin
+            Button b = (Button) event.getSource();                                                                   // change scene
+            Stage stage = (Stage) b.getScene().getWindow();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
+
+            stage.setScene(new Scene(loader.load(),1000,600));
+
+            stage.show();
         }
         else if (permission.equals("staff"))
         {
