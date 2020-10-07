@@ -1,6 +1,5 @@
-package Final.Controller;
+package Final.Controller.AdminController;
 
-import Final.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AdminPageController {
 
@@ -29,6 +27,14 @@ public class AdminPageController {
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckStaff.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        stage.show();
+    }
+
+    @FXML public void handleChangePasswordButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangPassword.fxml"));
         stage.setScene(new Scene(loader.load(),1000,600));
         stage.show();
     }

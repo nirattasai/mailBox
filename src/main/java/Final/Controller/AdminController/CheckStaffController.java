@@ -1,5 +1,6 @@
-package Final.Controller;
+package Final.Controller.AdminController;
 
+import Final.Controller.StaffInterface;
 import Final.Staff;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;

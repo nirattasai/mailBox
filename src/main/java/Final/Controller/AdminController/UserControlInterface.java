@@ -1,5 +1,6 @@
-package Final.Controller;
+package Final.Controller.AdminController;
 
+import Final.Controller.StaffInterface;
 import Final.Staff;
 
 import java.io.*;
@@ -81,7 +82,7 @@ public interface UserControlInterface {
         return permission;
     }
 
-    static void addUser(String permission,String username,String password,String name,String surname,String email,String tel,String date,String time) throws IOException {
+    static void addUser(String permission, String username, String password, String name, String surname, String email, String tel, String date, String time) throws IOException {
         File file = new File("CSV/User.csv");
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
         bufferedWriter.newLine();
