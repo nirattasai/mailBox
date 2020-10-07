@@ -2,7 +2,7 @@ package Final.Controller;
 
 import java.io.*;
 
-public class ControllerTest implements allFunction{
+public class ControllerTest implements UserControlInterface {
     public static void main(String[] args) throws IOException {
         File file = new File("CSV/User.csv");
         FileReader fileReader = new FileReader(file);
@@ -14,7 +14,6 @@ public class ControllerTest implements allFunction{
             System.out.print(data[0]+"  "+data[1]+"  "+data[2]);
             System.out.print("\n");
         }
+
     }
-
-
 }

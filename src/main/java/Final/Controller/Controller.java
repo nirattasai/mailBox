@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
-public class Controller implements allFunction{
+public class Controller implements UserControlInterface {
 
     @FXML
     TextField usernameField;
@@ -25,19 +25,9 @@ public class Controller implements allFunction{
         String username = usernameField.getText();
         String password = passwordField.getText();
         String permission = "";
-        System.out.println("Username : " + username);
-        System.out.println("Password : " + password);
 
-        for (int i = 0; i < allFunction.usernameSend().size(); i++) {
-            if (username.equals(allFunction.usernameSend().get(i)) && password.equals(allFunction.passwordSend().get(i))) {
-                permission = allFunction.permissionSend().get(i);
-                break;
-            } else {
-                permission = "denied";
-            }
-        }
+        permission = UserControlInterface.checkLogin(username,password);
 
-        System.out.println("Permission : " + permission);
         FXMLLoader loader = null;
         if (permission.equals("admin")) {
             System.out.println("Admin");
@@ -47,7 +37,7 @@ public class Controller implements allFunction{
             stage.setScene(new Scene(loader.load(), 1000, 600));
             stage.show();
         } else if (permission.equals("staff")) {
-            allFunction.getLog(username);
+            UserControlInterface.getLog(username);
             System.out.println("Staff");
         } else if (permission.equals("roomOwner")) {
             System.out.println("RoomOwner");

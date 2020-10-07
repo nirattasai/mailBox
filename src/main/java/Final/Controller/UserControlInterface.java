@@ -5,7 +5,7 @@ import Final.Staff;
 import java.io.*;
 import java.util.ArrayList;
 
-public interface allFunction {
+public interface UserControlInterface {
 
     static ArrayList<String> usernameSend() throws IOException {
         File file = new File("CSV/User.csv");
@@ -64,5 +64,29 @@ public interface allFunction {
             }
         }
         StaffInterface.writeStaffListToCSV(staff);
+    }
+
+    static String checkLogin(String username, String password) throws IOException {
+        ArrayList<String> usernameList = UserControlInterface.usernameSend();
+        ArrayList<String> passwordList = UserControlInterface.passwordSend();
+        ArrayList<String> permissionList = UserControlInterface.permissionSend();
+        String permission = "denied";
+        for(int i=0;i<usernameList.size();i++)
+        {
+            if(username.equals(usernameList.get(i))&&password.equals(passwordList.get(i)))
+            {
+                return permissionList.get(i);
+            }
+        }
+        return permission;
+    }
+
+    static void addUser(String permission,String username,String password,String name,String surname,String email,String tel,String date,String time) throws IOException {
+        File file = new File("CSV/User.csv");
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
+        bufferedWriter.newLine();
+        String line = permission + "," + username + "," + password + "," + name + "," + surname + "," + email + "," + tel + "," + date + "," + time;
+        bufferedWriter.append(line);
+        bufferedWriter.close();
     }
 }
