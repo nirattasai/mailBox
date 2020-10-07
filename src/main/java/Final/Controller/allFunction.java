@@ -1,9 +1,8 @@
 package Final.Controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import Final.Staff;
+
+import java.io.*;
 import java.util.ArrayList;
 
 public interface allFunction {
@@ -51,5 +50,19 @@ public interface allFunction {
         }
         fileReader.close();
         return permission;
+    }
+
+    static void getLog(String username) throws IOException {
+        ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
+        for(int i=0;i<staff.size();i++)
+        {
+            if(staff.get(i).getUsername().equals(username))
+            {
+                String date = String.valueOf(java.time.LocalDate.now());
+                String time = String.valueOf(java.time.LocalTime.now());
+                staff.get(i).setLog(date,time);
+            }
+        }
+        StaffInterface.writeStaffListToCSV(staff);
     }
 }

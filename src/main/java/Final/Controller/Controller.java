@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class Controller implements allFunction{
 
@@ -26,46 +25,34 @@ public class Controller implements allFunction{
         String username = usernameField.getText();
         String password = passwordField.getText();
         String permission = "";
-        System.out.println("Username : "+username);
-        System.out.println("Password : "+password);
+        System.out.println("Username : " + username);
+        System.out.println("Password : " + password);
 
-        for (int i=0;i<allFunction.usernameSend().size();i++)
-        {
-            if (username.equals(allFunction.usernameSend().get(i)) && password.equals(allFunction.passwordSend().get(i)))
-            {
+        for (int i = 0; i < allFunction.usernameSend().size(); i++) {
+            if (username.equals(allFunction.usernameSend().get(i)) && password.equals(allFunction.passwordSend().get(i))) {
                 permission = allFunction.permissionSend().get(i);
                 break;
-            }
-            else {
+            } else {
                 permission = "denied";
             }
         }
 
-        System.out.println("Permission : "+permission);
-        if(permission.equals("admin"))
-        {
+        System.out.println("Permission : " + permission);
+        FXMLLoader loader = null;
+        if (permission.equals("admin")) {
             System.out.println("Admin");
             Button b = (Button) event.getSource();                                                                   // change scene
             Stage stage = (Stage) b.getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
-
-            stage.setScene(new Scene(loader.load(),1000,600));
-
+            loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
+            stage.setScene(new Scene(loader.load(), 1000, 600));
             stage.show();
-        }
-        else if (permission.equals("staff"))
-        {
+        } else if (permission.equals("staff")) {
+            allFunction.getLog(username);
             System.out.println("Staff");
-            // send to staff
-        }
-        else if (permission.equals("roomOwner"))
-        {
+        } else if (permission.equals("roomOwner")) {
             System.out.println("RoomOwner");
             // send to roomOwner
-        }
-        else
-        {
+        } else {
             System.out.println("Permission Denied");
         }
     }

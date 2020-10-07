@@ -16,7 +16,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="checkLogButton" layoutX="214.0" layoutY="313.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="167.0" text="Check Log">
+      <Button fx:id="checkLogButton" layoutX="214.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleCheckStaffButton" prefHeight="54.0" prefWidth="167.0" text="Check Log">
          <font>
             <Font size="20.0" />
          </font>

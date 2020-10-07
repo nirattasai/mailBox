@@ -29,14 +29,14 @@
             <Font size="30.0" />
          </font>
       </TextField>
+      <PasswordField fx:id="passwordField" layoutX="368.0" layoutY="385.0" prefHeight="58.0" prefWidth="583.0">
+         <font>
+            <Font size="30.0" />
+         </font></PasswordField>
       <Button fx:id="loginButton" defaultButton="true" layoutX="803.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="60.0" prefWidth="148.0" style="-fx-background-color: grey;" text="LOGIN">
          <font>
             <Font size="28.0" />
          </font>
       </Button>
-      <PasswordField fx:id="passwordField" layoutX="368.0" layoutY="385.0" prefHeight="58.0" prefWidth="583.0">
-         <font>
-            <Font size="30.0" />
-         </font></PasswordField>
    </children>
 </AnchorPane>

@@ -1,12 +1,17 @@
 package Final.Controller;
 
+import Final.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class AddStaffController {
@@ -19,21 +24,23 @@ public class AddStaffController {
 
 
     @FXML public void handleOKButton(ActionEvent event) throws IOException {
-        File file = new File("CSV/User.csv");
-        FileWriter fileWriter = new FileWriter(file,true);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
         if(nameField.getText().equals("") || surnameField.getText().equals("") || usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("") || telField.getText().equals(""))
         {
             System.out.println("Can't leave a blank");
         }
         else
         {
-            bufferedWriter.newLine();
-            String line = "staff"+","+usernameField.getText()+","+passwordField.getText();
-            bufferedWriter.write(line);
-            bufferedWriter.close();
+            Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"null","null");
+            staff.add(staff1);
+            StaffInterface.writeStaffListToCSV(staff);
+
+            Button b = (Button) event.getSource();                                                                   // change scene
+            Stage stage = (Stage) b.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
+            stage.setScene(new Scene(loader.load(),1000,600));
+            stage.show();
         }
     }
-
 
 }
