@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -45,6 +46,13 @@ public class Controller implements UserControlInterface {
             // send to roomOwner
         } else {
             System.out.println("Permission Denied");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("LOGIN FAILED!");
+            alert.setHeaderText("TRY NEW!");
+            alert.setContentText("Username or Password is incorrect!");
+            usernameField.setText("");
+            passwordField.setText("");
+            alert.showAndWait();
         }
     }
 }
