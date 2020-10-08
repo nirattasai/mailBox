@@ -1,7 +1,7 @@
 package Final.Controller.AdminController;
 
+import Final.Controller.Account.Staff;
 import Final.Controller.StaffInterface;
-import Final.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,10 +32,10 @@ public class AddStaffController {
         }
         else
         {
-            Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"null","null");
+            Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"null","null","1");
             staff.add(staff1);
             StaffInterface.writeStaffListToCSV(staff);
-            UserControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText(),emailField.getText(),telField.getText(),"null","null");
+            UserControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText(),emailField.getText(),telField.getText(),"null","null","1");
 
 
             Button b = (Button) event.getSource();                                                                   // change scene

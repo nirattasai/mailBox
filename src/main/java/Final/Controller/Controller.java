@@ -39,8 +39,28 @@ public class Controller implements UserControlInterface {
             stage.setScene(new Scene(loader.load(), 1000, 600));
             stage.show();
         } else if (permission.equals("staff")) {
-            UserControlInterface.getLog(username);
-            System.out.println("Staff");
+            for(int i=0;i<StaffInterface.createStaffListFromCSV().size();i++)
+            {
+                if(StaffInterface.createStaffListFromCSV().get(i).getUsername().equals(username))
+                {
+                    if(StaffInterface.createStaffListFromCSV().get(i).checkStatus())
+                    {
+                        UserControlInterface.getLog(username);
+                        System.out.println("Staff");
+                    }
+                    else
+                    {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Permission denied!");
+                        alert.setHeaderText("Contact to ADMIN");
+                        alert.setContentText("You were blocked by admin.");
+                        passwordField.setText("");
+                        usernameField.setText("");
+                        alert.showAndWait();
+                    }
+                }
+            }
+
         } else if (permission.equals("roomOwner")) {
             System.out.println("RoomOwner");
             // send to roomOwner
@@ -50,8 +70,9 @@ public class Controller implements UserControlInterface {
             alert.setTitle("LOGIN FAILED!");
             alert.setHeaderText("TRY NEW!");
             alert.setContentText("Username or Password is incorrect!");
-            usernameField.setText("");
             passwordField.setText("");
+            usernameField.setText("");
+
             alert.showAndWait();
         }
     }

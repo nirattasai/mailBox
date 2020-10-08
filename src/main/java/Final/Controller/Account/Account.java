@@ -1,4 +1,4 @@
-package Final.Controller;
+package Final.Controller.Account;
 
 public class Account {
     private String name;

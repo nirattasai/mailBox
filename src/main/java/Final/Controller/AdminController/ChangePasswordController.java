@@ -1,12 +1,10 @@
 package Final.Controller.AdminController;
 
-import Final.Controller.Account;
-import Final.Controller.Admin;
-import Final.Staff;
+import Final.Controller.Account.Account;
+import Final.Controller.Account.Staff;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ public class ChangePasswordController {
             while((line = bufferedReader.readLine())!=null)
             {
                 String[] accountTmp = line.split(",");
-                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2],accountTmp[5],accountTmp[6],accountTmp[7],accountTmp[8]);
+                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2],accountTmp[5],accountTmp[6],accountTmp[7],accountTmp[8],accountTmp[9]);
                 accounts.add(accountAdd);
             }
             fileReader.close();
