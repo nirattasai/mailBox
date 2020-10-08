@@ -19,6 +19,10 @@ public class Staff extends Account {
         return String.valueOf(tryBlockLogin);
     }
 
+    public void setTryBlockLogin(int tryBlockLogin) {
+        this.tryBlockLogin = tryBlockLogin;
+    }
+
     public boolean checkStatus()
     {
         if (status.equals("1"))

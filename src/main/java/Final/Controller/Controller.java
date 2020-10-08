@@ -51,7 +51,11 @@ public class Controller implements UserControlInterface {
                     if(staff.get(i).checkStatus())
                     {
                         UserControlInterface.getLog(username);
-                        System.out.println("Staff");
+                        Button b = (Button) event.getSource();                                                                   // change scene
+                        Stage stage = (Stage) b.getScene().getWindow();
+                        loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
+                        stage.setScene(new Scene(loader.load(),1000,600));
+                        stage.show();
                     }
                     else
                     {
@@ -72,7 +76,11 @@ public class Controller implements UserControlInterface {
 
         else if (permission.equals("roomOwner")) {
             System.out.println("RoomOwner");
-            // send to roomOwner
+            Button b = (Button) event.getSource();                                                                   // change scene
+            Stage stage = (Stage) b.getScene().getWindow();
+            loader = new FXMLLoader(getClass().getResource("/RoomerPage.fxml"));
+            stage.setScene(new Scene(loader.load(),1000,600));
+            stage.show();
         }
 
         else {

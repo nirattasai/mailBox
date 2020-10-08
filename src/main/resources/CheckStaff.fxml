@@ -19,5 +19,6 @@
       <Button fx:id="checkButton" layoutX="855.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleCheckButton" text="Check" />
       <Text layoutX="678.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check Status Staff" />
       <TextField fx:id="checkStatusField" layoutX="662.0" layoutY="300.0" />
+      <Button fx:id="backButton" layoutX="767.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
    </children>
 </Pane>
