@@ -32,7 +32,7 @@ public class AddStaffController {
         }
         else
         {
-            Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"null","null","1");
+            Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"null","null","1",0);
             staff.add(staff1);
             StaffInterface.writeStaffListToCSV(staff);
             UserControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText(),emailField.getText(),telField.getText(),"null","null","1");

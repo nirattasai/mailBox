@@ -4,8 +4,19 @@ public class Staff extends Account {
 
     private String status="1";  // 1=normal,0=blocked
 
+    private int tryBlockLogin = 0;
+
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void countBlock()
+    {
+        tryBlockLogin+=1;
+    }
+
+    public String getTryBlockLogin() {
+        return String.valueOf(tryBlockLogin);
     }
 
     public boolean checkStatus()
@@ -24,9 +35,10 @@ public class Staff extends Account {
         return status;
     }
 
-    public Staff(String name, String surname, String username, String password, String email, String tel, String date, String time,String status) {
+    public Staff(String name, String surname, String username, String password, String email, String tel, String date, String time,String status,int blockedCount) {
         super(name, surname, username, password, email, tel, date, time);
         this.status = status;
+        this.tryBlockLogin = blockedCount;
     }
 
     public void setLog(String date, String time) {

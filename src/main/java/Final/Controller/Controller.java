@@ -1,5 +1,6 @@
 package Final.Controller;
 
+import Final.Controller.Account.Staff;
 import Final.Controller.AdminController.UserControlInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class Controller implements UserControlInterface {
 
@@ -38,18 +40,23 @@ public class Controller implements UserControlInterface {
             loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
             stage.setScene(new Scene(loader.load(), 1000, 600));
             stage.show();
-        } else if (permission.equals("staff")) {
-            for(int i=0;i<StaffInterface.createStaffListFromCSV().size();i++)
+        }
+
+        else if (permission.equals("staff")) {
+            ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
+            for(int i=0;i<staff.size();i++)
             {
-                if(StaffInterface.createStaffListFromCSV().get(i).getUsername().equals(username))
+                if(staff.get(i).getUsername().equals(username))
                 {
-                    if(StaffInterface.createStaffListFromCSV().get(i).checkStatus())
+                    if(staff.get(i).checkStatus())
                     {
                         UserControlInterface.getLog(username);
                         System.out.println("Staff");
                     }
                     else
                     {
+                        staff.get(i).countBlock();
+                        StaffInterface.writeStaffListToCSV(staff);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Permission denied!");
                         alert.setHeaderText("Contact to ADMIN");
@@ -61,10 +68,14 @@ public class Controller implements UserControlInterface {
                 }
             }
 
-        } else if (permission.equals("roomOwner")) {
+        }
+
+        else if (permission.equals("roomOwner")) {
             System.out.println("RoomOwner");
             // send to roomOwner
-        } else {
+        }
+
+        else {
             System.out.println("Permission Denied");
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("LOGIN FAILED!");
