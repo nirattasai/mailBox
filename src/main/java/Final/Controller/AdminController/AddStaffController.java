@@ -89,13 +89,27 @@ public class AddStaffController {
     }
 
     @FXML public void handleImageUploadButton() throws IOException {
-
+        if(nameField.getText().equals("") || surnameField.getText().equals("") || usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("") || telField.getText().equals(""))
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Cannot Register Staff");
+            alert.setTitle("WARNING");
+            alert.setContentText("Filled blanks before upload image.");
+            nameField.setText("");
+            surnameField.setText("");
+            usernameField.setText("");
+            passwordField.setText("");
+            emailField.setText("");
+            telField.setText("");
+            alert.showAndWait();
+        }
+        else {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg"));
             file = fileChooser.showOpenDialog(imageUploadButton.getScene().getWindow());
             if (file != null) {
-                destDir = new File("images"+System.getProperty("file.separator")+"staff");
+                destDir = new File("images" + System.getProperty("file.separator") + "staff");
                 destDir.mkdirs();
                 filename = usernameField.getText() + "_Profile.jpg";
                 target = FileSystems.getDefault().getPath(destDir.getAbsolutePath() + System.getProperty("file.separator") + filename);
@@ -103,7 +117,8 @@ public class AddStaffController {
 
                 preImage.setFitHeight(200);
                 preImage.setFitWidth(200);
-                preImage.setImage(new Image(target.toUri().toString(),200,200,false,false));
+                preImage.setImage(new Image(target.toUri().toString(), 200, 200, false, false));
             }
+        }
     }
 }
