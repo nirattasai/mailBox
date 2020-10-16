@@ -2,14 +2,15 @@ package Final.Controller.AdminController;
 
 import Final.Controller.Account.Staff;
 import Final.Controller.StaffInterface;
+import Final.Controller.StaffInterfaceControl;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,15 +20,47 @@ import java.util.ArrayList;
 public class CheckStaffController {
 
     @FXML
-    TableView<String> checkLogTableView;
+    TableView<Staff> checkLogTableView;
     @FXML
     TextField blockField,unblockField,checkStatusField;
     @FXML
     Button blockButton,unblockButton,checkButton,backButton;
 
-    @FXML public void handleBlockButton() throws IOException {
+    private ObservableList<Staff> staffList;
+    private ArrayList<Staff> staff;
+    private StaffInterface staffInterface = new StaffInterfaceControl();
+
+    @FXML public void initialize() {
+        try {
+            staff = staffInterface.createStaffListFromCSV();
+            staffList = FXCollections.observableArrayList(staff);
+            checkLogTableView.setItems(staffList);
+
+            TableColumn col = new TableColumn("Username");
+            col.setCellValueFactory(new PropertyValueFactory<>("username"));
+            col.setPrefWidth(200);
+            col.setEditable(false);
+            checkLogTableView.getColumns().add(col);
+
+            col = new TableColumn("Date");
+            col.setCellValueFactory(new PropertyValueFactory<>("date"));
+            col.setPrefWidth(200);
+            col.setEditable(false);
+            checkLogTableView.getColumns().add(col);
+
+            col = new TableColumn("Time");
+            col.setCellValueFactory(new PropertyValueFactory<>("time"));
+            col.setPrefWidth(200);
+            col.setEditable(false);
+            checkLogTableView.getColumns().add(col);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML public void handleBlockButton() {
         int stage=0;
-        ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
         for(int i=0; i<staff.size(); i++)
         {
             if (blockField.getText().equals(staff.get(i).getUsername()))
@@ -45,7 +78,11 @@ public class CheckStaffController {
             }
         }
         if(stage == 1){
-            StaffInterface.writeStaffListToCSV(staff);
+            try {
+                staffInterface.writeStaffListToCSV(staff);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Blocked Staff Success");
             alert.setHeaderText("You blocked Staff");
@@ -69,8 +106,7 @@ public class CheckStaffController {
         blockField.setText("");
     }
 
-    @FXML public void handleUnblockButton() throws IOException {
-        ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
+    @FXML public void handleUnblockButton()  {
         int stage = 0;
         for(int i=0; i<staff.size(); i++)
         {
@@ -88,7 +124,11 @@ public class CheckStaffController {
             }
         }
         if(stage == 1){
-            StaffInterface.writeStaffListToCSV(staff);
+            try {
+                staffInterface.writeStaffListToCSV(staff);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Unblocked Staff Success");
             alert.setHeaderText("You unblocked Staff");
@@ -112,8 +152,7 @@ public class CheckStaffController {
         unblockField.setText("");
     }
 
-    @FXML public void handleCheckButton() throws IOException {
-        ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
+    @FXML public void handleCheckButton() {
         String status;
         int stage=0;
         for(int i=0; i<staff.size(); i++)
@@ -140,7 +179,11 @@ public class CheckStaffController {
             }
         }
         if(stage != 1){
-            StaffInterface.writeStaffListToCSV(staff);
+            try {
+                staffInterface.writeStaffListToCSV(staff);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Not found Staff");
             alert.setHeaderText("Not Found staff!!");

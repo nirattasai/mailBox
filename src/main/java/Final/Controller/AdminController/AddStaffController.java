@@ -2,6 +2,7 @@ package Final.Controller.AdminController;
 
 import Final.Controller.Account.Staff;
 import Final.Controller.StaffInterface;
+import Final.Controller.StaffInterfaceControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +24,11 @@ public class AddStaffController {
     @FXML
     PasswordField passwordField;
 
+    private UserControlInterface userControlInterface = new ControlInterface();
+    private StaffInterface staffInterface = new StaffInterfaceControl();
 
     @FXML public void handleOKButton(ActionEvent event) throws IOException {
-        ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
+        ArrayList<Staff> staff = staffInterface.createStaffListFromCSV();
         if(nameField.getText().equals("") || surnameField.getText().equals("") || usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("") || telField.getText().equals(""))
         {
             System.out.println("Can't leave a blank");
@@ -34,8 +37,8 @@ public class AddStaffController {
         {
             Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"null","null","1",0);
             staff.add(staff1);
-            StaffInterface.writeStaffListToCSV(staff);
-            UserControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText());
+            staffInterface.writeStaffListToCSV(staff);
+            userControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText());
 
 
             Button b = (Button) event.getSource();                                                                   // change scene

@@ -1,93 +1,18 @@
 package Final.Controller.AdminController;
 
-import Final.Controller.Account.Staff;
-import Final.Controller.StaffInterface;
-
-import java.io.*;
 import java.util.ArrayList;
 
 public interface UserControlInterface {
 
-    static ArrayList<String> usernameSend() throws IOException {
-        File file = new File("CSV/User.csv");
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line ="";
-        ArrayList<String> username = new ArrayList<>();
-        while((line = bufferedReader.readLine()) != null)
-        {
-            String[] tmp = line.split(",");
-            username.add(tmp[1]);
-        }
-        fileReader.close();
-        return username;
-    }
+    ArrayList<String> usernameSend();
 
-    static ArrayList<String> passwordSend() throws IOException {
-        File file = new File("CSV/User.csv");
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line ="";
-        ArrayList<String> password = new ArrayList<>();
-        while((line = bufferedReader.readLine()) != null)
-        {
-            String[] tmp = line.split(",");
-            password.add(tmp[2]);
-        }
-        fileReader.close();
-        return password;
-    }
+    ArrayList<String> passwordSend();
 
-    static ArrayList<String> permissionSend() throws IOException {
-        File file = new File("CSV/User.csv");
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line ="";
-        ArrayList<String> permission = new ArrayList<>();
-        while((line = bufferedReader.readLine()) != null)
-        {
-            String[] tmp = line.split(",");
-            permission.add(tmp[0]);
-        }
-        fileReader.close();
-        return permission;
-    }
+    ArrayList<String> permissionSend();
 
-    static void getLog(String username) throws IOException {
-        ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
-        for(int i=0;i<staff.size();i++)
-        {
-            if(staff.get(i).getUsername().equals(username))
-            {
-                String date = String.valueOf(java.time.LocalDate.now());
-                String time = String.valueOf(java.time.LocalTime.now());
-                staff.get(i).setLog(date,time);
-            }
-        }
-        StaffInterface.writeStaffListToCSV(staff);
-    }
+    void getLog(String username);
 
-    static String checkLogin(String username, String password) throws IOException {
-        ArrayList<String> usernameList = UserControlInterface.usernameSend();
-        ArrayList<String> passwordList = UserControlInterface.passwordSend();
-        ArrayList<String> permissionList = UserControlInterface.permissionSend();
-        String permission = "denied";
-        for(int i=0;i<usernameList.size();i++)
-        {
-            if(username.equals(usernameList.get(i))&&password.equals(passwordList.get(i)))
-            {
-                return permissionList.get(i);
-            }
-        }
-        return permission;
-    }
+    String checkLogin(String username, String password);
 
-    static void addUser(String permission, String username, String password, String name, String surname) throws IOException {
-        File file = new File("CSV/User.csv");
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
-        bufferedWriter.newLine();
-        String line = permission + "," + username + "," + password + "," + name + "," + surname;
-        bufferedWriter.append(line);
-        bufferedWriter.close();
-    }
+    void addUser(String permission, String username, String password, String name, String surname);
 }

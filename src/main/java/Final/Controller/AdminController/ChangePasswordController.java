@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
@@ -14,12 +15,15 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ChangePasswordController {
+
+    private UserControlInterface userControlInterface = new ControlInterface();
+
     @FXML
     PasswordField oldPassword,confirmPassword,newPassword;
     @FXML
     Button okButton,cancelButton;
     @FXML public void handleOKButton() throws IOException {
-        if (oldPassword.getText().equals(UserControlInterface.passwordSend().get(0)) && confirmPassword.getText().equals(newPassword.getText()))
+        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(0)) && confirmPassword.getText().equals(newPassword.getText()))
         {
             String password = newPassword.getText();
 
@@ -57,12 +61,35 @@ public class ChangePasswordController {
                 else{
                     line1 = "staff" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname();
                 }
-                System.out.println(line1);
+//                System.out.println(line1);
                 bufferedWriter.append(line1);
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
             fileWriter.close();
+        }
+
+        else if (!oldPassword.getText().equals(userControlInterface.passwordSend().get(0)))
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText("Cannot change password.");
+            alert.setContentText("Wrong old password.");
+            alert.showAndWait();
+            oldPassword.setText("");
+            newPassword.setText("");
+            confirmPassword.setText("");
+        }
+        else if (!newPassword.getText().equals(confirmPassword.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText("Cannot change password.");
+            alert.setContentText("New password not same.");
+            alert.showAndWait();
+            oldPassword.setText("");
+            newPassword.setText("");
+            confirmPassword.setText("");
         }
 
     }

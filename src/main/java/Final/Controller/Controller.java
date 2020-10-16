@@ -1,6 +1,7 @@
 package Final.Controller;
 
 import Final.Controller.Account.Staff;
+import Final.Controller.AdminController.ControlInterface;
 import Final.Controller.AdminController.UserControlInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Controller implements UserControlInterface {
+public class Controller {
 
     @FXML
     TextField usernameField;
@@ -24,13 +25,15 @@ public class Controller implements UserControlInterface {
     @FXML
     Button loginButton;
 
+    private UserControlInterface userControlInterface = new ControlInterface();
+    private StaffInterface staffInterface = new StaffInterfaceControl();
 
     @FXML public void handleLoginButton(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String permission = "";
 
-        permission = UserControlInterface.checkLogin(username,password);
+        permission = userControlInterface.checkLogin(username,password);
 
         FXMLLoader loader = null;
         if (permission.equals("admin")) {
@@ -43,14 +46,14 @@ public class Controller implements UserControlInterface {
         }
 
         else if (permission.equals("staff")) {
-            ArrayList<Staff> staff = StaffInterface.createStaffListFromCSV();
+            ArrayList<Staff> staff = staffInterface.createStaffListFromCSV();
             for(int i=0;i<staff.size();i++)
             {
                 if(staff.get(i).getUsername().equals(username))
                 {
                     if(staff.get(i).checkStatus())
                     {
-                        UserControlInterface.getLog(username);
+                        userControlInterface.getLog(username);
                         Button b = (Button) event.getSource();                                                                   // change scene
                         Stage stage = (Stage) b.getScene().getWindow();
                         loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
@@ -60,7 +63,7 @@ public class Controller implements UserControlInterface {
                     else
                     {
                         staff.get(i).countBlock();
-                        StaffInterface.writeStaffListToCSV(staff);
+                        staffInterface.writeStaffListToCSV(staff);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Permission denied!");
                         alert.setHeaderText("Contact to ADMIN");

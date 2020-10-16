@@ -12,7 +12,7 @@ import java.io.IOException;
 public class AdminPageController {
 
     @FXML
-    Button addStaffButton,blockButton,checkLogButton,changePasswordButton,logoutButton;
+    Button addStaffButton,checkLogButton,changePasswordButton,logoutButton;
 
 
     @FXML public void handleAddStaffButton(ActionEvent event) throws IOException {
@@ -34,7 +34,7 @@ public class AdminPageController {
     @FXML public void handleChangePasswordButton(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangePassword.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangePasswordAdmin.fxml"));
         stage.setScene(new Scene(loader.load(),1000,600));
         stage.show();
     }
