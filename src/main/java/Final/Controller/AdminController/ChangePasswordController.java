@@ -32,7 +32,7 @@ public class ChangePasswordController {
             while((line = bufferedReader.readLine())!=null)
             {
                 String[] accountTmp = line.split(",");
-                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2],accountTmp[5],accountTmp[6],accountTmp[7],accountTmp[8],accountTmp[9],Integer.parseInt(accountTmp[10]));
+                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2],accountTmp[5],accountTmp[6],accountTmp[7],accountTmp[8],accountTmp[9]);
                 accounts.add(accountAdd);
             }
             fileReader.close();
