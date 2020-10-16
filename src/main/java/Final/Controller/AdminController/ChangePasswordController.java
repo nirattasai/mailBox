@@ -32,7 +32,7 @@ public class ChangePasswordController {
             while((line = bufferedReader.readLine())!=null)
             {
                 String[] accountTmp = line.split(",");
-                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2],accountTmp[5],accountTmp[6],accountTmp[7],accountTmp[8],accountTmp[9]);
+                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2]);
                 accounts.add(accountAdd);
             }
             fileReader.close();
@@ -52,10 +52,10 @@ public class ChangePasswordController {
             for(int i=0;i<accounts.size();i++)
             {
                 if (i==0) {
-                    line1 = "admin" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname() + "," + accounts.get(i).getEmail() + "," + accounts.get(i).getTel() + "," + accounts.get(i).getDate() + "," + accounts.get(i).getTime();
+                    line1 = "admin" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname();
                 }
                 else{
-                    line1 = "staff" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname() + "," + accounts.get(i).getEmail() + "," + accounts.get(i).getTel() + "," + accounts.get(i).getDate() + "," + accounts.get(i).getTime();
+                    line1 = "staff" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname();
                 }
                 System.out.println(line1);
                 bufferedWriter.append(line1);

@@ -35,7 +35,7 @@ public class AddStaffController {
             Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"null","null","1",0);
             staff.add(staff1);
             StaffInterface.writeStaffListToCSV(staff);
-            UserControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText(),emailField.getText(),telField.getText(),"null","null","1");
+            UserControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText());
 
 
             Button b = (Button) event.getSource();                                                                   // change scene

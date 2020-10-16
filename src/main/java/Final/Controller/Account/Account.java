@@ -21,6 +21,14 @@ public class Account {
         this.date = date;
     }
 
+    public Account(String s, String s1, String s2, String s3) {
+        this.name = s;
+        this.surname = s1;
+        this.username = s2;
+        this.password = s3;
+    }
+
+
     public void changePassword(String newPassword)
     {
         this.password = newPassword;

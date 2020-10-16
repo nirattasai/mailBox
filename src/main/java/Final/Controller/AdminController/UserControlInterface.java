@@ -82,11 +82,11 @@ public interface UserControlInterface {
         return permission;
     }
 
-    static void addUser(String permission, String username, String password, String name, String surname, String email, String tel, String date, String time,String status) throws IOException {
+    static void addUser(String permission, String username, String password, String name, String surname) throws IOException {
         File file = new File("CSV/User.csv");
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true));
         bufferedWriter.newLine();
-        String line = permission + "," + username + "," + password + "," + name + "," + surname + "," + email + "," + tel + "," + date + "," + time + "," + status;
+        String line = permission + "," + username + "," + password + "," + name + "," + surname;
         bufferedWriter.append(line);
         bufferedWriter.close();
     }

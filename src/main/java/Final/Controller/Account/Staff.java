@@ -6,10 +6,10 @@ public class Staff extends Account {
 
     private int tryBlockLogin = 0;
 
-    public Staff(String s, String s1, String s2, String s3, String s4, String s5, String s6, String s7, String s8) {
-        super(s,s1,s2,s3,s4,s5,s6,s7);
-        this.status = s8;
+    public Staff(String s, String s1, String s2, String s3) {
+        super(s,s1,s2,s3);
     }
+
 
     public void setStatus(String status) {
         this.status = status;
