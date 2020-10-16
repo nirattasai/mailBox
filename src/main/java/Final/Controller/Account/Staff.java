@@ -2,12 +2,12 @@ package Final.Controller.Account;
 
 public class Staff extends Account {
 
-    private String status="1";  // 1=normal,0=blocked
+    private String status="normal";  // 1=normal,0=blocked
 
     private int tryBlockLogin = 0;
 
-    public Staff(String s, String s1, String s2, String s3) {
-        super(s,s1,s2,s3);
+    public Staff(String name, String surname, String username, String password) {
+        super(name,surname,username,password);
     }
 
 
@@ -30,14 +30,7 @@ public class Staff extends Account {
 
     public boolean checkStatus()
     {
-        if (status.equals("1"))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return status.equals("normal");
     }
 
     public String getStatus() {

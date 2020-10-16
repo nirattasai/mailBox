@@ -38,19 +38,25 @@ public class CheckStaffController {
 
             TableColumn col = new TableColumn("Username");
             col.setCellValueFactory(new PropertyValueFactory<>("username"));
-            col.setPrefWidth(200);
+            col.setPrefWidth(150);
             col.setEditable(false);
             checkLogTableView.getColumns().add(col);
 
             col = new TableColumn("Date");
             col.setCellValueFactory(new PropertyValueFactory<>("date"));
-            col.setPrefWidth(200);
+            col.setPrefWidth(150);
             col.setEditable(false);
             checkLogTableView.getColumns().add(col);
 
             col = new TableColumn("Time");
             col.setCellValueFactory(new PropertyValueFactory<>("time"));
-            col.setPrefWidth(200);
+            col.setPrefWidth(150);
+            col.setEditable(false);
+            checkLogTableView.getColumns().add(col);
+
+            col = new TableColumn("Status");
+            col.setCellValueFactory(new PropertyValueFactory<>("status"));
+            col.setPrefWidth(150);
             col.setEditable(false);
             checkLogTableView.getColumns().add(col);
 
@@ -65,9 +71,9 @@ public class CheckStaffController {
         {
             if (blockField.getText().equals(staff.get(i).getUsername()))
             {
-                if(staff.get(i).getStatus().equals("1"))
+                if(staff.get(i).getStatus().equals("normal"))
                 {
-                    staff.get(i).setStatus("0");
+                    staff.get(i).setStatus("blocked");
                     stage = 1;
                     break;
                 }
@@ -104,6 +110,7 @@ public class CheckStaffController {
             alert.showAndWait();
         }
         blockField.setText("");
+        checkLogTableView.refresh();
     }
 
     @FXML public void handleUnblockButton()  {
@@ -112,8 +119,8 @@ public class CheckStaffController {
         {
             if (unblockField.getText().equals(staff.get(i).getUsername()))
             {
-                if(staff.get(i).getStatus().equals("0")) {
-                    staff.get(i).setStatus("1");
+                if(staff.get(i).getStatus().equals("blocked")) {
+                    staff.get(i).setStatus("normal");
                     staff.get(i).setTryBlockLogin(0);
                     stage = 1;
                 }
@@ -150,6 +157,7 @@ public class CheckStaffController {
             alert.showAndWait();
         }
         unblockField.setText("");
+        checkLogTableView.refresh();
     }
 
     @FXML public void handleCheckButton() {
@@ -191,6 +199,7 @@ public class CheckStaffController {
             alert.showAndWait();
         }
         checkStatusField.setText("");
+        checkLogTableView.refresh();
     }
 
     @FXML public void handleBackButton(ActionEvent event) throws IOException {
