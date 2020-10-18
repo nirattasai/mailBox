@@ -57,7 +57,7 @@ public class AddRoomController {
             alert.setTitle("ERROR");
             alert.setHeaderText("Cannot add room");
             alert.setContentText("Cannot leave a blank.");
-            csvControlInterface.sortRoomList();
+//            csvControlInterface.sortRoomList();
             alert.showAndWait();
         }
         else {
@@ -72,7 +72,7 @@ public class AddRoomController {
             }
 
             if (check == 0) {
-                Room roomAdd = new Room(buildingField.getText(), floorChoice.getValue().toString(), roomChoice.getValue().toString(), typeChoice.getValue().toString(), "Not Owner");
+                Room roomAdd = new Room(buildingField.getText(), floorChoice.getValue().toString(), roomChoice.getValue().toString(), typeChoice.getValue().toString(), "No Owner");
                 rooms.add(roomAdd);
                 try {
                     csvControlInterface.writeRoomListToCSV(rooms);
@@ -80,7 +80,7 @@ public class AddRoomController {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("SUCCESS");
                     alert.setHeaderText("Add room success");
-                    alert.setContentText("The room building :" + buildingField.getText() + "\nFloor : " + floorChoice.getValue().toString() + "\nRoomNumber : " + roomChoice.getValue().toString() + "\nType : " + typeChoice.getValue().toString() + "\nStatus : Not Owner");
+                    alert.setContentText("The room building :" + buildingField.getText() + "\nFloor : " + floorChoice.getValue().toString() + "\nRoomNumber : " + roomChoice.getValue().toString() + "\nType : " + typeChoice.getValue().toString() + "\nStatus : No Owner");
                     alert.showAndWait();
 
                     Button b = (Button) event.getSource();                                                                   // change scene
