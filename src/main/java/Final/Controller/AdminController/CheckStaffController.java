@@ -1,8 +1,8 @@
 package Final.Controller.AdminController;
 
 import Final.Controller.Account.Staff;
-import Final.Controller.StaffInterface;
-import Final.Controller.StaffInterfaceControl;
+import Final.Controller.CSVControlInterface;
+import Final.Controller.CSVControlInterfaceControl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,18 +28,18 @@ public class CheckStaffController {
 
     private ObservableList<Staff> staffList;
     private ArrayList<Staff> staff;
-    private StaffInterface staffInterface = new StaffInterfaceControl();
+    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
     @FXML public void initialize() {
         try {
-            staff = staffInterface.createStaffListFromCSV();
+            staff = CSVControlInterface.createStaffListFromCSV();
             staffList = FXCollections.observableArrayList(staff);
             checkLogTableView.setItems(staffList);
 
             TableColumn col = new TableColumn("Username");
             col.setCellValueFactory(new PropertyValueFactory<>("username"));
             col.setPrefWidth(150);
-            col.setEditable(false);
+            col.setEditable(true);
             checkLogTableView.getColumns().add(col);
 
             col = new TableColumn("Date");
@@ -85,7 +85,7 @@ public class CheckStaffController {
         }
         if(stage == 1){
             try {
-                staffInterface.writeStaffListToCSV(staff);
+                CSVControlInterface.writeStaffListToCSV(staff);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -132,7 +132,7 @@ public class CheckStaffController {
         }
         if(stage == 1){
             try {
-                staffInterface.writeStaffListToCSV(staff);
+                CSVControlInterface.writeStaffListToCSV(staff);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -188,7 +188,7 @@ public class CheckStaffController {
         }
         if(stage != 1){
             try {
-                staffInterface.writeStaffListToCSV(staff);
+                CSVControlInterface.writeStaffListToCSV(staff);
             } catch (IOException e) {
                 e.printStackTrace();
             }

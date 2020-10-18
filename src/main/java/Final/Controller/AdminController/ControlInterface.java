@@ -1,8 +1,8 @@
 package Final.Controller.AdminController;
 
 import Final.Controller.Account.Staff;
-import Final.Controller.StaffInterface;
-import Final.Controller.StaffInterfaceControl;
+import Final.Controller.CSVControlInterface;
+import Final.Controller.CSVControlInterfaceControl;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ControlInterface implements UserControlInterface{
 
     private File file = new File("CSV/User.csv");
-    private StaffInterface staffInterface = new StaffInterfaceControl();
+    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
     public ArrayList<String> usernameSend() {
         FileReader fileReader = null;
@@ -99,7 +99,7 @@ public class ControlInterface implements UserControlInterface{
     public void getLog(String username) {
         ArrayList<Staff> staff = null;
         try {
-            staff = staffInterface.createStaffListFromCSV();
+            staff = CSVControlInterface.createStaffListFromCSV();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,7 +113,7 @@ public class ControlInterface implements UserControlInterface{
             }
         }
         try {
-            staffInterface.writeStaffListToCSV(staff);
+            CSVControlInterface.writeStaffListToCSV(staff);
         } catch (IOException e) {
             e.printStackTrace();
         }

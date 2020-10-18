@@ -26,7 +26,7 @@ public class Controller {
     Button loginButton;
 
     private UserControlInterface userControlInterface = new ControlInterface();
-    private StaffInterface staffInterface = new StaffInterfaceControl();
+    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
     @FXML public void handleLoginButton(ActionEvent event) throws IOException {
         String username = usernameField.getText();
@@ -48,7 +48,7 @@ public class Controller {
                 break;
             }
             case "staff":
-                ArrayList<Staff> staff = staffInterface.createStaffListFromCSV();
+                ArrayList<Staff> staff = CSVControlInterface.createStaffListFromCSV();
                 for (int i = 0; i < staff.size(); i++) {
                     if (staff.get(i).getUsername().equals(username)) {
                         if (staff.get(i).checkStatus()) {
@@ -60,7 +60,7 @@ public class Controller {
                             stage.show();
                         } else {
                             staff.get(i).countBlock();
-                            staffInterface.writeStaffListToCSV(staff);
+                            CSVControlInterface.writeStaffListToCSV(staff);
                             Alert alert = new Alert(Alert.AlertType.WARNING);
                             alert.setTitle("Permission denied!");
                             alert.setHeaderText("Contact to ADMIN");

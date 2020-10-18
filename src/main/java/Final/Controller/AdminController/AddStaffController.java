@@ -1,8 +1,8 @@
 package Final.Controller.AdminController;
 
 import Final.Controller.Account.Staff;
-import Final.Controller.StaffInterface;
-import Final.Controller.StaffInterfaceControl;
+import Final.Controller.CSVControlInterface;
+import Final.Controller.CSVControlInterfaceControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,12 +41,12 @@ public class AddStaffController {
     ImageView preImage;
 
     private UserControlInterface userControlInterface = new ControlInterface();
-    private StaffInterface staffInterface = new StaffInterfaceControl();
+    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
 
 
     @FXML public void handleOKButton(ActionEvent event) throws IOException {
-        ArrayList<Staff> staff = staffInterface.createStaffListFromCSV();
+        ArrayList<Staff> staff = CSVControlInterface.createStaffListFromCSV();
         if(nameField.getText().equals("") || surnameField.getText().equals("") || usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("") || telField.getText().equals(""))
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -65,7 +65,7 @@ public class AddStaffController {
         {
             Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"haven't locked in","haven't locked in","normal",0);
             staff.add(staff1);
-            staffInterface.writeStaffListToCSV(staff);
+            CSVControlInterface.writeStaffListToCSV(staff);
             userControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText());
 
             Button b = (Button) event.getSource();                                                                   // change scene
