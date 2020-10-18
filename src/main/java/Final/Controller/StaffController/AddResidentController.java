@@ -34,18 +34,22 @@ public class AddResidentController {
 
     @FXML public void handleOKButton() throws IOException {
         check = 0;
-        for(int i=0;i<rooms.size();i++)
+        for(i=0;i<rooms.size();i++)
         {
+            System.out.println(i);
             if(roomNumberField.getText().equals(rooms.get(i).getRoomNumberFull()))
             {
                 check = 1;
-                for(int j=0;i<roomOwners.size();j++)
+                for(int j=0;j<roomOwners.size();j++)
                 {
                     if (roomNumberField.getText().equals(roomOwners.get(j).getRoomNumber()))
                     {
                         check = 2;
+                        break;
                     }
+
                 }
+                break;
             }
 
         }
