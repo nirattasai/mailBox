@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ChangePasswordController {
+public class ChangePasswordAdminController {
 
     private UserControlInterface userControlInterface = new ControlInterface();
 
@@ -61,7 +61,6 @@ public class ChangePasswordController {
                 else{
                     line1 = "staff" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname();
                 }
-//                System.out.println(line1);
                 bufferedWriter.append(line1);
                 bufferedWriter.newLine();
             }

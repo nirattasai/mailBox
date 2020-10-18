@@ -3,6 +3,7 @@ package Final.Controller;
 import Final.Controller.Account.Staff;
 import Final.Controller.AdminController.ControlInterface;
 import Final.Controller.AdminController.UserControlInterface;
+import Final.Controller.StaffController.StaffPageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Controller {
+public class Login {
 
     @FXML
     TextField usernameField;
@@ -57,6 +58,8 @@ public class Controller {
                             Stage stage = (Stage) b.getScene().getWindow();
                             loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
                             stage.setScene(new Scene(loader.load(), 1000, 600));
+                            StaffPageController dw = loader.getController();
+                            dw.setUsername(username);
                             stage.show();
                         } else {
                             staff.get(i).countBlock();

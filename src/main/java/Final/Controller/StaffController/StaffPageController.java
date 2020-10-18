@@ -11,6 +11,13 @@ import java.io.IOException;
 
 public class StaffPageController {
 
+    private String username;
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
     @FXML
     Button checkRoomButton,addRoomButton,addResidentButton,mailboxButton;
 

@@ -3,7 +3,6 @@ package Final.Controller.Account;
 public class Staff extends Account {
 
     private String status="normal";  // 1=normal,0=blocked
-
     private int tryBlockLogin = 0;
 
     public Staff(String name, String surname, String username, String password) {
