@@ -1,7 +1,9 @@
-package Final.Controller.AdminController;
+package Final.Controller.StaffController;
 
 import Final.Controller.Account.Account;
 import Final.Controller.Account.Staff;
+import Final.Controller.AdminController.ControlInterface;
+import Final.Controller.AdminController.UserControlInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,16 +16,24 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class ChangePasswordAdminController {
-
+public class ChangePasswordStaffController {
     private UserControlInterface userControlInterface = new ControlInterface();
+
+    private String username;
+    private int index;
+
+    public void setUser(String username,int index)
+    {
+        this.index = index;
+        this.username = username;
+    }
 
     @FXML
     PasswordField oldPassword,confirmPassword,newPassword;
     @FXML
     Button okButton,cancelButton;
     @FXML public void handleOKButton() throws IOException {
-        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(0)) && confirmPassword.getText().equals(newPassword.getText()))
+        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(index+1)) && confirmPassword.getText().equals(newPassword.getText()))
         {
             String password = newPassword.getText();
 
@@ -42,7 +52,7 @@ public class ChangePasswordAdminController {
             fileReader.close();
             bufferedReader.close();
 
-            accounts.get(0).changePassword(password);
+            accounts.get(index+1).changePassword(password);
 
             File file1 = new File("CSV/User.csv");
             FileWriter fileWriter = null;
@@ -52,7 +62,7 @@ public class ChangePasswordAdminController {
                 e.printStackTrace();
             }
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            String line1 = "";
+            String line1;
             for(int i=0;i<accounts.size();i++)
             {
                 if (i==0) {
@@ -74,9 +84,10 @@ public class ChangePasswordAdminController {
             newPassword.setText("");
             confirmPassword.setText("");
             alert.showAndWait();
+
         }
 
-        else if (!oldPassword.getText().equals(userControlInterface.passwordSend().get(0)))
+        else if (!oldPassword.getText().equals(userControlInterface.passwordSend().get(index+1)))
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("WARNING");
@@ -103,7 +114,7 @@ public class ChangePasswordAdminController {
     @FXML public void handleCancelButton(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
         stage.setScene(new Scene(loader.load(),1000,600));
         stage.show();
     }

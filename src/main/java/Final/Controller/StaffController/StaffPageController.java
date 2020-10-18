@@ -12,14 +12,16 @@ import java.io.IOException;
 public class StaffPageController {
 
     private String username;
+    private int index;
 
-    public void setUsername(String username)
+    public void setUser(String username,int index)
     {
         this.username = username;
+        this.index = index;
     }
 
     @FXML
-    Button checkRoomButton,addRoomButton,addResidentButton,mailboxButton;
+    Button checkRoomButton,addRoomButton,addResidentButton,mailboxButton,changePasswordButton;
 
     @FXML public void handleAddRoomButton(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();                                                                   // change scene
@@ -43,5 +45,17 @@ public class StaffPageController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddResident.fxml"));
         stage.setScene(new Scene(loader.load(),1000,600));
         stage.show();
+    }
+
+    @FXML public void handleChangePasswordButton(ActionEvent event) throws IOException {
+//        System.out.println(index+username);
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangePasswordStaff.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        ChangePasswordStaffController dw = loader.getController();
+        dw.setUser(username,index);
+        stage.show();
+
     }
 }

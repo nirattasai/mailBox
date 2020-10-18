@@ -15,7 +15,7 @@
       <Button fx:id="checkRoomButton" layoutX="57.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleCheckRoomButton" text="Check Room" />
       <Button fx:id="addRoomButton" layoutX="183.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleAddRoomButton" text="Add Room" />
       <Button fx:id="addResidentButton" layoutX="301.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleAddResidentButton" text="Add Resident" />
-      <Button layoutX="466.0" layoutY="384.0" mnemonicParsing="false" text="Change Password" />
+      <Button fx:id="changePasswordButton" layoutX="57.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleChangePasswordButton" text="Change Password" />
       <Button layoutX="48.0" layoutY="384.0" mnemonicParsing="false" text="Search Resident" />
       <Button layoutX="183.0" layoutY="384.0" mnemonicParsing="false" text="Remove Resident" />
       <Button fx:id="mailboxButton" layoutX="413.0" layoutY="112.0" mnemonicParsing="false" text="MailBOX" />

@@ -59,7 +59,8 @@ public class Login {
                             loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
                             stage.setScene(new Scene(loader.load(), 1000, 600));
                             StaffPageController dw = loader.getController();
-                            dw.setUsername(username);
+                            dw.setUser(username,i);
+                            System.out.println(username+"  "+i);
                             stage.show();
                         } else {
                             staff.get(i).countBlock();
