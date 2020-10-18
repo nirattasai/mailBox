@@ -1,11 +1,11 @@
 package Final.Controller;
 
+import Final.Controller.Account.RoomOwner;
 import Final.Controller.Account.Staff;
 import Final.Controller.Building.Room;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class CSVControlInterfaceControl implements CSVControlInterface {
 
@@ -15,7 +15,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         new FileReader(file);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line = "";
+        String line;
         ArrayList<Staff> staff = new ArrayList<>();
         while ((line = bufferedReader.readLine()) != null) {
             String[] staffTmp = line.split(",");
@@ -34,10 +34,11 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert fileWriter != null;
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String line = "";
-        for (int i = 0; i < staff.size(); i++) {
-            line = "staff" + "," + staff.get(i).getUsername() + "," + staff.get(i).getPassword() + "," + staff.get(i).getName() + "," + staff.get(i).getSurname() + "," + staff.get(i).getEmail() + "," + staff.get(i).getTel() + "," + staff.get(i).getDate() + "," + staff.get(i).getTime() + "," + staff.get(i).getStatus() + "," + staff.get(i).getTryBlockLogin();
+        String line;
+        for (Staff value : staff) {
+            line = "staff" + "," + value.getUsername() + "," + value.getPassword() + "," + value.getName() + "," + value.getSurname() + "," + value.getEmail() + "," + value.getTel() + "," + value.getDate() + "," + value.getTime() + "," + value.getStatus() + "," + value.getTryBlockLogin();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }
@@ -51,7 +52,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         new FileReader(file);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line = "";
+        String line;
         ArrayList<Room> rooms = new ArrayList<>();
         while ((line = bufferedReader.readLine()) != null) {
             String[] RoomTmp = line.split(",");
@@ -72,10 +73,50 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert fileWriter != null;
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        String line = "";
-        for (int i = 0; i < rooms.size(); i++) {
-            line = rooms.get(i).getBuilding() + "," + rooms.get(i).getFloor() + "," + rooms.get(i).getRoomNumber() + "," + rooms.get(i).getType() + "," + rooms.get(i).getStatus();
+        String line;
+        for (Room room : rooms) {
+            line = room.getBuilding() + "," + room.getFloor() + "," + room.getRoomNumber() + "," + room.getType() + "," + room.getStatus();
+            bufferedWriter.append(line);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
+    }
+
+    @Override
+    public ArrayList<RoomOwner> createRoomOwnerListFromCSV() throws IOException {
+        file = new File("CSV/Resident.csv");
+        new FileReader(file);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        ArrayList<RoomOwner> roomOwners = new ArrayList<>();
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] RoomTmp = line.split(",");
+            RoomOwner roomAdd = new RoomOwner(RoomTmp[0], RoomTmp[1], RoomTmp[2], RoomTmp[3]);
+            roomOwners.add(roomAdd);
+        }
+        fileReader.close();
+        bufferedReader.close();
+        return roomOwners;
+    }
+
+    @Override
+    public void writeRoomOwnerListToCSV(ArrayList<RoomOwner> roomOwners) throws IOException {
+        file = new File("CSV/Resident.csv");
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert fileWriter != null;
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String line;
+        for (RoomOwner roomOwner : roomOwners) {
+            line = roomOwner.getName() + "," + roomOwner.getSurname() + "," + roomOwner.getRoomNumber() + "," + roomOwner.getTel();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }

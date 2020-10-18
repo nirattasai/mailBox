@@ -48,4 +48,5 @@ public class Staff extends Account {
         this.date = date;
         this.time = time;
     }
+
 }

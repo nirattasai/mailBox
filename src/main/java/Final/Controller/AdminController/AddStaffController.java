@@ -41,12 +41,11 @@ public class AddStaffController {
     ImageView preImage;
 
     private UserControlInterface userControlInterface = new ControlInterface();
-    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
-
-
+    private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
+    private int check=0;
 
     @FXML public void handleOKButton(ActionEvent event) throws IOException {
-        ArrayList<Staff> staff = CSVControlInterface.createStaffListFromCSV();
+        ArrayList<Staff> staff = csvControlInterface.createStaffListFromCSV();
         if(nameField.getText().equals("") || surnameField.getText().equals("") || usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("") || telField.getText().equals(""))
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -63,16 +62,32 @@ public class AddStaffController {
         }
         else
         {
-            Staff staff1 = new Staff(nameField.getText(),surnameField.getText(),usernameField.getText(),passwordField.getText(),emailField.getText(),telField.getText(),"haven't locked in","haven't locked in","normal",0);
-            staff.add(staff1);
-            CSVControlInterface.writeStaffListToCSV(staff);
-            userControlInterface.addUser("staff",usernameField.getText(),passwordField.getText(),nameField.getText(),surnameField.getText());
+            for (Staff value : staff) {
+                if (usernameField.getText().equals(value.getUsername())) {
+                    check = 1;
+                    break;
+                }
+            }
+            if (check==1)
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText("Cannot Register Staff");
+                alert.setTitle("WARNING");
+                alert.setContentText("Username is already used.");
+                alert.showAndWait();
+            }
+            else {
+                Staff staff1 = new Staff(nameField.getText(), surnameField.getText(), usernameField.getText(), passwordField.getText(), emailField.getText(), telField.getText(), "haven't locked in", "haven't locked in", "normal", 0);
+                staff.add(staff1);
+                csvControlInterface.writeStaffListToCSV(staff);
+                userControlInterface.addUser("staff", usernameField.getText(), passwordField.getText(), nameField.getText(), surnameField.getText());
 
-            Button b = (Button) event.getSource();                                                                   // change scene
-            Stage stage = (Stage) b.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
-            stage.setScene(new Scene(loader.load(),1000,600));
-            stage.show();
+                Button b = (Button) event.getSource();                                                                   // change scene
+                Stage stage = (Stage) b.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
+                stage.setScene(new Scene(loader.load(), 1000, 600));
+                stage.show();
+            }
         }
     }
 

@@ -27,15 +27,8 @@ public class AddRoomController {
     private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private ArrayList<Room> rooms;
 
-    {
-        try {
-            rooms = csvControlInterface.createRoomListFromCSV();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initialize(){
+    public void initialize() throws IOException {
+        rooms = csvControlInterface.createRoomListFromCSV();
         for(int i=1;i<=8;i++)
         {
             floorChoice.getItems().add(String.valueOf(i));
@@ -49,7 +42,7 @@ public class AddRoomController {
 
     }
     private int check = 0;
-    @FXML public void handleOKButton(ActionEvent event) throws IOException {
+    @FXML public void handleOKButton(ActionEvent event){
         check = 0;
         if(buildingField.getText().equals("") || floorChoice.getValue()==null || roomChoice.getValue() == null || typeChoice.getValue() == null)
         {

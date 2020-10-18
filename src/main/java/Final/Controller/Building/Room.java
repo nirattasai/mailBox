@@ -39,4 +39,9 @@ public class Room {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getRoomNumberFull()
+    {
+        return getBuilding()+getFloor() +getRoomNumber();
+    }
 }

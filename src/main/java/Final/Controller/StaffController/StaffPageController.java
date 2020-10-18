@@ -29,4 +29,12 @@ public class StaffPageController {
         stage.setScene(new Scene(loader.load(),1000,600));
         stage.show();
     }
+
+    @FXML public void handleAddResidentButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddResident.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        stage.show();
+    }
 }

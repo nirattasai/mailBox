@@ -29,16 +29,8 @@ public class CheckRoomController {
     private ObservableList<Room> roomsList ;
     ArrayList<Room> rooms;
 
-    {
-        try {
-            rooms = csvControlInterface.createRoomListFromCSV();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initialize()
-    {
+    public void initialize() throws IOException {
+        rooms = csvControlInterface.createRoomListFromCSV();
         roomsList = FXCollections.observableList(rooms);
         roomTableView.setItems(roomsList);
 
