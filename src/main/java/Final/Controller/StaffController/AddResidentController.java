@@ -6,9 +6,12 @@ import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +23,7 @@ public class AddResidentController {
     @FXML
     TextField nameField,surnameField,roomNumberField,telField;
 
-    private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
+    private final CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private ArrayList<Room> rooms ;
     private ArrayList<RoomOwner> roomOwners;
 
@@ -40,10 +43,8 @@ public class AddResidentController {
             if(roomNumberField.getText().equals(rooms.get(i).getRoomNumberFull()))
             {
                 check = 1;
-                for(int j=0;j<roomOwners.size();j++)
-                {
-                    if (roomNumberField.getText().equals(roomOwners.get(j).getRoomNumber()))
-                    {
+                for (RoomOwner roomOwner : roomOwners) {
+                    if (roomNumberField.getText().equals(roomOwner.getRoomNumber())) {
                         check = 2;
                         break;
                     }
@@ -84,6 +85,11 @@ public class AddResidentController {
         }
     }
 
-    public void handleCancelButton(ActionEvent event) {
+    public void handleCancelButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        stage.show();
     }
 }

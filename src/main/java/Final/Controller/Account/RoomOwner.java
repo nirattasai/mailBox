@@ -1,10 +1,10 @@
 package Final.Controller.Account;
 
 public class RoomOwner{
-    private String roomNumber;
-    private String name;
-    private String surname;
-    private String tel;
+    private final String roomNumber;
+    private final String name;
+    private final String surname;
+    private final String tel;
 
     public RoomOwner(String name,String surname,String roomNumber,String tel)
     {

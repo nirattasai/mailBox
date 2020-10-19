@@ -4,7 +4,11 @@ package Final.Controller;
 import Final.Controller.Account.RoomOwner;
 import Final.Controller.Account.Staff;
 import Final.Controller.Building.Room;
+import Final.Controller.Item.Document;
+import Final.Controller.Item.Letter;
+import Final.Controller.Item.Package;
 
+import javax.print.Doc;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,4 +26,15 @@ public interface CSVControlInterface {
 
     void writeRoomOwnerListToCSV(ArrayList<RoomOwner> roomOwners) throws IOException;
 
+    ArrayList<Letter> createLetterListFromCSV() throws IOException;
+
+    void writeLetterListToCSV(ArrayList<Letter> letters) throws IOException;
+
+    ArrayList<Document> createDocumentListFromCSV() throws IOException;
+
+    void writeDocumentListToCSV(ArrayList<Document> documents) throws IOException;
+
+    ArrayList<Package> createPackageListFromCSV() throws IOException;
+
+    void writePackageListToCSV(ArrayList<Package> packages) throws IOException;
 }

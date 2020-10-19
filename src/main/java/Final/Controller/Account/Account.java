@@ -1,11 +1,11 @@
 package Final.Controller.Account;
 
 public class Account {
-    private String name;
+    private final String name;
     private String tel;
     private String email;
-    private String username;
-    private String surname;
+    private final String username;
+    private final String surname;
     private String password;
     protected String date;
     protected String time;

@@ -26,8 +26,8 @@ public class Login {
     @FXML
     Button loginButton;
 
-    private UserControlInterface userControlInterface = new ControlInterface();
-    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
+    private final UserControlInterface userControlInterface = new ControlInterface();
+    private final CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
     @FXML public void handleLoginButton(ActionEvent event) throws IOException {
         String username = usernameField.getText();

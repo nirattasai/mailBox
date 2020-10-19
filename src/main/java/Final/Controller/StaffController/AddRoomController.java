@@ -24,7 +24,7 @@ public class AddRoomController {
     @FXML
     TextField buildingField;
 
-    private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
+    private final CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private ArrayList<Room> rooms;
 
     public void initialize() throws IOException {
@@ -55,17 +55,16 @@ public class AddRoomController {
         }
         else {
 
-            for (int i = 0; i < rooms.size(); i++) {
+            for (Room room : rooms) {
 
-                if (buildingField.getText().equals(rooms.get(i).getBuilding()) && floorChoice.getValue().toString().equals(rooms.get(i).getFloor()) && roomChoice.getValue().toString().equals(rooms.get(i).getRoomNumber()))
-                {
+                if (buildingField.getText().equals(room.getBuilding()) && floorChoice.getValue().toString().equals(room.getFloor()) && roomChoice.getValue().toString().equals(room.getRoomNumber())) {
                     check = 1;
                     break;
                 }
             }
 
             if (check == 0) {
-                Room roomAdd = new Room(buildingField.getText(), floorChoice.getValue().toString(), roomChoice.getValue().toString(), typeChoice.getValue().toString(), "No Owner");
+                Room roomAdd = new Room(buildingField.getText(), floorChoice.getValue().toString(), roomChoice.getValue().toString(), typeChoice.getValue().toString(), "No Owner","No item in mailbox");
                 rooms.add(roomAdd);
                 try {
                     csvControlInterface.writeRoomListToCSV(rooms);

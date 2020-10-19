@@ -41,8 +41,7 @@ public class Staff extends Account {
         this.status = status;
         this.tryBlockLogin = blockedCount;
     }
-
-
+    
     public void setLog(String date, String time) {
         this.date = date;
         this.time = time;

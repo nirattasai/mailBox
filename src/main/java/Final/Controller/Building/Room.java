@@ -1,19 +1,21 @@
 package Final.Controller.Building;
 
 public class Room {
-    private String building;
-    private String floor;
-    private String roomNumber;
-    private String type;
+    private final String building;
+    private final String floor;
+    private final String roomNumber;
+    private final String type;
     private String status;
+    private String item;
 
-    public Room(String building,String floor,String roomNumber,String type,String status)
+    public Room(String building,String floor,String roomNumber,String type,String status,String item)
     {
         this.building = building;
         this.floor = floor;
         this.roomNumber = roomNumber;
         this.type = type;
         this.status = status;
+        this.item = item;
     }
 
     public String getStatus() {
@@ -43,5 +45,9 @@ public class Room {
     public String getRoomNumberFull()
     {
         return getBuilding()+getFloor() +getRoomNumber();
+    }
+
+    public String getItem() {
+        return item;
     }
 }

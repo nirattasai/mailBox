@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class ControlInterface implements UserControlInterface{
 
-    private File file = new File("CSV/User.csv");
-    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
+    private final File file = new File("CSV/User.csv");
+    private final CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
     public ArrayList<String> usernameSend() {
         FileReader fileReader = null;
@@ -25,7 +25,7 @@ public class ControlInterface implements UserControlInterface{
         while(true)
         {
             try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
+                if ((line = bufferedReader.readLine()) == null) break;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -53,7 +53,7 @@ public class ControlInterface implements UserControlInterface{
         while(true)
         {
             try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
+                if ((line = bufferedReader.readLine()) == null) break;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -81,7 +81,7 @@ public class ControlInterface implements UserControlInterface{
         while(true)
         {
             try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
+                if ((line = bufferedReader.readLine()) == null) break;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -103,13 +103,11 @@ public class ControlInterface implements UserControlInterface{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(int i=0;i<staff.size();i++)
-        {
-            if(staff.get(i).getUsername().equals(username))
-            {
+        for (Staff value : staff) {
+            if (value.getUsername().equals(username)) {
                 String date = String.valueOf(java.time.LocalDate.now());
                 String time = String.valueOf(java.time.LocalTime.now());
-                staff.get(i).setLog(date,time);
+                value.setLog(date, time);
             }
         }
         try {

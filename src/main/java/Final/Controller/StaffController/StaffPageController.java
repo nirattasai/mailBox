@@ -1,5 +1,6 @@
 package Final.Controller.StaffController;
 
+import Final.Controller.Item.MailBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,7 +49,6 @@ public class StaffPageController {
     }
 
     @FXML public void handleChangePasswordButton(ActionEvent event) throws IOException {
-//        System.out.println(index+username);
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangePasswordStaff.fxml"));
@@ -57,5 +57,15 @@ public class StaffPageController {
         dw.setUser(username,index);
         stage.show();
 
+    }
+
+    @FXML public void handleMailBoxButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        MailBoxController dw = loader.getController();
+        dw.setUser(username,index);
+        stage.show();
     }
 }

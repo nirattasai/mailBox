@@ -17,7 +17,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ChangePasswordStaffController {
-    private UserControlInterface userControlInterface = new ControlInterface();
+    private final UserControlInterface userControlInterface = new ControlInterface();
 
     private String username;
     private int index;
@@ -41,7 +41,7 @@ public class ChangePasswordStaffController {
             new FileReader(file);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line = "";
+            String line;
             ArrayList<Account> accounts = new ArrayList<>();
             while((line = bufferedReader.readLine())!=null)
             {

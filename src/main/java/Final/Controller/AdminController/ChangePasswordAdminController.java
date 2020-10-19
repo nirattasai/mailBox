@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ChangePasswordAdminController {
 
-    private UserControlInterface userControlInterface = new ControlInterface();
+    private final UserControlInterface userControlInterface = new ControlInterface();
 
     @FXML
     PasswordField oldPassword,confirmPassword,newPassword;
@@ -31,7 +31,7 @@ public class ChangePasswordAdminController {
             new FileReader(file);
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line = "";
+            String line;
             ArrayList<Account> accounts = new ArrayList<>();
             while((line = bufferedReader.readLine())!=null)
             {
@@ -52,7 +52,7 @@ public class ChangePasswordAdminController {
                 e.printStackTrace();
             }
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            String line1 = "";
+            String line1;
             for(int i=0;i<accounts.size();i++)
             {
                 if (i==0) {

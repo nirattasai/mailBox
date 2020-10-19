@@ -28,7 +28,7 @@ public class CheckStaffController {
 
     private ObservableList<Staff> staffList;
     private ArrayList<Staff> staff;
-    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
+    private final CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
     @FXML public void initialize() {
         try {
@@ -67,19 +67,14 @@ public class CheckStaffController {
 
     @FXML public void handleBlockButton() {
         int stage=0;
-        for(int i=0; i<staff.size(); i++)
-        {
-            if (blockField.getText().equals(staff.get(i).getUsername()))
-            {
-                if(staff.get(i).getStatus().equals("normal"))
-                {
-                    staff.get(i).setStatus("blocked");
+        for (Staff value : staff) {
+            if (blockField.getText().equals(value.getUsername())) {
+                if (value.getStatus().equals("normal")) {
+                    value.setStatus("blocked");
                     stage = 1;
                     break;
-                }
-                else
-                {
-                    stage=2;
+                } else {
+                    stage = 2;
                 }
             }
         }
@@ -115,18 +110,14 @@ public class CheckStaffController {
 
     @FXML public void handleUnblockButton()  {
         int stage = 0;
-        for(int i=0; i<staff.size(); i++)
-        {
-            if (unblockField.getText().equals(staff.get(i).getUsername()))
-            {
-                if(staff.get(i).getStatus().equals("blocked")) {
-                    staff.get(i).setStatus("normal");
-                    staff.get(i).setTryBlockLogin(0);
+        for (Staff value : staff) {
+            if (unblockField.getText().equals(value.getUsername())) {
+                if (value.getStatus().equals("blocked")) {
+                    value.setStatus("normal");
+                    value.setTryBlockLogin(0);
                     stage = 1;
-                }
-                else
-                {
-                    stage=2;
+                } else {
+                    stage = 2;
                 }
             }
         }
@@ -163,23 +154,18 @@ public class CheckStaffController {
     @FXML public void handleCheckButton() {
         String status;
         int stage=0;
-        for(int i=0; i<staff.size(); i++)
-        {
-            if (checkStatusField.getText().equals(staff.get(i).getUsername()))
-            {
+        for (Staff value : staff) {
+            if (checkStatusField.getText().equals(value.getUsername())) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Status Staff");
-                if(staff.get(i).checkStatus())
-                {
+                if (value.checkStatus()) {
                     status = "Normal";
-                    alert.setHeaderText("Staff Status : "+ status);
-                    alert.setContentText("Staff "+staff.get(i).getUsername()+" is : "+status);
-                }
-                else
-                {
+                    alert.setHeaderText("Staff Status : " + status);
+                    alert.setContentText("Staff " + value.getUsername() + " is : " + status);
+                } else {
                     status = "Blocked";
-                    alert.setHeaderText("Staff Status : "+ status);
-                    alert.setContentText("Staff "+staff.get(i).getUsername()+" is : "+status+"\n"+"Try to login: "+staff.get(i).getTryBlockLogin());
+                    alert.setHeaderText("Staff Status : " + status);
+                    alert.setContentText("Staff " + value.getUsername() + " is : " + status + "\n" + "Try to login: " + value.getTryBlockLogin());
                 }
                 alert.showAndWait();
                 stage = 1;

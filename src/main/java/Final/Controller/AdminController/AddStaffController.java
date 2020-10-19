@@ -40,8 +40,8 @@ public class AddStaffController {
     @FXML
     ImageView preImage;
 
-    private UserControlInterface userControlInterface = new ControlInterface();
-    private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
+    private final UserControlInterface userControlInterface = new ControlInterface();
+    private final CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private int check=0;
 
     @FXML public void handleOKButton(ActionEvent event) throws IOException {

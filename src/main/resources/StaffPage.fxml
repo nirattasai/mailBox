@@ -18,8 +18,8 @@
       <Button fx:id="changePasswordButton" layoutX="57.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleChangePasswordButton" text="Change Password" />
       <Button layoutX="48.0" layoutY="384.0" mnemonicParsing="false" text="Search Resident" />
       <Button layoutX="183.0" layoutY="384.0" mnemonicParsing="false" text="Remove Resident" />
-      <Button fx:id="mailboxButton" layoutX="413.0" layoutY="112.0" mnemonicParsing="false" text="MailBOX" />
+      <Button fx:id="mailboxButton" layoutX="413.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleMailBoxButton" text="MailBOX" />
       <Button layoutX="328.0" layoutY="384.0" mnemonicParsing="false" text="Search MailBox" />
-      <Button layoutX="37.0" layoutY="461.0" mnemonicParsing="false" text="Add Item To Mailbox" />
+      <Button layoutX="41.0" layoutY="462.0" mnemonicParsing="false" text="Add Item To Mailbox" />
    </children>
 </AnchorPane>
