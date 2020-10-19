@@ -45,6 +45,7 @@ public class AddItemController {
     private String filename;
     private Path target;
 
+    private int check=0;
     private String username;
     private int index;
     public void setUser(String username,int index)
@@ -142,19 +143,21 @@ public class AddItemController {
                         MailBoxController dw = loader.getController();
                         dw.setUser(username,index);
                         stage.show();
+                        check=1;
                         break;
                     }
-                    else
-                    {
-                        file = new File(String.valueOf(target));
-                        file.delete();
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Add item failed");
-                        alert.setHeaderText("Add Letter failed.");
-                        alert.setContentText("No room number you input");
-                        roomNumberField.setText("");
-                        alert.showAndWait();
-                    }
+                }
+                if(check == 0)
+                {
+                    file = new File(String.valueOf(target));
+                    file.delete();
+                    itemImage.setImage(null);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Add item failed");
+                    alert.setHeaderText("Add Letter failed.");
+                    alert.setContentText("No room number you input");
+                    roomNumberField.setText("");
+                    alert.showAndWait();
                 }
                 break;
             }
@@ -186,19 +189,21 @@ public class AddItemController {
                         MailBoxController dw = loader.getController();
                         dw.setUser(username,index);
                         stage.show();
+                        check=1;
                         break;
                     }
-                    else
-                    {
-                        file = new File(String.valueOf(target));
-                        file.delete();
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Add item failed");
-                        alert.setHeaderText("Add Package failed.");
-                        alert.setContentText("No room number you input");
-                        roomNumberField.setText("");
-                        alert.showAndWait();
-                    }
+                }
+                if(check == 0)
+                {
+                    file = new File(String.valueOf(target));
+                    file.delete();
+                    itemImage.setImage(null);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Add item failed");
+                    alert.setHeaderText("Add Package failed.");
+                    alert.setContentText("No room number you input");
+                    roomNumberField.setText("");
+                    alert.showAndWait();
                 }
                 break;
             }
@@ -230,19 +235,21 @@ public class AddItemController {
                         MailBoxController dw = loader.getController();
                         dw.setUser(username,index);
                         stage.show();
+                        check=1;
                         break;
                     }
-                    else
-                    {
-                        file = new File(String.valueOf(target));
-                        file.delete();
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Add item failed");
-                        alert.setHeaderText("Add Document failed.");
-                        alert.setContentText("No room number you input");
-                        roomNumberField.setText("");
-                        alert.showAndWait();
-                    }
+                }
+                if(check == 0)
+                {
+                    file = new File(String.valueOf(target));
+                    file.delete();
+                    itemImage.setImage(null);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Add item failed");
+                    alert.setHeaderText("Add Document failed.");
+                    alert.setContentText("No room number you input");
+                    roomNumberField.setText("");
+                    alert.showAndWait();
                 }
                 break;
             }

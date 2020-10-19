@@ -14,8 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Popup;
-import javafx.stage.PopupBuilder;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,7 +21,7 @@ import java.util.ArrayList;
 
 public class MailBoxController {
     @FXML
-    Button backButton,addItemButton,residentReceivedButton;
+    Button backButton,addItemButton,residentReceivedButton,refreshButton;
     @FXML
     TableView mailBoxTableView;
 
@@ -57,7 +55,7 @@ public class MailBoxController {
         this.index = index;
     }
 
-    public void handleAddItemButton(ActionEvent event) throws IOException {
+    @FXML public void handleAddItemButton(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddItem.fxml"));
@@ -68,9 +66,28 @@ public class MailBoxController {
 
     }
 
-    public void handleResidentReceivedButton(ActionEvent event) {
+    @FXML public void handleResidentReceivedButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResidentReceive.fxml"));
+        stage.setScene(new Scene(loader.load(),350,600));
+        ResidentReceiveController dw = loader.getController();
+        dw.setUser(username,index);
+        stage.show();
     }
 
-    public void handleBackButton(ActionEvent event) {
+    @FXML public void handleBackButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        StaffPageController dw = loader.getController();
+        dw.setUser(username,index);
+        stage.show();
+    }
+
+    @FXML public void handleRefreshButton()
+    {
+        mailBoxTableView.refresh();
     }
 }
