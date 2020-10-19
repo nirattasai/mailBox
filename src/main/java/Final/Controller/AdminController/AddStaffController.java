@@ -93,7 +93,7 @@ public class AddStaffController {
 
     @FXML public void handleCancelButton(ActionEvent event) throws IOException {
 
-        file = new File("images/staff/"+filename);
+        file = new File(String.valueOf(target));
         file.delete();
 
         Button b = (Button) event.getSource();                                                                   // change scene

@@ -1,21 +1,21 @@
 package Final.Controller.Item;
 
 public class Package extends Letter {
-    String Carrier;
-    String TrackNumber;
+    String carrier;
+    String trackNumber;
 
-    public Package(String ReceiverName, String RoomNumber, String SenderName, String Size, String Picture, String Carrier, String TrackNumber,String date,String time) {
-        super(ReceiverName, RoomNumber, SenderName, Size, Picture,date,time);
-        this.Carrier = Carrier;
-        this.TrackNumber = TrackNumber;
+    public Package(String roomNumber, String senderName, String receiverName, String size, String carrier, String trackNumber,String date,String time, String Picture) {
+        super(roomNumber, senderName, receiverName, size,date,time,Picture);
+        this.carrier = carrier;
+        this.trackNumber = trackNumber;
     }
 
     public String getCarrier() {
-        return Carrier;
+        return carrier;
     }
 
     public String getTrackNumber() {
-        return TrackNumber;
+        return trackNumber;
     }
 
 }

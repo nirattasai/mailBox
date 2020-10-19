@@ -7,10 +7,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Popup;
+import javafx.stage.PopupBuilder;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +37,7 @@ public class MailBoxController {
         mailBoxTableView.setItems(roomObservableList);
 
         TableColumn col = new TableColumn("Room Number");
-        col.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+        col.setCellValueFactory(new PropertyValueFactory<>("roomNumberFull"));
         col.setPrefWidth(300);
         col.setEditable(true);
         mailBoxTableView.getColumns().add(col);
@@ -51,7 +57,15 @@ public class MailBoxController {
         this.index = index;
     }
 
-    public void handleAddItemButton(ActionEvent event) {
+    public void handleAddItemButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddItem.fxml"));
+        stage.setScene(new Scene(loader.load(),350,600));
+        AddItemController dw = loader.getController();
+        dw.setUser(username,index);
+        stage.show();
+
     }
 
     public void handleResidentReceivedButton(ActionEvent event) {

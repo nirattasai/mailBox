@@ -160,7 +160,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         String line;
         for (Letter letter : letters) {
             line = letter.getRoomNumber()+","+letter.getSenderName()+","+letter.getReceiverName()+","+letter.getSize()
-                    +letter.getDate()+","+letter.getTime()+","+letter.getPicture();
+                    +","+letter.getDate()+","+letter.getTime()+","+letter.getPicture();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }
@@ -201,7 +201,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         String line;
         for (Document document : documents) {
             line = document.getRoomNumber()+","+document.getSenderName()+","+document.getReceiverName()+","+document.getSize()
-                    +document.getPrivacy()+","+document.getDate()+","+document.getTime()+","+document.getPicture();
+                    +","+document.getPrivacy()+","+document.getDate()+","+document.getTime()+","+document.getPicture();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }
@@ -211,7 +211,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
 
     @Override
     public ArrayList<Package> createPackageListFromCSV() throws IOException {
-        file = new File("CSV/Document.csv");
+        file = new File("CSV/Package.csv");
         new FileReader(file);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -241,7 +241,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         String line;
         for (Package packagee : packages) {
             line = packagee.getRoomNumber()+","+packagee.getSenderName()+","+packagee.getReceiverName()+","+packagee.getSize()
-                    +packagee.getCarrier()+","+packagee.getTrackNumber()+","+packagee.getDate()+","+packagee.getTime()+","+packagee.getPicture();
+                    +","+packagee.getCarrier()+","+packagee.getTrackNumber()+","+packagee.getDate()+","+packagee.getTime()+","+packagee.getPicture();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }

@@ -50,4 +50,8 @@ public class Room {
     public String getItem() {
         return item;
     }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
 }
