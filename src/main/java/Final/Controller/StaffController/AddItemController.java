@@ -5,7 +5,6 @@ import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
 import Final.Controller.Item.Document;
 import Final.Controller.Item.Letter;
-import Final.Controller.Item.MailBox;
 import Final.Controller.Item.Package;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -182,13 +181,6 @@ public class AddItemController {
                                 +"\nTracking : "+trackingNumberField.getText()
                                 +"\nDelivery Service : "+deliveryServiceField.getText());
                         alert.showAndWait();
-                        Button b = (Button) event.getSource();                                                                   // change scene
-                        Stage stage = (Stage) b.getScene().getWindow();
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-                        stage.setScene(new Scene(loader.load(),1000,600));
-                        MailBoxController dw = loader.getController();
-                        dw.setUser(username,index);
-                        stage.show();
                         check=1;
                         break;
                     }
@@ -258,6 +250,14 @@ public class AddItemController {
         csvControlInterface.writeDocumentListToCSV(documents);
         csvControlInterface.writeLetterListToCSV(letters);
         csvControlInterface.writePackageListToCSV(packages);
+
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        MailBoxController dw = loader.getController();
+        dw.setUser(username,index);
+        stage.show();
     }
 
     @FXML public void handleCancelButton(ActionEvent event) throws IOException {

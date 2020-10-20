@@ -130,4 +130,14 @@ public class ResidentReceiveController {
             alert.showAndWait();
         }
     }
+
+    @FXML public void handleBackButton(ActionEvent event) throws IOException {
+        Button b = (Button) event.getSource();                                                                   // change scene
+        Stage stage = (Stage) b.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        MailBoxController dw = loader.getController();
+        dw.setUser(username,index);
+        stage.show();
+    }
 }

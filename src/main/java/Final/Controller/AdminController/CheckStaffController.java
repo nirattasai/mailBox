@@ -39,25 +39,29 @@ public class CheckStaffController {
             TableColumn col = new TableColumn("Username");
             col.setCellValueFactory(new PropertyValueFactory<>("username"));
             col.setPrefWidth(150);
-            col.setEditable(true);
+            col.setMaxWidth(150);
+            col.setMinWidth(150);
             checkLogTableView.getColumns().add(col);
 
             col = new TableColumn("Date");
             col.setCellValueFactory(new PropertyValueFactory<>("date"));
             col.setPrefWidth(150);
-            col.setEditable(false);
+            col.setMaxWidth(150);
+            col.setMinWidth(150);
             checkLogTableView.getColumns().add(col);
 
             col = new TableColumn("Time");
             col.setCellValueFactory(new PropertyValueFactory<>("time"));
             col.setPrefWidth(150);
-            col.setEditable(false);
+            col.setMaxWidth(150);
+            col.setMinWidth(150);
             checkLogTableView.getColumns().add(col);
 
             col = new TableColumn("Status");
             col.setCellValueFactory(new PropertyValueFactory<>("status"));
             col.setPrefWidth(150);
-            col.setEditable(false);
+            col.setMaxWidth(150);
+            col.setMinWidth(150);
             checkLogTableView.getColumns().add(col);
 
         } catch (IOException e) {

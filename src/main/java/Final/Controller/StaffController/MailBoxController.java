@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class MailBoxController {
     @FXML
-    Button backButton,addItemButton,residentReceivedButton,refreshButton;
+    Button backButton,addItemButton,residentReceivedButton;
     @FXML
     TableView mailBoxTableView;
 
@@ -36,8 +36,7 @@ public class MailBoxController {
 
         TableColumn col = new TableColumn("Room Number");
         col.setCellValueFactory(new PropertyValueFactory<>("roomNumberFull"));
-        col.setPrefWidth(300);
-        col.setEditable(true);
+        col.setPrefWidth(100);
         mailBoxTableView.getColumns().add(col);
 
         col = new TableColumn("Status");

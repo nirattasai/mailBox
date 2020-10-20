@@ -1,6 +1,5 @@
 package Final.Controller.StaffController;
 
-import Final.Controller.Item.MailBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
