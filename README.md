@@ -1,4 +1,4 @@
-###### Work Update ######
+# Work Update #
 
 ### Week 1 ###
 
@@ -52,8 +52,8 @@ Add item.csv
 Staff can AddItem to mailBox,Clear mailBox  
 Build jarfile  
 	
-###### Directory Structure ######
-
+# Directory Structure #
+```
 -CSV 											(Keep csv file in intelliJ)  
 -MailBox/6210407455 							(Jar file build)  
 	|-CSV 										(Keep csv file to use in jar file)  
@@ -69,13 +69,13 @@ Build jarfile
 					|-Item 						(Contain Item class ex. letter, document, mailbox, package)  
 					|-StaffController			(Contain StaffPage's controller)  
 		|-resource								(Contain all FXML scene)  
-	
-###### How to use ######
+```
+# How to use #
 
 * Double click program to run
 * Run through terminal use command `java -jar 6210407455-jar.jar`
 	
-###### User test ######
+# User test #
 
 admin username : admin  
 admin password : admin  
