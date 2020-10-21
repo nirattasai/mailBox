@@ -3,14 +3,13 @@ package Final.Controller.AdminController;
 import Final.Controller.Account.Staff;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,183 +19,97 @@ import java.util.ArrayList;
 public class CheckStaffController {
 
     @FXML
-    TableView<Staff> checkLogTableView;
+    Button blockButton,unblockButton,backButton;
     @FXML
-    TextField blockField,unblockField,checkStatusField;
+    Text nameText,usernameText,logText,emailText,statusText,triedText,telText;
     @FXML
-    Button blockButton,unblockButton,checkButton,backButton;
+    ImageView staffImage;
 
-    private ObservableList<Staff> staffList;
-    private ArrayList<Staff> staff;
-    private final CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
+    private ArrayList<Staff> staffs;
+    private final CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
+    Staff currentStaff;
 
-    @FXML public void initialize() {
+    public void initialize(String username) {
         try {
-            staff = CSVControlInterface.createStaffListFromCSV();
-            staffList = FXCollections.observableArrayList(staff);
-            checkLogTableView.setItems(staffList);
-
-            TableColumn col = new TableColumn("Username");
-            col.setCellValueFactory(new PropertyValueFactory<>("username"));
-            col.setPrefWidth(150);
-            col.setMaxWidth(150);
-            col.setMinWidth(150);
-            checkLogTableView.getColumns().add(col);
-
-            col = new TableColumn("Date");
-            col.setCellValueFactory(new PropertyValueFactory<>("date"));
-            col.setPrefWidth(150);
-            col.setMaxWidth(150);
-            col.setMinWidth(150);
-            checkLogTableView.getColumns().add(col);
-
-            col = new TableColumn("Time");
-            col.setCellValueFactory(new PropertyValueFactory<>("time"));
-            col.setPrefWidth(150);
-            col.setMaxWidth(150);
-            col.setMinWidth(150);
-            checkLogTableView.getColumns().add(col);
-
-            col = new TableColumn("Status");
-            col.setCellValueFactory(new PropertyValueFactory<>("status"));
-            col.setPrefWidth(150);
-            col.setMaxWidth(150);
-            col.setMinWidth(150);
-            checkLogTableView.getColumns().add(col);
-
+            staffs = csvControlInterface.createStaffListFromCSV();
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Cannot read staff.csv");
+            alert.setContentText("Something wrong with csv file please check it.");
+            alert.showAndWait();
         }
+        for(Staff staff : staffs)
+        {
+            if(staff.getUsername().equals(username))
+            {
+                currentStaff = staff;
+            }
+        }
+        nameText.setText(currentStaff.getName()+"  "+currentStaff.getSurname());
+        usernameText.setText(currentStaff.getUsername());
+        emailText.setText(currentStaff.getEmail());
+        telText.setText(currentStaff.getTel());
+        statusText.setText(currentStaff.getStatus());
+        triedText.setText(currentStaff.getTryBlockLogin());
+        logText.setText(currentStaff.getDate()+" "+currentStaff.getTime());
+        Image image = new Image(currentStaff.getPicture());
+        staffImage.setImage(image);
     }
 
     @FXML public void handleBlockButton() {
-        int stage=0;
-        for (Staff value : staff) {
-            if (blockField.getText().equals(value.getUsername())) {
-                if (value.getStatus().equals("normal")) {
-                    value.setStatus("blocked");
-                    stage = 1;
-                    break;
-                } else {
-                    stage = 2;
-                }
-            }
-        }
-        if(stage == 1){
-            try {
-                CSVControlInterface.writeStaffListToCSV(staff);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Blocked Staff Success");
-            alert.setHeaderText("You blocked Staff");
-            alert.setContentText("You blocked Staff Username: "+blockField.getText());
-            alert.showAndWait();
-        }
-        else if (stage == 0){
+       for (int i=0;i<staffs.size();i++)
+       {
+           if(staffs.get(i).getUsername().equals(currentStaff.getUsername()))
+           {
+               staffs.get(i).setStatus("blocked");
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+               alert.setHeaderText("You blocked staff username: "+staffs.get(i).getUsername());
+               alert.setContentText("Staff : "+staffs.get(i).getUsername()+" is already blocked.");
+               statusText.setText(staffs.get(i).getStatus());
+               alert.showAndWait();
+               break;
+           }
+       }
+       try {
+            csvControlInterface.writeStaffListToCSV(staffs);
+
+        } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Blocked Staff Failed");
-            alert.setHeaderText("Username not found!");
-            alert.setContentText("No username : "+blockField.getText()+" in Staff list.");
+            alert.setHeaderText("Cannot read staff.csv");
+            alert.setContentText("Something wrong with csv file please check it.");
             alert.showAndWait();
         }
-        else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Blocked Staff Failed");
-            alert.setHeaderText("Staff is already blocked");
-            alert.setContentText("User: "+blockField.getText()+" is already blocked.");
-            alert.showAndWait();
-        }
-        blockField.clear();
-        checkLogTableView.refresh();
     }
 
     @FXML public void handleUnblockButton()  {
-        int stage = 0;
-        for (Staff value : staff) {
-            if (unblockField.getText().equals(value.getUsername())) {
-                if (value.getStatus().equals("blocked")) {
-                    value.setStatus("normal");
-                    value.setTryBlockLogin(0);
-                    stage = 1;
-                } else {
-                    stage = 2;
-                }
-            }
-        }
-        if(stage == 1){
-            try {
-                CSVControlInterface.writeStaffListToCSV(staff);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Unblocked Staff Success");
-            alert.setHeaderText("You unblocked Staff");
-            alert.setContentText("You unblocked Staff Username: "+unblockField.getText());
-            alert.showAndWait();
-        }
-        else if(stage == 0){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Unblocked Staff Failed");
-            alert.setHeaderText("Username not found!");
-            alert.setContentText("No username : "+unblockField.getText()+" in Staff list.");
-            alert.showAndWait();
-        }
-        else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Unblocked Staff Failed");
-            alert.setHeaderText("Staff is already unblocked");
-            alert.setContentText("User: "+unblockField.getText()+" is already unblocked.");
-            alert.showAndWait();
-        }
-        unblockField.setText("");
-        checkLogTableView.refresh();
-    }
-
-    @FXML public void handleCheckButton() {
-        String status;
-        int stage=0;
-        for (Staff value : staff) {
-            if (checkStatusField.getText().equals(value.getUsername())) {
+        for (int i=0;i<staffs.size();i++)
+        {
+            if(staffs.get(i).getUsername().equals(currentStaff.getUsername()))
+            {
+                staffs.get(i).setStatus("normal");
+                staffs.get(i).setTryBlockLogin(0);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Status Staff");
-                if (value.checkStatus()) {
-                    status = "Normal";
-                    alert.setHeaderText("Staff Status : " + status);
-                    alert.setContentText("Staff " + value.getUsername() + " is : " + status);
-                } else {
-                    status = "Blocked";
-                    alert.setHeaderText("Staff Status : " + status);
-                    alert.setContentText("Staff " + value.getUsername() + " is : " + status + "\n" + "Try to login: " + value.getTryBlockLogin());
-                }
+                alert.setHeaderText("You unblocked staff username: "+staffs.get(i).getUsername());
+                alert.setContentText("Staff : "+staffs.get(i).getUsername()+" is already unblocked.");
+                statusText.setText(staffs.get(i).getStatus());
+                triedText.setText(staffs.get(i).getTryBlockLogin());
                 alert.showAndWait();
-                stage = 1;
                 break;
             }
         }
-        if(stage != 1){
-            try {
-                CSVControlInterface.writeStaffListToCSV(staff);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Not found Staff");
-            alert.setHeaderText("Not Found staff!!");
-            alert.setContentText("Not found : "+checkStatusField.getText()+" !!");
+        try {
+            csvControlInterface.writeStaffListToCSV(staffs);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Cannot read staff.csv");
+            alert.setContentText("Something wrong with csv file please check it.");
             alert.showAndWait();
         }
-        checkStatusField.setText("");
-        checkLogTableView.refresh();
     }
 
-    @FXML public void handleBackButton(ActionEvent event) throws IOException {
+    @FXML public void handleBackButton(ActionEvent event){
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        stage.show();
+        stage.close();
     }
 }

@@ -10,8 +10,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -20,15 +18,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import javax.print.Doc;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class AddItemController {
@@ -121,7 +117,7 @@ public class AddItemController {
 
     }
 
-    @FXML public void handleAddButton(ActionEvent event) throws IOException {
+    @FXML public void handleAddButton() throws IOException {
         check = 0;
         switch (typeChoice.getValue().toString())
         {
@@ -134,8 +130,8 @@ public class AddItemController {
                         rooms.get(i).setItem("Item in mailBox");
                         Letter letter = new Letter(roomNumberField.getText(),senderNameField.getText(),
                                 receiverNameField.getText(),sizeChoice.getValue().toString(),
-                                java.time.LocalDate.now().toString(),
-                                java.time.LocalTime.now().toString(),target.toString());
+                                java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toString());
                         letters.add(letter);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
@@ -171,8 +167,8 @@ public class AddItemController {
                     {
                         rooms.get(i).setItem("Item in mailBox");
                         Package aPackage = new Package(roomNumberField.getText(),senderNameField.getText(),
-                                receiverNameField.getText(),sizeChoice.getValue().toString(),deliveryServiceField.getText(),trackingNumberField.getText(),java.time.LocalDate.now().toString()
-                                ,java.time.LocalTime.now().toString(),target.toString());
+                                receiverNameField.getText(),sizeChoice.getValue().toString(),deliveryServiceField.getText(),trackingNumberField.getText(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toString());
                         packages.add(aPackage);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
@@ -211,8 +207,8 @@ public class AddItemController {
                         rooms.get(i).setItem("Item in mailBox");
                         Document document = new Document(roomNumberField.getText(),senderNameField.getText(),
                                 receiverNameField.getText(),sizeChoice.getValue().toString(),
-                                privacyChoice.getValue().toString(),java.time.LocalDate.now().toString(),
-                                java.time.LocalTime.now().toString(),target.toString());
+                                privacyChoice.getValue().toString(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toString());
                         documents.add(document);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");

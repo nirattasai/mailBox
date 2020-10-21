@@ -16,7 +16,7 @@
             <Font name="Helvetica" size="30.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="50.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PASSWORD">
+      <Text id="letter" fill="WHITE" layoutX="50.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PASSWORD">
          <font>
             <Font name="Helvetica" size="30.0" />
          </font>
@@ -35,14 +35,14 @@
             <Font name="Helvetica" size="20.0" />
          </font>
       </Button>
-      <ImageView fitHeight="76.0" fitWidth="65.0" layoutX="168.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="98.0" fitWidth="71.0" layoutX="167.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Elements/toppng.com-key-vector-png-key-clipart-500x445.png" />
+            <Image url="@Elements/keys-line-icon-lock-and-home-access-sign-vector-20557698.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="122.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
+      <Text fill="WHITE" layoutX="122.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
          <font>
-            <Font name="Helvetica" size="50.0" />
+            <Font name="Helvetica Bold" size="50.0" />
          </font>
       </Text>
    </children>

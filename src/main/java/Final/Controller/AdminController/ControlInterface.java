@@ -5,6 +5,7 @@ import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
 
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ControlInterface implements UserControlInterface{
@@ -105,8 +106,8 @@ public class ControlInterface implements UserControlInterface{
         }
         for (Staff value : staff) {
             if (value.getUsername().equals(username)) {
-                String date = String.valueOf(java.time.LocalDate.now());
-                String time = String.valueOf(java.time.LocalTime.now());
+                String date = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                String time = java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
                 value.setLog(date, time);
             }
         }

@@ -7,14 +7,17 @@ import Final.Controller.StaffController.StaffPageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.nio.file.FileSystem;
 import java.util.ArrayList;
 
 public class Login {
@@ -45,6 +48,11 @@ public class Login {
                 Stage stage = (Stage) b.getScene().getWindow();
                 loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
                 stage.setScene(new Scene(loader.load(), 1000, 600));
+                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+                double width = 1000;
+                double height = 600;
+                stage.setX((screenBounds.getWidth() - width) / 2);
+                stage.setY((screenBounds.getHeight() - height) / 2);
                 stage.show();
                 break;
             }
@@ -56,6 +64,11 @@ public class Login {
                             userControlInterface.getLog(username);
                             Button b = (Button) event.getSource();                                                                   // change scene
                             Stage stage = (Stage) b.getScene().getWindow();
+                            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+                            double width = 1000;
+                            double height = 600;
+                            stage.setX((screenBounds.getWidth() - width) / 2);
+                            stage.setY((screenBounds.getHeight() - height) / 2);
                             loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
                             stage.setScene(new Scene(loader.load(), 1000, 600));
                             StaffPageController dw = loader.getController();

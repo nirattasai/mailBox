@@ -60,6 +60,13 @@ public class AddStaffController {
             telField.setText("");
             alert.showAndWait();
         }
+        else if (target==null)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("ERROR");
+            alert.setContentText("Upload image of staff first.");
+            alert.showAndWait();
+        }
         else
         {
             check = 0;
@@ -78,7 +85,7 @@ public class AddStaffController {
                 alert.showAndWait();
             }
             else {
-                Staff staff1 = new Staff(nameField.getText(), surnameField.getText(), usernameField.getText(), passwordField.getText(), emailField.getText(), telField.getText(), "haven't locked in", "haven't locked in", "normal", 0);
+                Staff staff1 = new Staff(nameField.getText(), surnameField.getText(), usernameField.getText(), passwordField.getText(), emailField.getText(), telField.getText(), "-", "-", "normal", 0,target.toUri().toString());
                 staff.add(staff1);
                 csvControlInterface.writeStaffListToCSV(staff);
                 userControlInterface.addUser("staff", usernameField.getText(), passwordField.getText(), nameField.getText(), surnameField.getText());

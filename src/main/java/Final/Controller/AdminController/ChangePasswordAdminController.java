@@ -74,6 +74,7 @@ public class ChangePasswordAdminController {
             newPassword.setText("");
             confirmPassword.setText("");
             alert.showAndWait();
+
         }
 
         else if (!oldPassword.getText().equals(userControlInterface.passwordSend().get(0)))
@@ -103,8 +104,6 @@ public class ChangePasswordAdminController {
     @FXML public void handleCancelButton(ActionEvent event) throws IOException {
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        stage.show();
+        stage.close();
     }
 }
