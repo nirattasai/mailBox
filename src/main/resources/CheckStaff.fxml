@@ -41,7 +41,7 @@
             <Font name="Helvetica" size="20.0" />
          </font>
       </Text>
-      <ImageView fx:id="staffImage" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="staffImage" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="88.0" pickOnBounds="true" />
       <Text fill="WHITE" layoutX="25.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LAST LOGIN:">
          <font>
             <Font name="Helvetica" size="20.0" />

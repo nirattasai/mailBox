@@ -102,14 +102,13 @@ public class AdminPageController {
     @FXML public void handleAddStaffButton() throws IOException {
         Stage stage = (Stage) addStaffButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddStaff.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        stage.show();
-    }
-
-    @FXML public void handleCheckStaffButton() throws IOException {
-        Stage stage = (Stage) checkStaffButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckStaff.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
+        stage.setScene(new Scene(loader.load(),400,600));
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double width = 400;
+        double height = 600;
+        stage.setX((screenBounds.getWidth() - width) / 2);
+        stage.setY((screenBounds.getHeight() - height) / 2);
+        stage.setTitle("Register staff");
         stage.show();
     }
 
@@ -150,6 +149,7 @@ public class AdminPageController {
             stage.setY((screenBounds.getHeight() - height) / 2);
             CheckStaffController dw = loader.getController();
             dw.initialize(username);
+            stage.setTitle("Staff detail");
             stage.show();
         }
         else

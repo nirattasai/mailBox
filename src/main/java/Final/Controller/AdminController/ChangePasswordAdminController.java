@@ -23,7 +23,7 @@ public class ChangePasswordAdminController {
     @FXML
     Button okButton,cancelButton;
     @FXML public void handleOKButton() throws IOException {
-        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(0)) && confirmPassword.getText().equals(newPassword.getText()))
+        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(0)) && confirmPassword.getText().equals(newPassword.getText()) && !newPassword.getText().equals(""))
         {
             String password = newPassword.getText();
 
@@ -98,6 +98,15 @@ public class ChangePasswordAdminController {
             oldPassword.setText("");
             newPassword.setText("");
             confirmPassword.setText("");
+        }
+        else if (newPassword.getText().equals("")||confirmPassword.getText().equals(""))
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText("Cannot change password.");
+            alert.setContentText("Don't leave blank space.");
+            alert.showAndWait();
+
         }
 
     }
