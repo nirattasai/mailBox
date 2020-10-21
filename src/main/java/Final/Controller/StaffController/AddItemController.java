@@ -6,6 +6,8 @@ import Final.Controller.CSVControlInterfaceControl;
 import Final.Controller.Item.Document;
 import Final.Controller.Item.Letter;
 import Final.Controller.Item.Package;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,7 +44,7 @@ public class AddItemController {
     private File file;
     private File destDir;
     private String filename;
-    private Path target;
+    private Path target = null;
 
     private int check=0;
     private String username;
@@ -66,6 +68,7 @@ public class AddItemController {
         typeChoice.getItems().add("Letter");
         typeChoice.getItems().add("Package");
         typeChoice.getItems().add("Document");
+        typeChoice.setValue("Letter");
         sizeChoice.getItems().add("XL");
         sizeChoice.getItems().add("L");
         sizeChoice.getItems().add("M");
@@ -74,26 +77,32 @@ public class AddItemController {
         privacyChoice.getItems().add("Medium");
         privacyChoice.getItems().add("Low");
         privacyChoice.getItems().add("Super Secret");
+
+        typeChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                if (newValue.toString().equals("Package"))
+            {
+                trackingNumberField.setDisable(false);
+                deliveryServiceField.setDisable(false);
+                privacyChoice.setDisable(true);
+            }
+            else if (newValue.toString().equals("Document"))
+            {
+                trackingNumberField.setDisable(true);
+                deliveryServiceField.setDisable(true);
+                privacyChoice.setDisable(false);
+            }
+                else if (newValue.toString().equals("Letter"))
+                {
+                    trackingNumberField.setDisable(true);
+                    deliveryServiceField.setDisable(true);
+                    privacyChoice.setDisable(true);
+                }
+            }
+        });
     }
 
-//    @FXML public void chooseItem()
-//    {
-//            if (typeChoice.getValue().toString().equals("Package"))
-//            {
-//                trackingNumberField.setDisable(false);
-//                deliveryServiceField.setDisable(false);
-//                privacyChoice.setDisable(true);
-//                System.out.println("Package");
-//            }
-//            else if (typeChoice.getValue().toString().equals("Document"))
-//            {
-//                trackingNumberField.setDisable(true);
-//                deliveryServiceField.setDisable(true);
-//                privacyChoice.setDisable(false);
-//                System.out.println("Document");
-//            }
-//        System.out.println("Yes");
-//    }
 
     @FXML public void handleAddImageButton() throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -113,6 +122,7 @@ public class AddItemController {
     }
 
     @FXML public void handleAddButton(ActionEvent event) throws IOException {
+        check = 0;
         switch (typeChoice.getValue().toString())
         {
             case "Letter":
@@ -135,13 +145,6 @@ public class AddItemController {
                         +"\nReceiver : "+receiverNameField.getText()
                         +"\nSize : "+sizeChoice.getValue().toString());
                         alert.showAndWait();
-                        Button b = (Button) event.getSource();                                                                   // change scene
-                        Stage stage = (Stage) b.getScene().getWindow();
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-                        stage.setScene(new Scene(loader.load(),1000,600));
-                        MailBoxController dw = loader.getController();
-                        dw.setUser(username,index);
-                        stage.show();
                         check=1;
                         break;
                     }
@@ -213,20 +216,13 @@ public class AddItemController {
                         documents.add(document);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
-                        alert.setHeaderText("Add Letter success.");
-                        alert.setContentText("Add letter to room : "+roomNumberField.getText()
+                        alert.setHeaderText("Add Document success.");
+                        alert.setContentText("Add Document to room : "+roomNumberField.getText()
                                 +"\nSender : "+senderNameField.getText()
                                 +"\nReceiver : "+receiverNameField.getText()
                                 +"\nSize : "+sizeChoice.getValue().toString()
                                 +"\nPrivacy : "+privacyChoice.getValue().toString());
                         alert.showAndWait();
-                        Button b = (Button) event.getSource();                                                                   // change scene
-                        Stage stage = (Stage) b.getScene().getWindow();
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-                        stage.setScene(new Scene(loader.load(),1000,600));
-                        MailBoxController dw = loader.getController();
-                        dw.setUser(username,index);
-                        stage.show();
                         check=1;
                         break;
                     }
@@ -246,18 +242,21 @@ public class AddItemController {
                 break;
             }
         }
+
         csvControlInterface.writeRoomListToCSV(rooms);
         csvControlInterface.writeDocumentListToCSV(documents);
         csvControlInterface.writeLetterListToCSV(letters);
         csvControlInterface.writePackageListToCSV(packages);
+        roomNumberField.clear();
+        senderNameField.clear();
+        receiverNameField.clear();
+        trackingNumberField.clear();
+        deliveryServiceField.clear();
+        typeChoice.setValue("Letter");
+        sizeChoice.setValue(null);
+        privacyChoice.setValue(null);
+        itemImage.setImage(null);
 
-        Button b = (Button) event.getSource();                                                                   // change scene
-        Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        MailBoxController dw = loader.getController();
-        dw.setUser(username,index);
-        stage.show();
     }
 
     @FXML public void handleCancelButton(ActionEvent event) throws IOException {
@@ -266,10 +265,6 @@ public class AddItemController {
 
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        MailBoxController dw = loader.getController();
-        dw.setUser(username,index);
-        stage.show();
+        stage.close();
     }
 }

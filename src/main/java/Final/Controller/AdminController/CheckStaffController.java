@@ -108,7 +108,7 @@ public class CheckStaffController {
             alert.setContentText("User: "+blockField.getText()+" is already blocked.");
             alert.showAndWait();
         }
-        blockField.setText("");
+        blockField.clear();
         checkLogTableView.refresh();
     }
 

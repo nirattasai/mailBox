@@ -62,6 +62,7 @@ public class AddStaffController {
         }
         else
         {
+            check = 0;
             for (Staff value : staff) {
                 if (usernameField.getText().equals(value.getUsername())) {
                     check = 1;

@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/Welcome.fxml"));
         primaryStage.setTitle("MailBox V.1 beta");
-        primaryStage.setScene(new Scene(root, 1000, 600));
+        primaryStage.setScene(new Scene(root, 400, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

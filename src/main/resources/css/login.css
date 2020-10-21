@@ -1,0 +1,28 @@
+.background{
+    -fx-background-color : linear-gradient(to bottom right, #428CD4, #041B2D);
+}
+
+#button {
+     -fx-background-color: transparent;
+     -fx-border-radius: 30;
+     -fx-border-width: 3;
+     -fx-background-insets: 0,1,1;
+     -fx-border-color : white;
+     -fx-text-fill: white;
+ }
+
+#button:hover {
+     -fx-background-color: transparent;
+     -fx-border-radius: 30;
+     -fx-border-width : 3;
+     -fx-background-insets: 0,1,1;
+     -fx-border-color : #3593C9;
+     -fx-text-fill: #3593C9;
+ }
+
+#text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 30 ;
+
+}

@@ -49,11 +49,9 @@ public class ResidentReceiveController {
     }
 
     @FXML public void handleGetButton(ActionEvent event) throws IOException {
-        for(int i=0;i<rooms.size();i++)
-        {
-            if(rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText()))
-            {
-                rooms.get(i).setItem("No item in mailBox");
+        for (Room room : rooms) {
+            if (room.getRoomNumberFull().equals(roomNumberField.getText())) {
+                room.setItem("No item in mailBox");
                 checkRoom = 1;
                 break;
             }
@@ -66,6 +64,7 @@ public class ResidentReceiveController {
                 File file = new File(path);
                 file.delete();
                 letters.remove(letters.get(i));
+                i--;
                 check+=1;
             }
         }
@@ -77,6 +76,7 @@ public class ResidentReceiveController {
                 File file = new File(path);
                 file.delete();
                 packages.remove(packages.get(i));
+                i--;
                 check += 1;
             }
         }
@@ -88,6 +88,7 @@ public class ResidentReceiveController {
                 File file = new File(path);
                 file.delete();
                 documents.remove(documents.get(i));
+                i--;
                 check += 1;
             }
         }
@@ -112,13 +113,7 @@ public class ResidentReceiveController {
             csvControlInterface.writeDocumentListToCSV(documents);
             csvControlInterface.writeRoomListToCSV(rooms);
 
-            Button b = (Button) event.getSource();                                                                   // change scene
-            Stage stage = (Stage) b.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-            stage.setScene(new Scene(loader.load(), 1000, 600));
-            MailBoxController dw = loader.getController();
-            dw.setUser(username, index);
-            stage.show();
+            roomNumberField.clear();
 
         }
         else if (check == 0)
@@ -131,13 +126,9 @@ public class ResidentReceiveController {
         }
     }
 
-    @FXML public void handleBackButton(ActionEvent event) throws IOException {
+    @FXML public void handleBackButton(ActionEvent event){
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        MailBoxController dw = loader.getController();
-        dw.setUser(username,index);
-        stage.show();
+        stage.close();
     }
 }

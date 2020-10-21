@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 
 public class MailBoxController {
     @FXML
-    Button backButton,addItemButton,residentReceivedButton;
+    Button backButton,addItemButton,residentReceivedButton,refreshButton;
     @FXML
     TableView mailBoxTableView;
 
@@ -42,7 +41,6 @@ public class MailBoxController {
         col = new TableColumn("Status");
         col.setCellValueFactory(new PropertyValueFactory<>("item"));
         col.setPrefWidth(300);
-        col.setEditable(false);
         mailBoxTableView.getColumns().add(col);
     }
     private String username;
@@ -55,19 +53,17 @@ public class MailBoxController {
     }
 
     @FXML public void handleAddItemButton(ActionEvent event) throws IOException {
-        Button b = (Button) event.getSource();                                                                   // change scene
-        Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddItem.fxml"));
-        stage.setScene(new Scene(loader.load(),350,600));
-        AddItemController dw = loader.getController();
-        dw.setUser(username,index);
-        stage.show();
 
+        Stage stag2 = new Stage();
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource(("/AddItem.fxml")));
+        stag2.setScene(new Scene(loader1.load(),350,600));
+        AddItemController dw = loader1.getController();
+        dw.setUser(username,index);
+        stag2.show();
     }
 
     @FXML public void handleResidentReceivedButton(ActionEvent event) throws IOException {
-        Button b = (Button) event.getSource();                                                                   // change scene
-        Stage stage = (Stage) b.getScene().getWindow();
+        Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ResidentReceive.fxml"));
         stage.setScene(new Scene(loader.load(),350,600));
         ResidentReceiveController dw = loader.getController();
@@ -87,6 +83,13 @@ public class MailBoxController {
 
     @FXML public void handleRefreshButton()
     {
+        try {
+            rooms = csvControlInterface.createRoomListFromCSV();
+            roomObservableList = FXCollections.observableList(rooms);
+            mailBoxTableView.setItems(roomObservableList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         mailBoxTableView.refresh();
     }
 }

@@ -13,5 +13,6 @@
       <Button fx:id="backButton" layoutX="862.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
       <TableView fx:id="roomMailboxTableView" layoutX="449.0" layoutY="44.0" prefHeight="459.0" prefWidth="530.0" />
       <Text fx:id="roomNumberText" layoutX="425.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Button fx:id="refreshButton" layoutX="198.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleRefreshButton" text="REFRESH" />
    </children>
 </AnchorPane>

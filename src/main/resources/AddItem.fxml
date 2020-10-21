@@ -24,11 +24,11 @@
       <Button fx:id="addButton" layoutX="235.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" />
       <Button fx:id="cancelButton" layoutX="63.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleCancelButton" text="Cancel" />
       <ImageView fx:id="itemImage" fitHeight="100.0" fitWidth="100.0" layoutX="125.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="trackingNumberField" layoutX="39.0" layoutY="272.0" />
+      <TextField fx:id="trackingNumberField" disable="true" layoutX="39.0" layoutY="272.0" />
       <Text layoutX="219.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracking Number" />
-      <TextField fx:id="deliveryServiceField" layoutX="40.0" layoutY="309.0" />
+      <TextField fx:id="deliveryServiceField" disable="true" layoutX="40.0" layoutY="309.0" />
       <Text layoutX="222.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Service" />
       <Text layoutX="153.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Privacy" />
-      <ChoiceBox fx:id="privacyChoice" layoutX="38.0" layoutY="350.0" prefHeight="27.0" prefWidth="111.0" />
+      <ChoiceBox fx:id="privacyChoice" disable="true" layoutX="38.0" layoutY="350.0" prefHeight="27.0" prefWidth="111.0" />
    </children>
 </AnchorPane>
