@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/login.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.Login">
    <children>
       <Text fill="WHITE" layoutX="50.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME">
          <font>
@@ -21,16 +21,16 @@
             <Font name="Helvetica" size="30.0" />
          </font>
       </Text>
-      <TextField id="text-field" fx:id="usernameField" alignment="CENTER" layoutX="50.0" layoutY="300.0" prefHeight="0.0" prefWidth="300.0" promptText="username" styleClass="text-field" stylesheets="@css/login.css">
+      <TextField id="text-field" fx:id="usernameField" alignment="CENTER" layoutX="50.0" layoutY="300.0" prefHeight="0.0" prefWidth="300.0" promptText="username" styleClass="text-field" stylesheets="@css/blueTheme.css">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <PasswordField id="text-field" fx:id="passwordField" alignment="CENTER" layoutX="50.0" layoutY="400.0" prefHeight="16.0" prefWidth="300.0" promptText="password" styleClass="text-field" stylesheets="@css/login.css">
+      <PasswordField id="text-field" fx:id="passwordField" alignment="CENTER" layoutX="50.0" layoutY="400.0" prefHeight="16.0" prefWidth="300.0" promptText="password" styleClass="text-field" stylesheets="@css/blueTheme.css">
          <font>
             <Font size="20.0" />
          </font></PasswordField>
-      <Button id="button" fx:id="loginButton" defaultButton="true" layoutX="240.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="45.0" prefWidth="110.0" stylesheets="@css/login.css" text="LOGIN">
+      <Button id="button" fx:id="loginButton" defaultButton="true" layoutX="240.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="45.0" prefWidth="110.0" stylesheets="@css/blueTheme.css" text="LOGIN">
          <font>
             <Font name="Helvetica" size="20.0" />
          </font>

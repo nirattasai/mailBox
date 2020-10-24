@@ -1,5 +1,6 @@
 package Final.Controller.StaffController;
 
+import Final.Controller.Account.Staff;
 import Final.Controller.Building.Room;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
@@ -26,6 +27,7 @@ public class AddRoomController {
 
     private final CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private ArrayList<Room> rooms;
+    private Staff currentStaff;
 
     public void initialize() throws IOException {
         rooms = csvControlInterface.createRoomListFromCSV();
@@ -41,6 +43,12 @@ public class AddRoomController {
         typeChoice.getItems().add("1-bedroom Room");
 
     }
+
+    public void setCurrentStaff(Staff currentStaff)
+    {
+        this.currentStaff = currentStaff;
+    }
+
     private int check = 0;
     @FXML public void handleOKButton(ActionEvent event){
         check = 0;
@@ -50,7 +58,6 @@ public class AddRoomController {
             alert.setTitle("ERROR");
             alert.setHeaderText("Cannot add room");
             alert.setContentText("Cannot leave a blank.");
-//            csvControlInterface.sortRoomList();
             alert.showAndWait();
         }
         else {
@@ -72,14 +79,17 @@ public class AddRoomController {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("SUCCESS");
                     alert.setHeaderText("Add room success");
-                    alert.setContentText("The room building :" + buildingField.getText() + "\nFloor : " + floorChoice.getValue().toString() + "\nRoomNumber : " + roomChoice.getValue().toString() + "\nType : " + typeChoice.getValue().toString() + "\nStatus : No Owner");
+                    alert.setContentText("The room building :" + buildingField.getText() +
+                            "\nFloor : " + floorChoice.getValue().toString() +
+                            "\nRoomNumber : " + roomChoice.getValue().toString() +
+                            "\nType : " + typeChoice.getValue().toString() +
+                            "\nStatus : No Owner");
+                    floorChoice.setValue(null);
+                    roomChoice.setValue(null);
+                    typeChoice.setValue(null);
+                    buildingField.clear();
                     alert.showAndWait();
 
-                    Button b = (Button) event.getSource();                                                                   // change scene
-                    Stage stage = (Stage) b.getScene().getWindow();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
-                    stage.setScene(new Scene(loader.load(), 1000, 600));
-                    stage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -93,11 +103,9 @@ public class AddRoomController {
         }
     }
 
-    @FXML public void handleCancelButton (ActionEvent event) throws IOException {
+    @FXML public void handleCancelButton (ActionEvent event){
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
-        stage.setScene(new Scene(loader.load(), 1000, 600));
-        stage.show();
+        stage.close();
     }
 }

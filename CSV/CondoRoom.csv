@@ -1,4 +1,9 @@
-A,1,1,Studio Room,No Owner,No item in mailBox
-A,1,2,1-bedroom Room,No Owner,No item in mailBox
-A,1,3,1-bedroom Room,Owned,No item in mailBox
-A,1,4,1-bedroom Room,No Owner,No item in mailBox
+A,1,1,Studio Room,Owned,Item in mailbox
+A,1,2,1-bedroom Room,No Owner,No item in mailbox
+A,1,3,1-bedroom Room,Owned,No item in mailbox
+A,1,4,1-bedroom Room,No Owner,No item in mailbox
+A,1,5,1-bedroom Room,No Owner,No item in mailbox
+A,1,6,1-bedroom Room,No Owner,No item in mailbox
+A,1,7,1-bedroom Room,No Owner,No item in mailbox
+A,1,8,1-bedroom Room,No Owner,No item in mailbox
+A,1,9,1-bedroom Room,No Owner,No item in mailbox

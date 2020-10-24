@@ -21,11 +21,11 @@ public class Account {
         this.date = date;
     }
 
-    public Account(String s, String s1, String s2, String s3) {
-        this.name = s;
-        this.surname = s1;
-        this.username = s2;
-        this.password = s3;
+    public Account(String username, String password, String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
     }
 
 

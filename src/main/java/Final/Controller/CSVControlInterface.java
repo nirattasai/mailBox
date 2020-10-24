@@ -37,4 +37,16 @@ public interface CSVControlInterface {
     ArrayList<Package> createPackageListFromCSV() throws IOException;
 
     void writePackageListToCSV(ArrayList<Package> packages) throws IOException;
+
+    ArrayList<Letter> createLetterHistoryListFromCSV() throws IOException;
+
+    void writeLetterHistoryListToCSV(ArrayList<Letter> letters) throws IOException;
+
+    ArrayList<Document> createDocumentHistoryListFromCSV() throws IOException;
+
+    void writeDocumentHistoryListToCSV(ArrayList<Document> documents) throws IOException;
+
+    ArrayList<Package> createPackageHistoryListFromCSV() throws IOException;
+
+    void writePackageHistoryListToCSV(ArrayList<Package> packages) throws IOException;
 }

@@ -7,20 +7,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scene" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/admin.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.AdminController.AdminPageController">
+<AnchorPane fx:id="scene" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.AdminController.AdminPageController">
    <children>
-      <Pane id="pane" prefHeight="600.0" prefWidth="200.0" stylesheets="@css/admin.css">
+      <Pane id="pane" prefHeight="600.0" prefWidth="200.0">
          <children>
             <Label id="label" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" text="ADMIN" textFill="WHITE">
                <font>
                   <Font name="Helvetica" size="37.0" />
                </font>
             </Label>
-            <Label id="button" fx:id="addStaffButton" alignment="CENTER" layoutY="200.0" onMouseClicked="#handleAddStaffButton" prefHeight="40.0" prefWidth="200.0" text="ADD STAFF" />
-            <Label id="button" fx:id="changePasswordButton" alignment="CENTER" layoutY="237.0" onMouseClicked="#handleChangePasswordButton" prefHeight="40.0" prefWidth="200.0" text="CHANGE PASSWORD" />
+            <Label id="label-button" fx:id="addStaffButton" alignment="CENTER" layoutY="200.0" onMouseClicked="#handleAddStaffButton" prefHeight="55.0" prefWidth="200.0" text="REGISTER STAFF">
+               <font>
+                  <Font name="Helvetica" size="15.0" />
+               </font></Label>
+            <Label id="label-button" fx:id="changePasswordButton" alignment="CENTER" layoutY="255.0" onMouseClicked="#handleChangePasswordButton" prefHeight="55.0" prefWidth="200.0" text="CHANGE PASSWORD">
+               <font>
+                  <Font name="Helvetica" size="15.0" />
+               </font></Label>
+            <Label id="label-button" fx:id="logoutButton" alignment="CENTER" layoutY="545.0" onMouseClicked="#handleLogoutButton" prefHeight="55.0" prefWidth="200.0" text="LOGOUT">
+               <font>
+                  <Font name="Helvetica" size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <Label id="button" fx:id="logoutButton" alignment="CENTER" layoutY="560.0" onMouseClicked="#handleLogoutButton" prefHeight="40.0" prefWidth="200.0" text="LOGOUT" />
       <TableView fx:id="staffTableView" layoutX="250.0" layoutY="25.0" onMouseEntered="#reset" prefHeight="550.0" prefWidth="600.0" />
       <Button id="glass" layoutX="898.0" layoutY="28.0" mnemonicParsing="false" onAction="#handleCheckButton" stylesheets="@css/stylesheet.css" text="CHECK" />
       <Button id="glass" layoutX="903.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleSortButton" stylesheets="@css/stylesheet.css" text="SORT" />

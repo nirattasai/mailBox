@@ -138,7 +138,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         while ((line = bufferedReader.readLine()) != null) {
             String[] letterTmp = line.split(",");
             Letter letterAdd = new Letter(letterTmp[0],letterTmp[1],letterTmp[2],letterTmp[3],letterTmp[4],
-                    letterTmp[5],letterTmp[6]);
+                    letterTmp[5],letterTmp[6],letterTmp[7],letterTmp[8] );
             letters.add(letterAdd);
         }
         fileReader.close();
@@ -160,7 +160,8 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         String line;
         for (Letter letter : letters) {
             line = letter.getRoomNumber()+","+letter.getSenderName()+","+letter.getReceiverName()+","+letter.getSize()
-                    +","+letter.getDate()+","+letter.getTime()+","+letter.getPicture();
+                    +","+letter.getDate()+","+letter.getTime()+","+letter.getPicture()+","+letter.getGetter()+","+
+                    letter.getPaider();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }
@@ -179,7 +180,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         while ((line = bufferedReader.readLine()) != null) {
             String[] documentTmp = line.split(",");
             Document documentAdd = new Document(documentTmp[0],documentTmp[1],documentTmp[2],documentTmp[3],documentTmp[4]
-            ,documentTmp[5],documentTmp[6],documentTmp[7] );
+            ,documentTmp[5],documentTmp[6],documentTmp[7],documentTmp[8],documentTmp[9] );
             documents.add(documentAdd);
         }
         fileReader.close();
@@ -201,7 +202,8 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         String line;
         for (Document document : documents) {
             line = document.getRoomNumber()+","+document.getSenderName()+","+document.getReceiverName()+","+document.getSize()
-                    +","+document.getPrivacy()+","+document.getDate()+","+document.getTime()+","+document.getPicture();
+                    +","+document.getPrivacy()+","+document.getDate()+","+document.getTime()+","+document.getPicture()
+            +","+document.getGetter()+","+document.getPaider();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }
@@ -220,7 +222,7 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         while ((line = bufferedReader.readLine()) != null) {
             String[] packageTmp = line.split(",");
             Package packageAdd = new Package(packageTmp[0],packageTmp[1],packageTmp[2],packageTmp[3],
-                    packageTmp[4],packageTmp[5],packageTmp[6],packageTmp[7],packageTmp[8]);
+                    packageTmp[4],packageTmp[5],packageTmp[6],packageTmp[7],packageTmp[8],packageTmp[9],packageTmp[10] );
             packages.add(packageAdd);
         }
         fileReader.close();
@@ -241,7 +243,134 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         String line;
         for (Package packagee : packages) {
             line = packagee.getRoomNumber()+","+packagee.getSenderName()+","+packagee.getReceiverName()+","+packagee.getSize()
-                    +","+packagee.getCarrier()+","+packagee.getTrackNumber()+","+packagee.getDate()+","+packagee.getTime()+","+packagee.getPicture();
+                    +","+packagee.getCarrier()+","+packagee.getTrackNumber()+","+packagee.getDate()+","+packagee.getTime()+
+                    ","+packagee.getPicture()+","+packagee.getGetter()+","+packagee.getPaider();
+            bufferedWriter.append(line);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
+    }
+
+    @Override
+    public ArrayList<Letter> createLetterHistoryListFromCSV() throws IOException {
+        file = new File("CSV/letterHistory.csv");
+        new FileReader(file);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        ArrayList<Letter> letters = new ArrayList<>();
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] letterTmp = line.split(",");
+            Letter letterAdd = new Letter(letterTmp[0],letterTmp[1],letterTmp[2],letterTmp[3],letterTmp[4],
+                    letterTmp[5],letterTmp[6],letterTmp[7],letterTmp[8] );
+            letters.add(letterAdd);
+        }
+        fileReader.close();
+        bufferedReader.close();
+        return letters;
+    }
+
+    @Override
+    public void writeLetterHistoryListToCSV(ArrayList<Letter> letters) throws IOException {
+        file = new File("CSV/letterHistory.csv");
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert fileWriter != null;
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String line;
+        for (Letter letter : letters) {
+            line = letter.getRoomNumber()+","+letter.getSenderName()+","+letter.getReceiverName()+","+letter.getSize()
+                    +","+letter.getDate()+","+letter.getTime()+","+letter.getPicture()+","+letter.getGetter()+","+
+                    letter.getPaider();
+            bufferedWriter.append(line);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
+    }
+
+    @Override
+    public ArrayList<Document> createDocumentHistoryListFromCSV() throws IOException {
+        file = new File("CSV/documentHistory.csv");
+        new FileReader(file);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        ArrayList<Document> documents = new ArrayList<>();
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] documentTmp = line.split(",");
+            Document documentAdd = new Document(documentTmp[0],documentTmp[1],documentTmp[2],documentTmp[3],documentTmp[4]
+                    ,documentTmp[5],documentTmp[6],documentTmp[7],documentTmp[8],documentTmp[9] );
+            documents.add(documentAdd);
+        }
+        fileReader.close();
+        bufferedReader.close();
+        return documents;
+    }
+
+    @Override
+    public void writeDocumentHistoryListToCSV(ArrayList<Document> documents) throws IOException {
+        file = new File("CSV/documentHistory.csv");
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert fileWriter != null;
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String line;
+        for (Document document : documents) {
+            line = document.getRoomNumber()+","+document.getSenderName()+","+document.getReceiverName()+","+document.getSize()
+                    +","+document.getPrivacy()+","+document.getDate()+","+document.getTime()+","+document.getPicture()
+                    +","+document.getGetter()+","+document.getPaider();
+            bufferedWriter.append(line);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
+    }
+
+    @Override
+    public ArrayList<Package> createPackageHistoryListFromCSV() throws IOException {
+        file = new File("CSV/packageHistory.csv");
+        new FileReader(file);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        ArrayList<Package> packages = new ArrayList<>();
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] packageTmp = line.split(",");
+            Package packageAdd = new Package(packageTmp[0],packageTmp[1],packageTmp[2],packageTmp[3],
+                    packageTmp[4],packageTmp[5],packageTmp[6],packageTmp[7],packageTmp[8],packageTmp[9],packageTmp[10] );
+            packages.add(packageAdd);
+        }
+        fileReader.close();
+        bufferedReader.close();
+        return packages;
+    }
+
+    @Override
+    public void writePackageHistoryListToCSV(ArrayList<Package> packages) throws IOException {
+        file = new File("CSV/packageHistory.csv");
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert fileWriter != null;
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String line;
+        for (Package packagee : packages) {
+            line = packagee.getRoomNumber()+","+packagee.getSenderName()+","+packagee.getReceiverName()+","+packagee.getSize()
+                    +","+packagee.getCarrier()+","+packagee.getTrackNumber()+","+packagee.getDate()+","+packagee.getTime()+
+                    ","+packagee.getPicture()+","+packagee.getGetter()+","+packagee.getPaider();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }

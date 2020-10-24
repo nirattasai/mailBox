@@ -43,8 +43,7 @@ public class Login {
         switch (permission) {
             case "admin": {
                 System.out.println("Admin");
-                Button b = (Button) event.getSource();                                                                   // change scene
-
+                Button b = (Button) event.getSource();
                 Stage stage = (Stage) b.getScene().getWindow();
                 loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
                 stage.setScene(new Scene(loader.load(), 1000, 600));
@@ -72,7 +71,7 @@ public class Login {
                             loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
                             stage.setScene(new Scene(loader.load(), 1000, 600));
                             StaffPageController dw = loader.getController();
-                            dw.setUser(username,i);
+                            dw.setStaffs(username,i);
                             System.out.println(username+"  "+i);
                             stage.show();
                         } else {

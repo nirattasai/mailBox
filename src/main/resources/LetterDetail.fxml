@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.Mailbox.LetterDetailController">
+   <children>
+      <Text fill="WHITE" layoutX="60.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LETTER DETAIL">
+         <font>
+            <Font name="Helvetica Bold" size="36.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fill="WHITE" layoutX="25.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOMNUMBER :">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="25.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RECEIVER :">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="25.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SENDER :">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="25.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATE :">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="25.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIZE :">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="25.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STAFF GET NAME :">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Button id="button" fx:id="backButton" layoutX="175.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
+      <Text fx:id="roomNumber" fill="WHITE" layoutX="210.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="date" fill="WHITE" layoutX="210.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="size" fill="WHITE" layoutX="210.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="staff" fill="WHITE" layoutX="210.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="sender" fill="WHITE" layoutX="210.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="receiver" fill="WHITE" layoutX="210.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="25.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIME :">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="time" fill="WHITE" layoutX="210.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+         <font>
+            <Font name="Helvetica" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

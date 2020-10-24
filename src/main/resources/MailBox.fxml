@@ -1,18 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.MailBoxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.Mailbox.MailBoxController">
    <children>
-      <TableView fx:id="mailBoxTableView" layoutX="25.0" layoutY="44.0" prefHeight="500.0" prefWidth="400.0" />
-      <Button fx:id="addItemButton" layoutX="474.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleAddItemButton" text="Add Item" />
-      <Button fx:id="residentReceivedButton" layoutX="641.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleResidentReceivedButton" text="Resident  Received" />
-      <Button fx:id="backButton" layoutX="862.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleBackButton" text="Back" />
-      <TableView fx:id="roomMailboxTableView" layoutX="449.0" layoutY="44.0" prefHeight="459.0" prefWidth="530.0" />
-      <Text fx:id="roomNumberText" layoutX="425.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Button fx:id="refreshButton" layoutX="198.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleRefreshButton" text="REFRESH" />
+      <TableView fx:id="mailBoxTableView" layoutX="229.0" layoutY="50.0" onMouseEntered="#refresh" prefHeight="500.0" prefWidth="300.0" />
+      <Pane id="pane" prefHeight="600.0" prefWidth="200.0">
+         <children>
+            <Label id="label" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" text="STAFF">
+               <font>
+                  <Font name="Helvetica" size="37.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="addItemButton" alignment="CENTER" layoutY="176.0" onMouseClicked="#handleAddItemButton" prefHeight="55.0" prefWidth="200.0" text="ADD ITEM">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="residentReceivedButton" alignment="CENTER" layoutY="231.0" onMouseClicked="#handleResidentReceivedButton" prefHeight="55.0" prefWidth="200.0" text="RESIDENT RECEIVE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label id="label-button" alignment="CENTER" layoutY="286.0" prefHeight="55.0" prefWidth="200.0" text="ITEM RECEIVED">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="backButton" alignment="CENTER" layoutY="545.0" onMouseClicked="#handleBackButton" prefHeight="55.0" prefWidth="200.0" text="BACK">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="letterTable" layoutX="570.0" layoutY="50.0" prefHeight="150.0" prefWidth="400.0">
+         <columns>
+            <TableColumn fx:id="roomNumberLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="ROOM NUMBER" />
+            <TableColumn fx:id="senderLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="SENDER" />
+            <TableColumn fx:id="receiverLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="RECEIVER" />
+            <TableColumn fx:id="dateLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="DATE" />
+         </columns></TableView>
+      <TableView fx:id="packageTable" layoutX="570.0" layoutY="225.0" prefHeight="150.0" prefWidth="400.0">
+         <columns>
+            <TableColumn fx:id="roomNumberPackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="ROOM NUMBER" />
+            <TableColumn fx:id="senderPackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="SENDER" />
+            <TableColumn fx:id="receiverPackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="RECEIVER" />
+            <TableColumn fx:id="datePackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="DATE" />
+         </columns></TableView>
+      <TableView fx:id="documentTable" layoutX="570.0" layoutY="400.0" prefHeight="150.0" prefWidth="400.0">
+         <columns>
+            <TableColumn fx:id="roomNumberDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="ROOM NUMBER" />
+            <TableColumn fx:id="senderDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="SENDER" />
+            <TableColumn fx:id="receiverDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="RECEIVER" />
+            <TableColumn fx:id="dateDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="DATE" />
+         </columns></TableView>
    </children>
 </AnchorPane>

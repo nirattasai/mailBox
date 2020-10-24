@@ -36,7 +36,7 @@ public class ChangePasswordAdminController {
             while((line = bufferedReader.readLine())!=null)
             {
                 String[] accountTmp = line.split(",");
-                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2]);
+                Account accountAdd = new Staff(accountTmp[1],accountTmp[2],accountTmp[3],accountTmp[4]);
                 accounts.add(accountAdd);
             }
             fileReader.close();

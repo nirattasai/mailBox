@@ -1,5 +1,6 @@
 package Final.Controller.StaffController;
 
+import Final.Controller.Account.Staff;
 import Final.Controller.Building.Room;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
@@ -8,8 +9,6 @@ import Final.Controller.Item.Letter;
 import Final.Controller.Item.Package;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -21,12 +20,10 @@ import java.util.ArrayList;
 
 public class ResidentReceiveController {
     String path;
-    private String username;
-    private int index;
+    private Staff currentStaff;
 
-    public void setUser(String username,int Index) {
-        this.username = username;
-        this.index = index;
+    public void setCurrentStaff(Staff staff) {
+        this.currentStaff = staff;
     }
 
     @FXML
@@ -51,7 +48,7 @@ public class ResidentReceiveController {
     @FXML public void handleGetButton(ActionEvent event) throws IOException {
         for (Room room : rooms) {
             if (room.getRoomNumberFull().equals(roomNumberField.getText())) {
-                room.setItem("No item in mailBox");
+                room.setItem("No item in mailbox");
                 checkRoom = 1;
                 break;
             }
@@ -105,7 +102,7 @@ public class ResidentReceiveController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText("All item will be received");
-            alert.setContentText("All item in mailBox room : "+roomNumberField.getText()+" are Received");
+            alert.setContentText("All item in mailbox room : "+roomNumberField.getText()+" are received");
             alert.showAndWait();
 
             csvControlInterface.writePackageListToCSV(packages);
@@ -121,7 +118,7 @@ public class ResidentReceiveController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Failed");
             alert.setHeaderText("Cannot get item");
-            alert.setContentText("No item in mailBox");
+            alert.setContentText("No item in mailbox");
             alert.showAndWait();
         }
     }

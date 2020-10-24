@@ -48,7 +48,6 @@ public class AddResidentController {
                         check = 2;
                         break;
                     }
-
                 }
                 break;
             }
@@ -81,15 +80,17 @@ public class AddResidentController {
             alert.setContentText("Resident name : "+nameField.getText()+"  "+surnameField.getText()+"" +
                     "\nRoom Number : "+roomNumberField.getText()+"\nTelephone Number : "+telField.getText());
             csvControlInterface.writeRoomOwnerListToCSV(roomOwners);
+            nameField.clear();
+            surnameField.clear();
+            roomNumberField.clear();
+            telField.clear();
             alert.showAndWait();
         }
     }
 
-    public void handleCancelButton(ActionEvent event) throws IOException {
+    public void handleCancelButton(ActionEvent event){
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        stage.show();
+        stage.close();
     }
 }

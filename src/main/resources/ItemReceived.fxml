@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.Mailbox.ItemReceivedController">
+   <children>
+      <Pane id="pane" prefHeight="600.0" prefWidth="200.0">
+         <children>
+            <Label id="label" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" text="STAFF">
+               <font>
+                  <Font name="Helvetica" size="37.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="letter" alignment="CENTER" layoutY="176.0" onMouseClicked="#letterClick" prefHeight="55.0" prefWidth="200.0" text="LETTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="document" alignment="CENTER" layoutY="231.0" onMouseClicked="#documentClick" prefHeight="55.0" prefWidth="200.0" text="DOCUMENT">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="packages" alignment="CENTER" layoutY="286.0" onMouseClicked="#packageClick" prefHeight="55.0" prefWidth="200.0" text="PACKAGE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="back" alignment="CENTER" layoutY="545.0" onMouseClicked="#backClick" prefHeight="55.0" prefWidth="200.0" text="BACK">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <TableView fx:id="table" layoutX="220.0" layoutY="20.0" prefHeight="560.0" prefWidth="760.0" />
+   </children>
+</AnchorPane>

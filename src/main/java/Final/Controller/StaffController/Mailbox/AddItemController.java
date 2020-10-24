@@ -1,5 +1,6 @@
-package Final.Controller.StaffController;
+package Final.Controller.StaffController.Mailbox;
 
+import Final.Controller.Account.Staff;
 import Final.Controller.Building.Room;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
@@ -43,12 +44,10 @@ public class AddItemController {
     private Path target = null;
 
     private int check=0;
-    private String username;
-    private int index;
-    public void setUser(String username,int index)
+    private Staff currentStaff;
+    public void setCurrentStaff(Staff staff)
     {
-        this.index = index;
-        this.username = username;
+        this.currentStaff = staff;
     }
     ArrayList<Letter> letters;
     ArrayList<Document> documents;
@@ -109,9 +108,8 @@ public class AddItemController {
             destDir = new File("images" + System.getProperty("file.separator") + typeChoice.getValue().toString());
             destDir.mkdirs();
             filename =  roomNumberField.getText()+"_"+typeChoice.getValue().toString()+"_"+ java.time.LocalDate.now().toString()+"_"+java.time.LocalTime.now()+".jpg";
-            target = FileSystems.getDefault().getPath(destDir.getAbsolutePath() + System.getProperty("file.separator") + filename);
+            target = FileSystems.getDefault().getPath(destDir/*.getAbsolutePath()*/ + System.getProperty("file.separator") + filename);
             Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING);
-
             itemImage.setImage(new Image(target.toUri().toString(), 100, 100, false, false));
         }
 
@@ -127,11 +125,12 @@ public class AddItemController {
                 {
                     if(rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText()))
                     {
-                        rooms.get(i).setItem("Item in mailBox");
+                        rooms.get(i).setItem("Item in mailbox");
                         Letter letter = new Letter(roomNumberField.getText(),senderNameField.getText(),
                                 receiverNameField.getText(),sizeChoice.getValue().toString(),
                                 java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toString());
+                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
+                                currentStaff.getUsername(),"No paider");
                         letters.add(letter);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
@@ -139,7 +138,8 @@ public class AddItemController {
                         alert.setContentText("Add letter to room : "+roomNumberField.getText()
                         +"\nSender : "+senderNameField.getText()
                         +"\nReceiver : "+receiverNameField.getText()
-                        +"\nSize : "+sizeChoice.getValue().toString());
+                        +"\nSize : "+sizeChoice.getValue().toString()
+                        +"\nStaff add : "+currentStaff.getUsername());
                         alert.showAndWait();
                         check=1;
                         break;
@@ -165,10 +165,12 @@ public class AddItemController {
                 {
                     if(rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText()))
                     {
-                        rooms.get(i).setItem("Item in mailBox");
+                        rooms.get(i).setItem("Item in mailbox");
                         Package aPackage = new Package(roomNumberField.getText(),senderNameField.getText(),
-                                receiverNameField.getText(),sizeChoice.getValue().toString(),deliveryServiceField.getText(),trackingNumberField.getText(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                        java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toString());
+                                receiverNameField.getText(),sizeChoice.getValue().toString(),deliveryServiceField.getText(),
+                                trackingNumberField.getText(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
+                                currentStaff.getUsername(),"No paider");
                         packages.add(aPackage);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
@@ -178,7 +180,8 @@ public class AddItemController {
                                 +"\nReceiver : "+receiverNameField.getText()
                                 +"\nSize : "+sizeChoice.getValue().toString()
                                 +"\nTracking : "+trackingNumberField.getText()
-                                +"\nDelivery Service : "+deliveryServiceField.getText());
+                                +"\nDelivery Service : "+deliveryServiceField.getText()
+                                +"\nStaff add : "+currentStaff.getUsername());
                         alert.showAndWait();
                         check=1;
                         break;
@@ -204,11 +207,12 @@ public class AddItemController {
                 {
                     if(rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText()))
                     {
-                        rooms.get(i).setItem("Item in mailBox");
+                        rooms.get(i).setItem("Item in mailbox");
                         Document document = new Document(roomNumberField.getText(),senderNameField.getText(),
                                 receiverNameField.getText(),sizeChoice.getValue().toString(),
                                 privacyChoice.getValue().toString(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toString());
+                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
+                                currentStaff.getUsername(),"No paider");
                         documents.add(document);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
@@ -217,7 +221,8 @@ public class AddItemController {
                                 +"\nSender : "+senderNameField.getText()
                                 +"\nReceiver : "+receiverNameField.getText()
                                 +"\nSize : "+sizeChoice.getValue().toString()
-                                +"\nPrivacy : "+privacyChoice.getValue().toString());
+                                +"\nPrivacy : "+privacyChoice.getValue().toString()
+                                +"\nStaff add : "+currentStaff.getUsername());
                         alert.showAndWait();
                         check=1;
                         break;
@@ -255,11 +260,8 @@ public class AddItemController {
 
     }
 
-    @FXML public void handleCancelButton(ActionEvent event) throws IOException {
-        file = new File(String.valueOf(target));
-        file.delete();
-
-        Button b = (Button) event.getSource();                                                                   // change scene
+    @FXML public void handleCancelButton(ActionEvent event){
+        Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         stage.close();
     }

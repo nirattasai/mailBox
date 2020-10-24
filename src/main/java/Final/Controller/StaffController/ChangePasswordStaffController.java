@@ -4,6 +4,8 @@ import Final.Controller.Account.Account;
 import Final.Controller.Account.Staff;
 import Final.Controller.AdminController.ControlInterface;
 import Final.Controller.AdminController.UserControlInterface;
+import Final.Controller.CSVControlInterface;
+import Final.Controller.CSVControlInterfaceControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,15 +19,14 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ChangePasswordStaffController {
-    private final UserControlInterface userControlInterface = new ControlInterface();
 
-    private String username;
     private int index;
-
-    public void setUser(String username,int index)
-    {
+    private UserControlInterface userControlInterface = new ControlInterface();
+    private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
+    private ArrayList<Staff> staffs;
+    public void initialize(int index) throws IOException {
+        staffs = csvControlInterface.createStaffListFromCSV();
         this.index = index;
-        this.username = username;
     }
 
     @FXML
@@ -33,7 +34,7 @@ public class ChangePasswordStaffController {
     @FXML
     Button okButton,cancelButton;
     @FXML public void handleOKButton() throws IOException {
-        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(index+1)) && confirmPassword.getText().equals(newPassword.getText()))
+        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(index+1)) && confirmPassword.getText().equals(newPassword.getText()) && !newPassword.getText().equals(""))
         {
             String password = newPassword.getText();
 
@@ -46,13 +47,14 @@ public class ChangePasswordStaffController {
             while((line = bufferedReader.readLine())!=null)
             {
                 String[] accountTmp = line.split(",");
-                Account accountAdd = new Staff(accountTmp[3],accountTmp[4],accountTmp[1],accountTmp[2]);
+                Account accountAdd = new Staff(accountTmp[1],accountTmp[2],accountTmp[3],accountTmp[4] );
                 accounts.add(accountAdd);
             }
             fileReader.close();
             bufferedReader.close();
 
             accounts.get(index+1).changePassword(password);
+            staffs.get(index).changePassword(password);
 
             File file1 = new File("CSV/User.csv");
             FileWriter fileWriter = null;
@@ -80,11 +82,11 @@ public class ChangePasswordStaffController {
             alert.setTitle("SUCCESS");
             alert.setHeaderText("Change password success.");
             alert.setContentText("Password already changed.");
-            oldPassword.setText("");
-            newPassword.setText("");
-            confirmPassword.setText("");
+            csvControlInterface.writeStaffListToCSV(staffs);
+            newPassword.clear();
+            confirmPassword.clear();
+            oldPassword.clear();
             alert.showAndWait();
-
         }
 
         else if (!oldPassword.getText().equals(userControlInterface.passwordSend().get(index+1)))
@@ -94,9 +96,9 @@ public class ChangePasswordStaffController {
             alert.setHeaderText("Cannot change password.");
             alert.setContentText("Wrong old password.");
             alert.showAndWait();
-            oldPassword.setText("");
-            newPassword.setText("");
-            confirmPassword.setText("");
+            oldPassword.clear();
+            newPassword.clear();
+            confirmPassword.clear();
         }
         else if (!newPassword.getText().equals(confirmPassword.getText()))
         {
@@ -105,17 +107,20 @@ public class ChangePasswordStaffController {
             alert.setHeaderText("Cannot change password.");
             alert.setContentText("New password not same.");
             alert.showAndWait();
-            oldPassword.setText("");
-            newPassword.setText("");
-            confirmPassword.setText("");
+        }
+        else if (newPassword.getText().equals("")||confirmPassword.getText().equals(""))
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText("Cannot change password.");
+            alert.setContentText("Don't leave blank space.");
+            alert.showAndWait();
         }
 
     }
-    @FXML public void handleCancelButton(ActionEvent event) throws IOException {
+    @FXML public void handleCancelButton(ActionEvent event){
         Button b = (Button) event.getSource();                                                                   // change scene
         Stage stage = (Stage) b.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
-        stage.show();
+        stage.close();
     }
 }
