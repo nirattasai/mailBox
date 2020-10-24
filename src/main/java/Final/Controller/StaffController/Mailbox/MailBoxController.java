@@ -7,6 +7,9 @@ import Final.Controller.CSVControlInterfaceControl;
 import Final.Controller.Item.Document;
 import Final.Controller.Item.Letter;
 import Final.Controller.Item.Package;
+import Final.Controller.StaffController.Mailbox.ItemDetail.DocumentDetailController;
+import Final.Controller.StaffController.Mailbox.ItemDetail.LetterDetailController;
+import Final.Controller.StaffController.Mailbox.ItemDetail.PackageDetailController;
 import Final.Controller.StaffController.StaffPageController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,11 +23,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class MailBoxController {
     @FXML
-    Label backButton,addItemButton,residentReceivedButton;
+    Label backButton,addItemButton,residentReceivedButton,itemReceived;
     @FXML
     TableView mailBoxTableView,letterTable,documentTable,packageTable;
     @FXML
@@ -45,6 +49,7 @@ public class MailBoxController {
     private ArrayList<Letter> letterHistory;
     private ArrayList<Package> packageHistory;
     private ArrayList<Document> documentHistory;
+    private String resident;
 
     public void initialize() throws IOException {
         rooms = csvControlInterface.createRoomListFromCSV();
@@ -64,7 +69,7 @@ public class MailBoxController {
 
         mailBoxTableView.setItems(roomObservableList);
 
-        TableColumn col = new TableColumn("Room Number");
+        TableColumn col = new TableColumn("ROOM NUMBER");
         col.setCellValueFactory(new PropertyValueFactory<>("roomNumberFull"));
         col.setMinWidth(100);
         col.setMaxWidth(100);
@@ -72,7 +77,7 @@ public class MailBoxController {
         col.setStyle("-fx-alignment: CENTER");
         mailBoxTableView.getColumns().add(col);
 
-        col = new TableColumn("Status");
+        col = new TableColumn("STATUS");
         col.setCellValueFactory(new PropertyValueFactory<>("item"));
         col.setMaxWidth(200);
         col.setMinWidth(200);
@@ -137,6 +142,10 @@ public class MailBoxController {
             });
             return row;
         });
+    }
+
+    public void setResident(String resident) {
+        this.resident = resident;
     }
 
     private void showLetter(Letter letter) throws IOException {
@@ -220,6 +229,8 @@ public class MailBoxController {
             if(letters.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull()))
             {
                 letters.get(i).setPaider(currentStaff.getUsername());
+                letters.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                 letterHistory.add(letters.get(i));
                 letters.remove(letters.get(i));
                 i--;
@@ -231,6 +242,8 @@ public class MailBoxController {
             if(packages.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull()))
             {
                 packages.get(i).setPaider(currentStaff.getUsername());
+                packages.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                 packageHistory.add(packages.get(i));
                 packages.remove(packages.get(i));
                 i--;
@@ -242,6 +255,8 @@ public class MailBoxController {
             if(documents.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull()))
             {
                 documents.get(i).setPaider(currentStaff.getUsername());
+                documents.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                 documentHistory.add(documents.get(i));
                 documents.remove(documents.get(i));
                 i--;
@@ -373,4 +388,18 @@ public class MailBoxController {
         documentTable.refresh();
     }
 
+    public void handleItemReceived() throws IOException {
+        Stage stage = (Stage) itemReceived.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ItemReceived.fxml"));
+        stage.setScene(new Scene(loader.load(),1000,600));
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double width = 1000;
+        double height = 600;
+        stage.setX((screenBounds.getWidth() - width) / 2);
+        stage.setY((screenBounds.getHeight() - height) / 2);
+        stage.setTitle("Item Received");
+        ItemReceivedController dw = loader.getController();
+        dw.setCurrentStaff(currentStaff);
+        stage.show();
+    }
 }

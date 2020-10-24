@@ -1,7 +1,6 @@
-package Final.Controller.StaffController.Mailbox;
+package Final.Controller.StaffController.Mailbox.HistoryItemDetail;
 
 import Final.Controller.Item.Document;
-import Final.Controller.Item.Letter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,11 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class DocumentDetailController {
+public class DocumentHistoryDetail {
     @FXML
     ImageView image;
     @FXML
-    Text roomNumber,receiver,sender,date,time,size,staff,priority;
+    Text roomNumber,receiver,sender,date,time,size,staff,staffPaid,timeOut,dateOut,resident;
     @FXML
     Button backButton;
     private Document currentDocument;
@@ -30,7 +29,10 @@ public class DocumentDetailController {
         time.setText(currentDocument.getTime());
         staff.setText(currentDocument.getGetter());
         size.setText(currentDocument.getSize());
-        priority.setText(currentDocument.getPrivacy());
+        staffPaid.setText(currentDocument.getPaider());
+        timeOut.setText(currentDocument.getTimePaid());
+        dateOut.setText(currentDocument.getDatePaid());
+        resident.setText(currentDocument.getResident());
     }
 
     @FXML public void handleBackButton(ActionEvent event){

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.Mailbox.MailBoxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#refresh" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.Mailbox.MailBoxController">
    <children>
       <TableView fx:id="mailBoxTableView" layoutX="229.0" layoutY="50.0" onMouseEntered="#refresh" prefHeight="500.0" prefWidth="300.0" />
       <Pane id="pane" prefHeight="600.0" prefWidth="200.0">
@@ -27,7 +27,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label id="label-button" alignment="CENTER" layoutY="286.0" prefHeight="55.0" prefWidth="200.0" text="ITEM RECEIVED">
+            <Label id="label-button" fx:id="itemReceived" alignment="CENTER" layoutY="286.0" onMouseClicked="#handleItemReceived" prefHeight="55.0" prefWidth="200.0" text="ITEM RECEIVED">
                <font>
                   <Font size="15.0" />
                </font>

@@ -9,8 +9,13 @@ public class Letter {
     String time;
     String getter;
     String paider;
+    String datePaid;
+    String timePaid;
+    String resident;
 
-    public Letter(String roomNumber,String senderName,String receiverName,String size,String date,String time,String picture,String getter,String paider){
+    public Letter(String roomNumber,String senderName,String receiverName,String size,
+                  String date,String time,String picture,String getter,String paider,
+                  String datePaid,String timePaid,String resident){
         this.receiverName = receiverName;
         this.roomNumber = roomNumber;
         this.senderName = senderName;
@@ -20,10 +25,31 @@ public class Letter {
         this.time = time;
         this.getter = getter;
         this.paider = paider;
+        this.datePaid = datePaid;
+        this.timePaid = timePaid;
+        this.resident = resident;
     }
 
     public String getReceiverName() {
         return receiverName;
+    }
+
+    public String getDatePaid() {
+        return datePaid;
+    }
+
+    public String getTimePaid() {
+        return timePaid;
+    }
+
+    public String getResident() {
+        return resident;
+    }
+
+    public void setOut(String date,String time)
+    {
+        this.datePaid = date;
+        this.timePaid = time;
     }
 
     public String getRoomNumber ()
@@ -62,10 +88,6 @@ public class Letter {
 
     public String getPaider() {
         return paider;
-    }
-
-    public void setGetter(String getter) {
-        this.getter = getter;
     }
 
     public void setPaider(String paider) {

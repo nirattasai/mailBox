@@ -68,10 +68,12 @@ public class AddItemController {
         sizeChoice.getItems().add("L");
         sizeChoice.getItems().add("M");
         sizeChoice.getItems().add("S");
+
+        privacyChoice.getItems().add("Super Secret");
         privacyChoice.getItems().add("High");
         privacyChoice.getItems().add("Medium");
         privacyChoice.getItems().add("Low");
-        privacyChoice.getItems().add("Super Secret");
+
 
         typeChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
@@ -130,8 +132,8 @@ public class AddItemController {
                                 receiverNameField.getText(),sizeChoice.getValue().toString(),
                                 java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                                 java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
-                                currentStaff.getUsername(),"No paider");
-                        letters.add(letter);
+                                currentStaff.getUsername(),"No paider","none","none","none");
+                        letters.add(1,letter);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
                         alert.setHeaderText("Add Letter success.");
@@ -170,8 +172,8 @@ public class AddItemController {
                                 receiverNameField.getText(),sizeChoice.getValue().toString(),deliveryServiceField.getText(),
                                 trackingNumberField.getText(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                                 java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
-                                currentStaff.getUsername(),"No paider");
-                        packages.add(aPackage);
+                                currentStaff.getUsername(),"No paider","none","none","none");
+                        packages.add(1,aPackage);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
                         alert.setHeaderText("Add Package success.");
@@ -212,8 +214,8 @@ public class AddItemController {
                                 receiverNameField.getText(),sizeChoice.getValue().toString(),
                                 privacyChoice.getValue().toString(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                                 java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
-                                currentStaff.getUsername(),"No paider");
-                        documents.add(document);
+                                currentStaff.getUsername(),"No paider","none","none","none");
+                        documents.add(1,document);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Add item Success");
                         alert.setHeaderText("Add Document success.");

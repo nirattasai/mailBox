@@ -1,4 +1,4 @@
-package Final.Controller.StaffController.Mailbox;
+package Final.Controller.StaffController.Mailbox.ItemDetail;
 
 import Final.Controller.Item.Letter;
 import Final.Controller.Item.Package;
