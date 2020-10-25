@@ -49,7 +49,8 @@ public class MailBoxController {
     private ArrayList<Letter> letterHistory;
     private ArrayList<Package> packageHistory;
     private ArrayList<Document> documentHistory;
-    private String resident;
+    public static String resident;
+    public static int checkRes=0;
 
     public void initialize() throws IOException {
         rooms = csvControlInterface.createRoomListFromCSV();
@@ -217,6 +218,11 @@ public class MailBoxController {
     }
 
     @FXML public void handleResidentReceivedButton() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/SetReceived.fxml"));
+        stage.setScene(new Scene(loader.load(),400,100));
+        stage.showAndWait();
+        System.out.println(resident);
         int check = 0;
         for (Room room : rooms) {
             if (room.getRoomNumberFull().equals(roomChoose.getRoomNumberFull())) {
@@ -229,6 +235,7 @@ public class MailBoxController {
             if(letters.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull()))
             {
                 letters.get(i).setPaider(currentStaff.getUsername());
+                letters.get(i).setResident(resident);
                 letters.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                         java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                 letterHistory.add(letters.get(i));
@@ -242,6 +249,7 @@ public class MailBoxController {
             if(packages.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull()))
             {
                 packages.get(i).setPaider(currentStaff.getUsername());
+                packages.get(i).setResident(resident);
                 packages.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                         java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                 packageHistory.add(packages.get(i));
@@ -255,6 +263,7 @@ public class MailBoxController {
             if(documents.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull()))
             {
                 documents.get(i).setPaider(currentStaff.getUsername());
+                documents.get(i).setResident(resident);
                 documents.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                         java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
                 documentHistory.add(documents.get(i));

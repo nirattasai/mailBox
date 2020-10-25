@@ -5,6 +5,7 @@ import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
 import Final.Controller.Item.Document;
 import Final.Controller.Item.Letter;
+import Final.Controller.Item.MailBox;
 import Final.Controller.Item.Package;
 import Final.Controller.StaffController.Mailbox.HistoryItemDetail.DocumentHistoryDetail;
 import Final.Controller.StaffController.Mailbox.HistoryItemDetail.LetterHistoryDetail;

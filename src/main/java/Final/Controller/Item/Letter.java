@@ -52,6 +52,10 @@ public class Letter {
         this.timePaid = time;
     }
 
+    public void setResident(String resident) {
+        this.resident = resident;
+    }
+
     public String getRoomNumber ()
     {
         return roomNumber;
