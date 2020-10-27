@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -73,18 +74,30 @@ public class AddResidentController {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Room Full");
+            alert.getDialogPane().setPrefWidth(200);
+            alert.setHeaderText(null);
             alert.showAndWait();
+            nameField.clear();
+            surnameField.clear();
+            telField.clear();
         }
         else if(check == 0)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Add success");
+            alert.getDialogPane().setPrefWidth(200);
+            alert.setHeaderText(null);
             alert.showAndWait();
+            nameField.clear();
+            surnameField.clear();
+            telField.clear();
         }
         else if(check == 2)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Cannot leave blanks");
+            alert.getDialogPane().setPrefWidth(200);
+            alert.setHeaderText(null);
             alert.showAndWait();
         }
         csvControlInterface.writeRoomListToCSV(rooms);

@@ -12,10 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -24,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class RoomDetailController {
     @FXML
@@ -39,6 +37,7 @@ public class RoomDetailController {
     private ArrayList<RoomOwner> residents;
     private ObservableList<RoomOwner> roomOwnerObservableList;
     private Room currentRoom;
+    private RoomOwner removeResident;
 
     public void initialize(Room currentRoom) throws IOException {
         residents = csvControlInterface.createRoomOwnerListFromCSV();
@@ -46,12 +45,20 @@ public class RoomDetailController {
         Platform.runLater(() ->
         {
             try {
-                setRoom(currentRoom);
+                setRoom(this.currentRoom);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
+        residentTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if(newValue!=null)
+            {
+                removeResident = (RoomOwner) newValue;
+                //System.out.println(removeResident.getName());
+            }
+        });
     }
 
     public void setTable() throws IOException {
@@ -97,33 +104,63 @@ public class RoomDetailController {
 
     public void setRoom(Room currentRoom) throws IOException {
         ArrayList<Room> rooms = csvControlInterface.createRoomListFromCSV();
+        Room roomSet = null;
         for(Room x : rooms)
         {
-            if(x.getRoomNumberFull().equals(this.currentRoom.getRoomNumberFull()))
+            if(x.getRoomNumberFull().equals(currentRoom.getRoomNumberFull()))
             {
-                System.out.println(x.getRoomNumberFull()+">>>>>"+this.currentRoom.getRoomNumberFull());
-                this.currentRoom = currentRoom;
+                roomSet = x;
+                break;
             }
         }
-        roomNumber.setText(this.currentRoom.getRoomNumberFull());
-        floor.setText(this.currentRoom.getFloor());
-        building.setText(this.currentRoom.getBuilding());
-        room.setText(this.currentRoom.getRoomNumber());
-        type.setText(this.currentRoom.getType());
-        status.setText(this.currentRoom.getStatus());
+        roomNumber.setText(roomSet.getRoomNumberFull());
+        floor.setText(roomSet.getFloor());
+        building.setText(roomSet.getBuilding());
+        room.setText(roomSet.getRoomNumber());
+        type.setText(roomSet.getType());
+        status.setText(roomSet.getStatus());
         setTable();
         residentTable.setPlaceholder(new Label("No resident"));
     }
 
-    public void handleBackButton(ActionEvent event) {
+    public void handleBackButton() {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
 
-    public void handleRemoveButton(ActionEvent event) {
+    public void handleRemoveButton() throws IOException {
+        residents = csvControlInterface.createRoomOwnerListFromCSV();
+        ArrayList<Room> rooms = csvControlInterface.createRoomListFromCSV();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure to remove : "+removeResident.getName()+"  "+removeResident.getSurname());
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            for(RoomOwner x : residents)
+            {
+                if(x.getName().equals(removeResident.getName()) && x.getSurname().equals(removeResident.getSurname()))
+                {
+                    for(Room i : rooms)
+                    {
+                        if(i.getRoomNumberFull().equals(removeResident.getRoomNumber()))
+                        {
+                            i.removeResident();
+                            if(i.getCurrentResident().equals("0"))
+                                i.emptyRoom();
+                            break;
+                        }
+                    }
+                    residents.remove(x);
+                    break;
+                }
+            }
+            csvControlInterface.writeRoomListToCSV(rooms);
+            csvControlInterface.writeRoomOwnerListToCSV(residents);
+            refresh();
+        }
+
     }
 
-    public void handleAddButton(ActionEvent event) throws IOException {
+    public void handleAddButton() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddResident.fxml"));
         stage.setTitle("Add resident");

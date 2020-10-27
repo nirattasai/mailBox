@@ -75,7 +75,7 @@ public class Room {
 
     public void removeResident()
     {
-        this.currentResident = 0;
+        this.currentResident -= 1;
     }
 
     public boolean isFull()
@@ -83,5 +83,9 @@ public class Room {
         if(maxResident<=currentResident)
             return true;
         return false;
+    }
+    public void emptyRoom()
+    {
+        this.status = "Room is not Owned";
     }
 }

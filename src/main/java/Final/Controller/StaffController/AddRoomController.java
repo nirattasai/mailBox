@@ -84,7 +84,7 @@ public class AddRoomController {
                 }
                 Room roomAdd = new Room(buildingField.getText(), floorChoice.getValue().toString(),
                         roomChoice.getValue().toString(), typeChoice.getValue().toString(),
-                        "No Owner","No item in mailbox",maxResident,0);
+                        "Room is not Owned","No item in mailbox",maxResident,0);
                 rooms.add(roomAdd);
                 Collections.sort(rooms, new Comparator<Room>() {
                     @Override
