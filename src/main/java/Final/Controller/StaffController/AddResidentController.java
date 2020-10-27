@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AddResidentController {
 
@@ -26,6 +28,8 @@ public class AddResidentController {
     private final CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private ArrayList<Room> rooms ;
     private ArrayList<RoomOwner> roomOwners;
+    private RoomOwner residentAdd;
+    private String roomNumber;
 
     public void initialize() throws IOException {
         rooms = csvControlInterface.createRoomListFromCSV();
@@ -33,63 +37,62 @@ public class AddResidentController {
     }
 
     private int check = 0,i=0;
-
+    public void setRoomNumber(String roomNumber)
+    {
+        this.roomNumber = roomNumber;
+        roomNumberField.setText(roomNumber);
+        roomNumberField.setEditable(false);
+    }
 
     @FXML public void handleOKButton() throws IOException {
         check = 0;
-        for(i=0;i<rooms.size();i++)
-        {
-            System.out.println(i);
-            if(roomNumberField.getText().equals(rooms.get(i).getRoomNumberFull()))
-            {
-                check = 1;
-                for (RoomOwner roomOwner : roomOwners) {
-                    if (roomNumberField.getText().equals(roomOwner.getRoomNumber())) {
-                        check = 2;
-                        break;
+        if(!roomNumberField.getText().equals("") && !telField.getText().equals("") && !surnameField.getText().equals("")) {
+            for (Room x : rooms) {
+                if (roomNumber.equals(x.getRoomNumberFull())) {
+                    if (x.isFull())
+                        check = 1; // room full
+                    else {
+                        x.addResident();
+                        x.setStatus("Room is owned");
+                        residentAdd = new RoomOwner(nameField.getText(), surnameField.getText(), roomNumberField.getText(),
+                                telField.getText());
+                        roomOwners.add(residentAdd);
+                        Collections.sort(roomOwners, new Comparator<RoomOwner>() {
+                            @Override
+                            public int compare(RoomOwner o1, RoomOwner o2) {
+                                return o1.getRoomNumber().compareTo(o2.getRoomNumber());
+                            }
+                        });
                     }
                 }
-                break;
             }
-
         }
-
-        if(check==0){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Cannot add resident.");
-            alert.setContentText("Don't have room number :"+roomNumberField.getText());
-            alert.showAndWait();
-        }
-        else if(check==2)
+        else
+            check = 2;
+        if(check == 1)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Cannot add resident.");
-            alert.setContentText("Room number : "+roomNumberField.getText()+" is already owned.");
+            alert.setContentText("Room Full");
             alert.showAndWait();
         }
-        else {
-            RoomOwner roomOwner = new RoomOwner(nameField.getText(),surnameField.getText(),roomNumberField.getText(),telField.getText());
-            roomOwners.add(roomOwner);
-            rooms.get(i).setStatus("Owned");
-            csvControlInterface.writeRoomListToCSV(rooms);
+        else if(check == 0)
+        {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("SUCCESS");
-            alert.setHeaderText("Add resident success.");
-            alert.setContentText("Resident name : "+nameField.getText()+"  "+surnameField.getText()+"" +
-                    "\nRoom Number : "+roomNumberField.getText()+"\nTelephone Number : "+telField.getText());
-            csvControlInterface.writeRoomOwnerListToCSV(roomOwners);
-            nameField.clear();
-            surnameField.clear();
-            roomNumberField.clear();
-            telField.clear();
+            alert.setContentText("Add success");
             alert.showAndWait();
         }
+        else if(check == 2)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Cannot leave blanks");
+            alert.showAndWait();
+        }
+        csvControlInterface.writeRoomListToCSV(rooms);
+        csvControlInterface.writeRoomOwnerListToCSV(roomOwners);
     }
 
     public void handleCancelButton(ActionEvent event){
-        Button b = (Button) event.getSource();                                                                   // change scene
+        Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         stage.close();
     }

@@ -104,13 +104,19 @@ public class ControlInterface implements UserControlInterface{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Staff tmp = null;
+        int index = 0;
         for (Staff value : staff) {
             if (value.getUsername().equals(username)) {
                 String date = java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 String time = java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
                 value.setLog(date, time);
+                index = staff.indexOf(value);
+                tmp = value;
             }
         }
+        staff.remove(index);
+        staff.add(0,tmp);
         try {
             CSVControlInterface.writeStaffListToCSV(staff);
         } catch (IOException e) {

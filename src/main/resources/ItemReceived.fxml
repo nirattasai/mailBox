@@ -37,6 +37,6 @@
             </Label>
          </children>
       </Pane>
-      <TableView fx:id="table" layoutX="220.0" layoutY="20.0" prefHeight="560.0" prefWidth="760.0" />
+      <TableView fx:id="table" layoutX="250.0" layoutY="20.0" prefHeight="560.0" prefWidth="700.0" />
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@ import Final.Controller.Account.Staff;
 import Final.Controller.Building.Room;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
+import Final.Controller.Item.Document;
 import Final.Controller.StaffController.Mailbox.MailBoxController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,12 +25,19 @@ public class StaffPageController {
     private ArrayList<Staff> staffs;
     private Staff currentStaff;
     private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
-    int index;
+    private int index;
     private ObservableList<Room> roomsList ;
-    ArrayList<Room> rooms;
+    private ArrayList<Room> rooms;
+
+    @FXML
+    TableView roomTableView;
+    @FXML
+    Label addRoomButton,changePasswordButton,mailBoxButton,staffLabel;
+
 
     public void initialize()
     {
+
         try {
             staffs = csvControlInterface.createStaffListFromCSV();
         } catch (IOException e) {
@@ -76,17 +84,41 @@ public class StaffPageController {
         roomTableView.getColumns().add(col);
 
         roomTableView.refresh();
+
+        roomTableView.setRowFactory( tv -> {
+            TableRow<Room> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Room rowData = row.getItem();
+                    try {
+                        showRoom(rowData);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row;
+        });
     }
 
-
-    @FXML
-    TableView roomTableView;
-    @FXML
-    Label addRoomButton,addResidentButton,changePasswordButton,mailBoxButton;
+    private void showRoom(Room rowData) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/RoomDetail.fxml"));
+        stage.setScene(new Scene(loader.load(),400,600));
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double width = 400;
+        double height = 600;
+        stage.setX((screenBounds.getWidth() - width) / 2);
+        stage.setY((screenBounds.getHeight() - height) / 2);
+        RoomDetailController dw = loader.getController();
+        dw.initialize(rowData);
+        stage.show();
+    }
 
     public void setCurrentStaff(Staff staff)
     {
         this.currentStaff = staff;
+        staffLabel.setText(currentStaff.getUsername());
     }
 
     public void setStaffs(String username,int index)
@@ -96,6 +128,7 @@ public class StaffPageController {
             if(staff.getUsername().equals(username))
             {
                 currentStaff = staff;
+                staffLabel.setText(currentStaff.getUsername());
                 break;
             }
         }
@@ -122,19 +155,6 @@ public class StaffPageController {
         stage.setScene(new Scene(loader.load(),1000,600));
         MailBoxController dw = loader.getController();
         dw.setCurrentStaff(currentStaff);
-        stage.show();
-    }
-
-    @FXML public void handleAddResidentButton() throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddResident.fxml"));
-        stage.setScene(new Scene(loader.load(),400,600));
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        double width = 400;
-        double height = 600;
-        stage.setX((screenBounds.getWidth() - width) / 2);
-        stage.setY((screenBounds.getHeight() - height) / 2);
-        stage.setTitle("Register residents");
         stage.show();
     }
 

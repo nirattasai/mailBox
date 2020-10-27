@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AddRoomController {
     @FXML
@@ -71,8 +73,25 @@ public class AddRoomController {
             }
 
             if (check == 0) {
-                Room roomAdd = new Room(buildingField.getText(), floorChoice.getValue().toString(), roomChoice.getValue().toString(), typeChoice.getValue().toString(), "No Owner","No item in mailbox");
+                int maxResident = 0;
+                if(typeChoice.getValue().toString().equals("Studio Room"))
+                {
+                    maxResident = 1;
+                }
+                else if (typeChoice.getValue().toString().equals("1-bedroom Room"))
+                {
+                    maxResident = 2;
+                }
+                Room roomAdd = new Room(buildingField.getText(), floorChoice.getValue().toString(),
+                        roomChoice.getValue().toString(), typeChoice.getValue().toString(),
+                        "No Owner","No item in mailbox",maxResident,0);
                 rooms.add(roomAdd);
+                Collections.sort(rooms, new Comparator<Room>() {
+                    @Override
+                    public int compare(Room o1, Room o2) {
+                        return o1.getRoomNumberFull().compareTo(o2.getRoomNumberFull());
+                    }
+                });
                 try {
                     csvControlInterface.writeRoomListToCSV(rooms);
 

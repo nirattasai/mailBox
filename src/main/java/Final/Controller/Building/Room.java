@@ -1,14 +1,17 @@
 package Final.Controller.Building;
 
 public class Room {
-    private final String building;
-    private final String floor;
-    private final String roomNumber;
-    private final String type;
+    private String building;
+    private String floor;
+    private String roomNumber;
+    private String type;
     private String status;
     private String item;
+    private int maxResident;
+    private int currentResident;
 
-    public Room(String building,String floor,String roomNumber,String type,String status,String item)
+    public Room(String building,String floor,String roomNumber,String type,String status,String item,int maxResident,
+                int currentResident)
     {
         this.building = building;
         this.floor = floor;
@@ -16,6 +19,8 @@ public class Room {
         this.type = type;
         this.status = status;
         this.item = item;
+        this.maxResident = maxResident;
+        this.currentResident = currentResident;
     }
 
     public String getStatus() {
@@ -53,5 +58,30 @@ public class Room {
 
     public void setItem(String item) {
         this.item = item;
+    }
+
+    public String getCurrentResident() {
+        return String.valueOf(currentResident);
+    }
+
+    public String getMaxResident() {
+        return String.valueOf(maxResident);
+    }
+
+    public void addResident()
+    {
+        this.currentResident+=1;
+    }
+
+    public void removeResident()
+    {
+        this.currentResident = 0;
+    }
+
+    public boolean isFull()
+    {
+        if(maxResident<=currentResident)
+            return true;
+        return false;
     }
 }

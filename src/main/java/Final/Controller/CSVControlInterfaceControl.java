@@ -59,7 +59,8 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         ArrayList<Room> rooms = new ArrayList<>();
         while ((line = bufferedReader.readLine()) != null) {
             String[] RoomTmp = line.split(",");
-            Room roomAdd = new Room(RoomTmp[0], RoomTmp[1], RoomTmp[2], RoomTmp[3], RoomTmp[4],RoomTmp[5]);
+            Room roomAdd = new Room(RoomTmp[0], RoomTmp[1], RoomTmp[2], RoomTmp[3], RoomTmp[4],RoomTmp[5],
+                    Integer.parseInt(RoomTmp[6]),Integer.parseInt(RoomTmp[7]));
             rooms.add(roomAdd);
         }
         fileReader.close();
@@ -80,7 +81,8 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         String line;
         for (Room room : rooms) {
-            line = room.getBuilding() + "," + room.getFloor() + "," + room.getRoomNumber() + "," + room.getType() + "," + room.getStatus()+","+room.getItem();
+            line = room.getBuilding() + "," + room.getFloor() + "," + room.getRoomNumber() + "," + room.getType() + ","
+                    + room.getStatus()+","+room.getItem()+","+room.getMaxResident()+","+room.getCurrentResident();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }
