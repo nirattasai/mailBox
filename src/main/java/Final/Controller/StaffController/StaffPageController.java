@@ -1,10 +1,10 @@
 package Final.Controller.StaffController;
 
+import Final.Controller.Account.RoomOwner;
 import Final.Controller.Account.Staff;
 import Final.Controller.Building.Room;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
-import Final.Controller.Item.Document;
 import Final.Controller.StaffController.Mailbox.MailBoxController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class StaffPageController {
 
@@ -32,7 +33,7 @@ public class StaffPageController {
     @FXML
     TableView roomTableView;
     @FXML
-    Label addRoomButton,changePasswordButton,mailBoxButton,staffLabel;
+    Label addRoomButton,changePasswordButton,mailBoxButton,staffLabel,searchLabel;
 
 
     public void initialize()
@@ -112,7 +113,8 @@ public class StaffPageController {
         stage.setY((screenBounds.getHeight() - height) / 2);
         RoomDetailController dw = loader.getController();
         dw.initialize(rowData);
-        stage.show();
+        stage.showAndWait();
+        refresh();
     }
 
     public void setCurrentStaff(Staff staff)
@@ -144,15 +146,15 @@ public class StaffPageController {
         stage.setX((screenBounds.getWidth() - width) / 2);
         stage.setY((screenBounds.getHeight() - height) / 2);
         stage.setTitle("Add room");
-        AddRoomController dw = loader.getController();
-        dw.setCurrentStaff(currentStaff);
-        stage.show();
+        stage.showAndWait();
+        refresh();
     }
 
     @FXML public void handleMailBoxButton() throws IOException {
         Stage stage = (Stage) mailBoxButton.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
         stage.setScene(new Scene(loader.load(),1000,600));
+        stage.setTitle("MailBox");
         MailBoxController dw = loader.getController();
         dw.setCurrentStaff(currentStaff);
         stage.show();
@@ -171,7 +173,6 @@ public class StaffPageController {
         stage.setY((screenBounds.getHeight() - height) / 2);
         stage.setTitle("Change password");
         stage.show();
-
     }
 
     @FXML public void handleLogoutButton() throws IOException {
@@ -183,6 +184,7 @@ public class StaffPageController {
         double height = 600;
         stage.setX((screenBounds.getWidth() - width) / 2);
         stage.setY((screenBounds.getHeight() - height) / 2);
+        stage.setTitle("Login");
         stage.show();
     }
 
@@ -191,5 +193,58 @@ public class StaffPageController {
         roomsList = FXCollections.observableList(rooms);
         roomTableView.setItems(roomsList);
         roomTableView.refresh();
+    }
+
+    @FXML public void searchLabelClick() throws IOException {
+        ArrayList<RoomOwner> resident = csvControlInterface.createRoomOwnerListFromCSV();
+        ArrayList<RoomOwner> match = new ArrayList<>();
+        TextInputDialog textInputDialog = new TextInputDialog();
+        textInputDialog.setContentText("Enter name to search : ");
+        textInputDialog.setHeaderText(null);
+        Optional<String> result = textInputDialog.showAndWait();
+
+        if(result.isPresent())
+        {
+            String search = result.get();
+            int check = 0;
+            if(!search.equals("")) {
+                for (RoomOwner roomOwner : resident) {
+                    if (roomOwner.getName().contains(search))
+                    {
+                        match.add(roomOwner);
+                        check = 1;
+                    }
+                }
+                if(check == 0)
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setContentText("No resident contain keyword.");
+                    alert.getDialogPane().setPrefWidth(300);
+                    alert.showAndWait();
+                }
+                else {
+                    Stage stage = new Stage();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/SearchResident.fxml"));
+                    stage.setTitle("Search Resident");
+                    stage.setScene(new Scene(loader.load(), 400, 600));
+                    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+                    double width = 400;
+                    double height = 600;
+                    stage.setX((screenBounds.getWidth() - width) / 2);
+                    stage.setY((screenBounds.getHeight() - height) / 2);
+                    SearchResidentController dw = loader.getController();
+                    dw.initialize(match);
+                    stage.show();
+                }
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter keyword.");
+                alert.getDialogPane().setPrefWidth(300);
+                alert.showAndWait();
+            }
+        }
     }
 }

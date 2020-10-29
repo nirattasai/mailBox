@@ -7,7 +7,6 @@ import Final.Controller.CSVControlInterfaceControl;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -30,8 +29,6 @@ public class RoomDetailController {
     Button addButton,removeButton,backButton;
     @FXML
     TableView residentTable;
-    @FXML
-    AnchorPane anchor;
 
     private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private ArrayList<RoomOwner> residents;
@@ -56,7 +53,6 @@ public class RoomDetailController {
             if(newValue!=null)
             {
                 removeResident = (RoomOwner) newValue;
-                //System.out.println(removeResident.getName());
             }
         });
     }
@@ -172,7 +168,8 @@ public class RoomDetailController {
         stage.setY((screenBounds.getHeight() - height) / 2);
         AddResidentController dw = loader.getController();
         dw.setRoomNumber(currentRoom.getRoomNumberFull());
-        stage.show();
+        stage.showAndWait();
+        refresh();
     }
 
     @FXML public void refresh() throws IOException {

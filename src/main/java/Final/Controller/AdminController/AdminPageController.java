@@ -1,6 +1,7 @@
 package Final.Controller.AdminController;
 
 import Final.Controller.Account.Staff;
+import Final.Controller.Building.Room;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
 import javafx.collections.FXCollections;
@@ -30,11 +31,10 @@ public class AdminPageController {
 
     private ObservableList<Staff> staffList;
     private ArrayList<Staff> staff;
-    private final CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
-    private String username="";
+    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
 
-    public void initialize() throws IOException {
+    public void initialize() {
         try {
             staff = CSVControlInterface.createStaffListFromCSV();
             staffList = FXCollections.observableArrayList(staff);
@@ -84,23 +84,42 @@ public class AdminPageController {
             e.printStackTrace();
         }
 
-        staffTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-        {
-            if(newValue!=null)
-            {
-                setUsername((Staff) newValue);
-            }
+        staffTableView.setRowFactory( tv -> {
+            TableRow<Staff> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Staff rowData = row.getItem();
+                    try {
+                        showStaff(rowData);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row;
         });
     }
 
-    private void setUsername(Staff staff)
-    {
-        username = staff.getUsername();
+    private void showStaff(Staff rowData) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckStaff.fxml"));
+        stage.setScene(new Scene(loader.load(), 400, 600));
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double width = 400;
+        double height = 600;
+        stage.setX((screenBounds.getWidth() - width) / 2);
+        stage.setY((screenBounds.getHeight() - height) / 2);
+        CheckStaffController dw = loader.getController();
+        dw.initialize(rowData);
+        stage.setTitle("Staff detail");
+        stage.showAndWait();
+        refresh();
     }
 
-    @FXML public void reset() throws IOException {
+
+    @FXML public void refresh() throws IOException {
         staff = CSVControlInterface.createStaffListFromCSV();
-        staffList = FXCollections.observableArrayList(staff);
+        staffList = FXCollections.observableList(staff);
         staffTableView.setItems(staffList);
         staffTableView.refresh();
     }
@@ -114,7 +133,8 @@ public class AdminPageController {
         stage.setX((screenBounds.getWidth() - width) / 2);
         stage.setY((screenBounds.getHeight() - height) / 2);
         stage.setTitle("Register staff");
-        stage.show();
+        stage.showAndWait();
+        refresh();
     }
 
     @FXML public void handleChangePasswordButton() throws IOException {
@@ -139,31 +159,8 @@ public class AdminPageController {
         double height = 600;
         stage.setX((screenBounds.getWidth() - width) / 2);
         stage.setY((screenBounds.getHeight() - height) / 2);
+        stage.setTitle("Login");
         stage.show();
     }
 
-    @FXML public void handleCheckButton() throws IOException {
-        if(username!="") {
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CheckStaff.fxml"));
-            stage.setScene(new Scene(loader.load(), 400, 600));
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            double width = 400;
-            double height = 600;
-            stage.setX((screenBounds.getWidth() - width) / 2);
-            stage.setY((screenBounds.getHeight() - height) / 2);
-            CheckStaffController dw = loader.getController();
-            dw.initialize(username);
-            stage.setTitle("Staff detail");
-            stage.show();
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR,"Please select staff first",ButtonType.OK);
-            alert.showAndWait();
-        }
-    }
-
-    public void handleSortButton(ActionEvent event) {
-    }
 }

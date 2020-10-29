@@ -36,7 +36,9 @@ public class Staff extends Account {
         return status;
     }
 
-    public Staff(String name, String surname, String username, String password, String email, String tel, String date, String time,String status,int blockedCount,String picture) {
+    public Staff(String name, String surname, String username, String password,
+                 String email, String tel, String date, String time,String status,
+                 int blockedCount,String picture) {
         super(name, surname, username, password, email, tel, date, time);
         this.status = status;
         this.tryBlockLogin = blockedCount;

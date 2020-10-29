@@ -11,80 +11,80 @@
       <Button id="button" fx:id="blockButton" layoutX="47.5" layoutY="530.0" mnemonicParsing="false" onAction="#handleBlockButton" prefWidth="70.0" text="BLOCK" />
       <Button id="button" fx:id="unblockButton" layoutX="155.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleUnblockButton" prefWidth="90.0" text="UNBLOCK" />
       <Button id="button" fx:id="backButton" layoutX="282.5" layoutY="530.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="70.0" text="BACK" />
-      <Text fill="WHITE" layoutX="70.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STAFF DETAIL">
+      <Text fill="WHITE" layoutX="87.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STAFF DETAIL">
          <font>
-            <Font name="Helvetica Bold" size="36.0" />
+            <Font name="System Font" size="36.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME:">
+      <Text fill="WHITE" layoutX="31.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME:">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME:">
+      <Text fill="WHITE" layoutX="31.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME:">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEL:">
+      <Text fill="WHITE" layoutX="31.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEL:">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL:">
+      <Text fill="WHITE" layoutX="31.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMAIL:">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STATUS:">
+      <Text fill="WHITE" layoutX="31.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STATUS:">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
       <ImageView fx:id="staffImage" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LAST LOGIN:">
+      <Text fill="WHITE" layoutX="31.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LAST LOGIN:">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="nameText" fill="WHITE" layoutX="98.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="nameText" fill="WHITE" layoutX="104.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="usernameText" fill="WHITE" layoutX="154.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="usernameText" fill="WHITE" layoutX="160.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="emailText" fill="WHITE" layoutX="102.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="emailText" fill="WHITE" layoutX="108.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="telText" fill="WHITE" layoutX="78.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="telText" fill="WHITE" layoutX="84.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="statusText" fill="WHITE" layoutX="120.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="statusText" fill="WHITE" layoutX="126.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="logText" fill="WHITE" layoutX="157.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="logText" fill="WHITE" layoutX="163.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="234.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tried:">
+      <Text fill="WHITE" layoutX="240.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tried:">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="triedText" fill="WHITE" layoutX="294.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="triedText" fill="WHITE" layoutX="300.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font size="20.0" />
          </font>
       </Text>
    </children>

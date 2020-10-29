@@ -10,8 +10,18 @@ import java.util.ArrayList;
 
 public class ControlInterface implements UserControlInterface{
 
-    private final File file = new File("CSV/User.csv");
-    private final CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
+    private File file = new File("CSV/User.csv");
+    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
+    private String username;
+    private String password;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public ArrayList<String> usernameSend() {
         FileReader fileReader = null;
@@ -97,7 +107,7 @@ public class ControlInterface implements UserControlInterface{
         return permission;
     }
 
-    public void getLog(String username) {
+    public void getLog() {
         ArrayList<Staff> staff = null;
         try {
             staff = CSVControlInterface.createStaffListFromCSV();
@@ -124,7 +134,7 @@ public class ControlInterface implements UserControlInterface{
         }
     }
 
-    public String checkLogin(String username, String password) {
+    public String checkLogin() {
         ArrayList<String> usernameList = usernameSend();
         ArrayList<String> passwordList = passwordSend();
         ArrayList<String> permissionList = permissionSend();

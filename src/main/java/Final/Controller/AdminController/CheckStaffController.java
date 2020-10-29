@@ -26,25 +26,13 @@ public class CheckStaffController {
     ImageView staffImage;
 
     private ArrayList<Staff> staffs;
-    private final CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
+    private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     Staff currentStaff;
 
-    public void initialize(String username) {
-        try {
-            staffs = csvControlInterface.createStaffListFromCSV();
-        } catch (IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Cannot read staff.csv");
-            alert.setContentText("Something wrong with csv file please check it.");
-            alert.showAndWait();
-        }
-        for(Staff staff : staffs)
-        {
-            if(staff.getUsername().equals(username))
-            {
-                currentStaff = staff;
-            }
-        }
+    public void initialize(Staff staff) throws IOException {
+        staffs = csvControlInterface.createStaffListFromCSV();
+        this.currentStaff = staff;
+
         nameText.setText(currentStaff.getName()+"  "+currentStaff.getSurname());
         usernameText.setText(currentStaff.getUsername());
         emailText.setText(currentStaff.getEmail());
@@ -57,19 +45,18 @@ public class CheckStaffController {
     }
 
     @FXML public void handleBlockButton() {
-       for (int i=0;i<staffs.size();i++)
-       {
-           if(staffs.get(i).getUsername().equals(currentStaff.getUsername()))
-           {
-               staffs.get(i).setStatus("blocked");
-               Alert alert = new Alert(Alert.AlertType.INFORMATION);
-               alert.setHeaderText("You blocked staff username: "+staffs.get(i).getUsername());
-               alert.setContentText("Staff : "+staffs.get(i).getUsername()+" is already blocked.");
-               statusText.setText(staffs.get(i).getStatus());
-               alert.showAndWait();
-               break;
-           }
-       }
+        for (Staff staff : staffs) {
+            if (staff.getUsername().equals(currentStaff.getUsername())) {
+                staff.setStatus("blocked");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("You blocked staff username: " + staff.getUsername());
+                alert.getDialogPane().setPrefWidth(300);
+                statusText.setText(staff.getStatus());
+                alert.showAndWait();
+                break;
+            }
+        }
        try {
             csvControlInterface.writeStaffListToCSV(staffs);
 
@@ -82,17 +69,16 @@ public class CheckStaffController {
     }
 
     @FXML public void handleUnblockButton()  {
-        for (int i=0;i<staffs.size();i++)
-        {
-            if(staffs.get(i).getUsername().equals(currentStaff.getUsername()))
-            {
-                staffs.get(i).setStatus("normal");
-                staffs.get(i).setTryBlockLogin(0);
+        for (Staff staff : staffs) {
+            if (staff.getUsername().equals(currentStaff.getUsername())) {
+                staff.setStatus("normal");
+                staff.setTryBlockLogin(0);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("You unblocked staff username: "+staffs.get(i).getUsername());
-                alert.setContentText("Staff : "+staffs.get(i).getUsername()+" is already unblocked.");
-                statusText.setText(staffs.get(i).getStatus());
-                triedText.setText(staffs.get(i).getTryBlockLogin());
+                alert.setHeaderText(null);
+                alert.setContentText("You unblocked staff username: " + staff.getUsername());
+                alert.getDialogPane().setPrefWidth(300);
+                statusText.setText(staff.getStatus());
+                triedText.setText(staff.getTryBlockLogin());
                 alert.showAndWait();
                 break;
             }
@@ -107,9 +93,8 @@ public class CheckStaffController {
         }
     }
 
-    @FXML public void handleBackButton(ActionEvent event){
-        Button b = (Button) event.getSource();                                                                   // change scene
-        Stage stage = (Stage) b.getScene().getWindow();
+    @FXML public void handleBackButton(){
+        Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
 }

@@ -14,33 +14,33 @@
       <TextField id="text-field" fx:id="surnameField" layoutX="170.0" layoutY="320.0" prefHeight="30.0" prefWidth="200.0" />
       <TextField id="text-field" fx:id="roomNumberField" layoutX="170.0" layoutY="380.0" prefHeight="30.0" prefWidth="200.0" />
       <TextField id="text-field" fx:id="telField" layoutX="170.0" layoutY="440.0" prefHeight="30.0" prefWidth="200.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+      <Text fill="WHITE" layoutX="28.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+      <Text fill="WHITE" layoutX="28.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
+      <Text fill="WHITE" layoutX="28.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel">
+      <Text fill="WHITE" layoutX="28.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tel">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
       <Button id="button" fx:id="cancelButton" layoutX="85.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleCancelButton" prefWidth="75.0" text="Cancel">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="15.0" />
          </font></Button>
       <Button id="button" fx:id="okButton" layoutX="235.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleOKButton" prefWidth="75.0" text="OK">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="15.0" />
          </font></Button>
-      <Text fill="WHITE" layoutX="12.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER RESIDENT">
+      <Text fill="WHITE" layoutX="36.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTER RESIDENT">
          <font>
-            <Font name="Helvetica Bold" size="36.0" />
+            <Font name="System Font" size="36.0" />
          </font>
       </Text>
       <ImageView fitHeight="80.0" fitWidth="75.0" layoutX="163.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">

@@ -1,13 +1,15 @@
-A,1,1,Studio Room,Room is not Owned,No item in mailbox,1,0
-A,1,2,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
-A,1,3,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
-A,1,4,Studio Room,Room is not Owned,Item in mailbox,1,0
-A,1,5,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
+A,1,1,Studio Room,Room is owned,Item in mailbox,1,1
+A,1,2,1-bedroom Room,Room is not Owned,Item in mailbox,2,0
+A,1,3,1-bedroom Room,Room is not Owned,Item in mailbox,2,0
+A,1,4,Studio Room,Room is not Owned,No item in mailbox,1,0
+A,1,5,1-bedroom Room,Room is not Owned,Item in mailbox,2,0
 A,1,6,Studio Room,Room is not Owned,No item in mailbox,1,0
 A,1,7,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
-A,2,1,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
-A,3,1,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
-A,3,2,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
-B,2,1,Studio Room,Room is not Owned,No item in mailbox,1,0
+A,1,9,Studio Room,Room is not Owned,No item in mailbox,1,0
+A,2,1,1-bedroom Room,Room is not Owned,Item in mailbox,2,0
+A,2,2,Studio Room,Room is not Owned,No item in mailbox,1,0
+A,3,1,1-bedroom Room,Room is not Owned,Item in mailbox,2,0
+A,3,2,1-bedroom Room,Room is not Owned,Item in mailbox,2,0
+B,2,1,Studio Room,Room is not Owned,Item in mailbox,1,0
 B,3,1,1-bedroom Room,Room is not Owned,No item in mailbox,2,0
 C,1,1,Studio Room,Room is not Owned,No item in mailbox,1,0

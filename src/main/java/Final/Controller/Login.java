@@ -17,7 +17,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.nio.file.FileSystem;
 import java.util.ArrayList;
 
 public class Login {
@@ -27,17 +26,19 @@ public class Login {
     @FXML
     PasswordField passwordField;
     @FXML
-    Button loginButton;
+    Button loginButton,devButton,theme;
 
-    private final UserControlInterface userControlInterface = new ControlInterface();
-    private final CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
+    private UserControlInterface userControlInterface = new ControlInterface();
+    private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
 
     @FXML public void handleLoginButton(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String permission;
 
-        permission = userControlInterface.checkLogin(username,password);
+        ((ControlInterface)userControlInterface).setUsername(username);
+        ((ControlInterface)userControlInterface).setPassword(password);
+        permission = userControlInterface.checkLogin();
 
         FXMLLoader loader;
         switch (permission) {
@@ -52,6 +53,7 @@ public class Login {
                 double height = 600;
                 stage.setX((screenBounds.getWidth() - width) / 2);
                 stage.setY((screenBounds.getHeight() - height) / 2);
+                stage.setTitle("Admin Page");
                 stage.show();
                 break;
             }
@@ -60,7 +62,8 @@ public class Login {
                 for (int i = 0; i < staff.size(); i++) {
                     if (staff.get(i).getUsername().equals(username)) {
                         if (staff.get(i).checkStatus()) {
-                            userControlInterface.getLog(username);
+                            ((ControlInterface)userControlInterface).setUsername(username);
+                            userControlInterface.getLog();
                             Button b = (Button) event.getSource();                                                                   // change scene
                             Stage stage = (Stage) b.getScene().getWindow();
                             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -72,7 +75,7 @@ public class Login {
                             stage.setScene(new Scene(loader.load(), 1000, 600));
                             StaffPageController dw = loader.getController();
                             dw.setStaffs(username,i);
-                            System.out.println(username+"  "+i);
+                            stage.setTitle("Staff Page");
                             stage.show();
                         } else {
                             staff.get(i).countBlock();
@@ -91,8 +94,7 @@ public class Login {
                 break;
             case "roomOwner": {
                 System.out.println("RoomOwner");
-                Button b = (Button) event.getSource();                                                                   // change scene
-
+                Button b = (Button) event.getSource();
                 Stage stage = (Stage) b.getScene().getWindow();
                 loader = new FXMLLoader(getClass().getResource("/RoomerPage.fxml"));
                 stage.setScene(new Scene(loader.load(), 1000, 600));
@@ -110,5 +112,34 @@ public class Login {
                 alert.showAndWait();
                 break;
         }
+    }
+
+    @FXML public void devClick() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DevDetail.fxml"));
+        stage.setScene(new Scene(loader.load(),400,600));
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double width = 400;
+        double height = 600;
+        stage.setX((screenBounds.getWidth() - width) / 2);
+        stage.setY((screenBounds.getHeight() - height) / 2);
+        stage.setTitle("Developer Detail");
+        stage.show();
+    }
+
+    @FXML public void themeClick() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DevDetail.fxml"));
+        Scene scene = new Scene(loader.load(),400,600);
+        scene.getStylesheets().remove("/css/blueTheme.css");
+        scene.getStylesheets().add("/css/stylesheet.css");
+        stage.setScene(scene);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double width = 400;
+        double height = 600;
+        stage.setX((screenBounds.getWidth() - width) / 2);
+        stage.setY((screenBounds.getHeight() - height) / 2);
+        stage.setTitle("Developer Detail");
+        stage.show();
     }
 }

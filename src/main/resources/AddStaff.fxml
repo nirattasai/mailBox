@@ -10,32 +10,32 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.AdminController.AddStaffController">
    <children>
-      <Text fill="WHITE" layoutX="20.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+      <Text fill="WHITE" layoutX="20.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="20.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
+      <Text fill="WHITE" layoutX="20.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="20.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <Text fill="WHITE" layoutX="20.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="20.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text fill="WHITE" layoutX="20.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="20.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text fill="WHITE" layoutX="20.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="20.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone Number">
+      <Text fill="WHITE" layoutX="20.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="20.0" />
          </font></Text>
-      <Button id="button" fx:id="cancelButton" layoutX="317.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleCancelButton" text="Cancle" />
-      <Button id="button" fx:id="okButton" defaultButton="true" layoutX="259.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleOKButton" text="OK" />
+      <Button id="button" fx:id="cancelButton" layoutX="253.0" layoutY="511.0" mnemonicParsing="false" onAction="#handleCancelButton" text="Cancle" />
+      <Button id="button" fx:id="okButton" defaultButton="true" layoutX="330.0" layoutY="511.0" mnemonicParsing="false" onAction="#handleOKButton" text="OK" />
       <Button id="button" fx:id="imageUploadButton" layoutX="20.0" layoutY="476.0" mnemonicParsing="false" onAction="#handleImageUploadButton" text="Choose Image" />
       <TextField id="text-field" fx:id="nameField" layoutX="180.0" layoutY="128.0" prefHeight="30.0" prefWidth="200.0" promptText="Name">
          <font>
@@ -67,14 +67,14 @@
             <Font name="Helvetica" size="15.0" />
          </font></TextField>
       <ImageView fx:id="preImage" fitHeight="100.0" fitWidth="100.0" layoutX="138.0" layoutY="477.0" pickOnBounds="true" />
-      <Text fill="WHITE" layoutX="20.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+      <Text fill="WHITE" layoutX="20.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
          <font>
-            <Font name="Helvetica" size="15.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="98.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD STAFF">
+      <Text fill="WHITE" layoutX="109.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD STAFF">
          <font>
-            <Font name="Helvetica Bold" size="36.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
    </children>

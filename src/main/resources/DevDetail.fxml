@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.DevDetailController">
+   <children>
+      <ImageView fitHeight="302.0" fitWidth="213.0" layoutX="94.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Elements/bath.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="59.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEVELOPER DETAILS">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="41.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAME : NIRATTASAI  HAREE">
+         <font>
+            <Font name="System Font" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="41.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SORBIQUET : BAS">
+         <font>
+            <Font name="System Font" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="41.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STUDENT NO : 6210407455">
+         <font>
+            <Font name="System Font" size="20.0" />
+         </font>
+      </Text>
+      <Button id="button" fx:id="manualButton" layoutX="22.0" layoutY="533.0" mnemonicParsing="false" onAction="#manualClick" text="PROGRAM'S MANUAL" />
+      <Button id="button" fx:id="backButton" layoutX="290.0" layoutY="533.0" mnemonicParsing="false" onAction="#backClick" text="BACK" />
+   </children>
+</AnchorPane>

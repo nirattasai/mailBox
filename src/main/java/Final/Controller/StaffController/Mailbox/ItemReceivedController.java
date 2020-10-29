@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 public class ItemReceivedController {
     @FXML
-    Label letter,document,back,packages;
+    Label letter,document,back,packages,staff;
     @FXML
     TableView table;
 
@@ -43,6 +43,7 @@ public class ItemReceivedController {
     private int check = 0;
     public void setCurrentStaff(Staff currentStaff) {
         this.currentStaff = currentStaff;
+        staff.setText(currentStaff.getUsername());
     }
 
     public void initialize() throws IOException {

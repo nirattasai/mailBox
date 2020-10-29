@@ -10,53 +10,53 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.Mailbox.AddItemController">
    <children>
-      <Text fill="WHITE" layoutX="113.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM">
+      <Text fill="WHITE" layoutX="121.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD ITEM">
          <font>
-            <Font name="Helvetica Bold" size="36.0" />
+            <Font name="System Font" size="36.0" />
          </font></Text>
       <TextField id="text-field" fx:id="roomNumberField" layoutX="210.0" layoutY="115.0" prefHeight="30.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
+      <Text fill="WHITE" layoutX="35.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Number">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
       <ChoiceBox id="glass" fx:id="typeChoice" layoutX="210.0" layoutY="155.0" prefHeight="30.0" prefWidth="79.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
+      <Text fill="WHITE" layoutX="35.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
       <TextField id="text-field" fx:id="senderNameField" layoutX="210.0" layoutY="195.0" prefHeight="30.0" />
       <TextField id="text-field" fx:id="receiverNameField" layoutX="210.0" layoutY="235.0" prefHeight="30.0" />
       <ChoiceBox id="glass" fx:id="sizeChoice" layoutX="210.0" layoutY="275.0" prefHeight="30.0" prefWidth="79.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
+      <Text fill="WHITE" layoutX="35.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sender Name">
+      <Text fill="WHITE" layoutX="35.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sender Name">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receiver Name">
+      <Text fill="WHITE" layoutX="35.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receiver Name">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <Button id="button" fx:id="addImageButton" layoutX="24.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleAddImageButton" text="Add Image" />
+      <Button id="button" fx:id="addImageButton" layoutX="35.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleAddImageButton" text="Add Image" />
       <Button id="button" fx:id="addButton" layoutX="270.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleAddButton" prefWidth="75.0" text="ADD" />
       <Button id="button" fx:id="cancelButton" layoutX="270.0" layoutY="526.0" mnemonicParsing="false" onAction="#handleCancelButton" prefWidth="75.0" text="BACK" />
-      <ImageView fx:id="itemImage" fitHeight="100.0" fitWidth="100.0" layoutX="125.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="itemImage" fitHeight="100.0" fitWidth="100.0" layoutX="138.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true" />
       <TextField id="text-field" fx:id="trackingNumberField" disable="true" layoutX="210.0" layoutY="315.0" prefHeight="30.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracking Number">
+      <Text fill="WHITE" layoutX="35.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracking Number">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
       <TextField id="text-field" fx:id="deliveryServiceField" disable="true" layoutX="210.0" layoutY="355.0" prefHeight="30.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Service">
+      <Text fill="WHITE" layoutX="35.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delivery Service">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority">
+      <Text fill="WHITE" layoutX="35.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font></Text>
-      <ChoiceBox fx:id="privacyChoice" disable="true" layoutX="210.0" layoutY="395.0" prefHeight="30.0" prefWidth="111.0" />
+      <ChoiceBox id="choiceBox" fx:id="privacyChoice" disable="true" layoutX="210.0" layoutY="395.0" prefHeight="30.0" prefWidth="111.0" />
    </children>
 </AnchorPane>

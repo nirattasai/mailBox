@@ -63,9 +63,10 @@ public class AddStaffController {
         if(nameField.getText().equals("") || surnameField.getText().equals("") || usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("") || telField.getText().equals(""))
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Cannot register staff");
+            alert.setHeaderText(null);
             alert.setTitle("WARNING");
             alert.setContentText("Cannot leave blank.");
+            alert.getDialogPane().setPrefWidth(300);
             nameField.setText("");
             surnameField.setText("");
             usernameField.setText("");
@@ -78,16 +79,18 @@ public class AddStaffController {
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
-            alert.setHeaderText("Cannot register staff");
+            alert.setHeaderText(null);
             alert.setContentText("Upload image of staff first.");
+            alert.getDialogPane().setPrefWidth(300);
             alert.showAndWait();
         }
         else if (!passwordField.getText().equals(confirmPasswordField.getText()))
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
-            alert.setHeaderText("Cannot register staff");
+            alert.setHeaderText(null);
             alert.setContentText("Password not same.");
+            alert.getDialogPane().setPrefWidth(300);
             alert.showAndWait();
         }
 
@@ -103,9 +106,10 @@ public class AddStaffController {
             if (check==1)
             {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText("Cannot register staff");
+                alert.setHeaderText(null);
                 alert.setTitle("WARNING");
                 alert.setContentText("Username is already used.");
+                alert.getDialogPane().setPrefWidth(300);
                 alert.showAndWait();
             }
             else {
@@ -138,12 +142,12 @@ public class AddStaffController {
         }
     }
 
-    @FXML public void handleCancelButton(ActionEvent event) throws IOException {
+    @FXML public void handleCancelButton(ActionEvent event) {
 
         file = new File(String.valueOf(target));
         file.delete();
 
-        Button b = (Button) event.getSource();                                                                   // change scene
+        Button b = (Button) event.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
         stage.close();
     }
@@ -151,9 +155,10 @@ public class AddStaffController {
     @FXML public void handleImageUploadButton() throws IOException {
         if(nameField.getText().equals("") || surnameField.getText().equals("") || usernameField.getText().equals("") || passwordField.getText().equals("") || emailField.getText().equals("") || telField.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Cannot register staff");
+            alert.setHeaderText(null);
             alert.setTitle("WARNING");
             alert.setContentText("Filled blanks before upload image.");
+            alert.getDialogPane().setPrefWidth(300);
             nameField.clear();
             surnameField.clear();
             usernameField.clear();
@@ -190,9 +195,10 @@ public class AddStaffController {
             {
                 imageUploadButton.setDisable(true);
                 Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText("Cannot register staff");
+                alert.setHeaderText(null);
                 alert.setTitle("WARNING");
                 alert.setContentText("Username is already used.");
+                alert.getDialogPane().setPrefWidth(300);
                 alert.showAndWait();
                 break;
             }

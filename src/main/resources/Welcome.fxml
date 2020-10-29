@@ -13,12 +13,12 @@
    <children>
       <Text fill="WHITE" layoutX="50.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="USERNAME">
          <font>
-            <Font name="Helvetica" size="30.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Text id="letter" fill="WHITE" layoutX="50.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PASSWORD">
          <font>
-            <Font name="Helvetica" size="30.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <TextField id="text-field" fx:id="usernameField" alignment="CENTER" layoutX="50.0" layoutY="300.0" prefHeight="0.0" prefWidth="300.0" promptText="username" styleClass="text-field" stylesheets="@css/blueTheme.css">
@@ -32,7 +32,7 @@
          </font></PasswordField>
       <Button id="button" fx:id="loginButton" defaultButton="true" layoutX="240.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="45.0" prefWidth="110.0" stylesheets="@css/blueTheme.css" text="LOGIN">
          <font>
-            <Font name="Helvetica" size="20.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Button>
       <ImageView fitHeight="98.0" fitWidth="71.0" layoutX="167.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
@@ -40,10 +40,11 @@
             <Image url="@Elements/keys-line-icon-lock-and-home-access-sign-vector-20557698.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="122.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
+      <Text fill="WHITE" layoutX="128.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
          <font>
-            <Font name="Helvetica Bold" size="50.0" />
+            <Font name="System Font" size="50.0" />
          </font>
       </Text>
+      <Button id="button" fx:id="devButton" layoutX="14.0" layoutY="559.0" mnemonicParsing="false" onAction="#devClick" text="Dev detail" />
    </children>
 </AnchorPane>

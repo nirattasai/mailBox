@@ -10,29 +10,29 @@
    <children>
       <Pane id="pane" prefHeight="600.0" prefWidth="200.0">
          <children>
-            <Label id="label" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" text="STAFF">
+            <Label id="label" fx:id="staff" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" text="STAFF">
                <font>
-                  <Font name="Helvetica" size="37.0" />
+                  <Font name="System Font" size="37.0" />
                </font>
             </Label>
             <Label id="label-button" fx:id="letter" alignment="CENTER" layoutY="176.0" onMouseClicked="#letterClick" prefHeight="55.0" prefWidth="200.0" text="LETTER">
                <font>
-                  <Font size="15.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label id="label-button" fx:id="document" alignment="CENTER" layoutY="231.0" onMouseClicked="#documentClick" prefHeight="55.0" prefWidth="200.0" text="DOCUMENT">
                <font>
-                  <Font size="15.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label id="label-button" fx:id="packages" alignment="CENTER" layoutY="286.0" onMouseClicked="#packageClick" prefHeight="55.0" prefWidth="200.0" text="PACKAGE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label id="label-button" fx:id="back" alignment="CENTER" layoutY="545.0" onMouseClicked="#backClick" prefHeight="55.0" prefWidth="200.0" text="BACK">
                <font>
-                  <Font size="15.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>

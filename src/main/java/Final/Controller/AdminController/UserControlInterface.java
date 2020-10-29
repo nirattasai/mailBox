@@ -10,9 +10,9 @@ public interface UserControlInterface {
 
     ArrayList<String> permissionSend();
 
-    void getLog(String username);
+    void getLog();
 
-    String checkLogin(String username, String password);
+    String checkLogin();
 
     void addUser(String permission, String username, String password, String name, String surname);
 }

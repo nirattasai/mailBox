@@ -8,101 +8,101 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.Mailbox.ItemDetail.PackageDetailController">
    <children>
-      <Text fill="WHITE" layoutX="40.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PACKAGE DETAIL">
+      <Text fill="WHITE" layoutX="60.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PACKAGE DETAIL">
          <font>
-            <Font name="Helvetica Bold" size="36.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="150.0" layoutX="125.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
       <Text fill="WHITE" layoutX="25.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOMNUMBER :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RECEIVER :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SENDER :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATE :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIZE :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STAFF GET NAME :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Button id="button" fx:id="backButton" layoutX="172.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
       <Text fx:id="roomNumber" fill="WHITE" layoutX="210.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="date" fill="WHITE" layoutX="210.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="size" fill="WHITE" layoutX="210.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="staff" fill="WHITE" layoutX="210.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="sender" fill="WHITE" layoutX="210.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="receiver" fill="WHITE" layoutX="210.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIME :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="time" fill="WHITE" layoutX="210.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TRACKING NO. :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="track" fill="WHITE" layoutX="210.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fill="WHITE" layoutX="25.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DELIVERY :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
       <Text fx:id="delivery" fill="WHITE" layoutX="210.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font name="System Font" size="20.0" />
          </font>
       </Text>
    </children>

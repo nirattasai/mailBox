@@ -6,76 +6,76 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#refresh" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.RoomDetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.Controller.StaffController.RoomDetailController">
    <children>
-      <Text fill="WHITE" layoutX="74.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM DETAIL">
+      <Text fill="WHITE" layoutX="91.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM DETAIL">
          <font>
-            <Font name="Helvetica Bold" size="36.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BUILDING :">
+      <Text fill="WHITE" layoutX="49.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BUILDING :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FLOOR :">
+      <Text fill="WHITE" layoutX="49.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FLOOR :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM : ">
+      <Text fill="WHITE" layoutX="49.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM : ">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM NUMBER :">
+      <Text fill="WHITE" layoutX="49.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM NUMBER :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STATUS :">
+      <Text fill="WHITE" layoutX="49.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STATUS :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Button id="button" fx:id="backButton" layoutX="293.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleBackButton" text="BACK" />
-      <Text fx:id="roomNumber" fill="WHITE" layoutX="204.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+      <Button id="button" fx:id="backButton" layoutX="275.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="75.0" text="BACK" />
+      <Text fx:id="roomNumber" fill="WHITE" layoutX="210.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="room" fill="WHITE" layoutX="204.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+      <Text fx:id="room" fill="WHITE" layoutX="210.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="status" fill="WHITE" layoutX="204.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+      <Text fx:id="status" fill="WHITE" layoutX="210.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="floor" fill="WHITE" layoutX="204.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+      <Text fx:id="floor" fill="WHITE" layoutX="210.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="building" fill="WHITE" layoutX="204.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+      <Text fx:id="building" fill="WHITE" layoutX="210.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="25.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TYPE :">
+      <Text fill="WHITE" layoutX="49.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TYPE :">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="type" fill="WHITE" layoutX="204.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
+      <Text fx:id="type" fill="WHITE" layoutX="210.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text">
          <font>
-            <Font name="Helvetica" size="18.0" />
+            <Font size="20.0" />
          </font>
       </Text>
       <TableView fx:id="residentTable" layoutX="50.0" layoutY="300.0" prefHeight="200.0" prefWidth="300.0" />
       <Button id="button" fx:id="removeButton" layoutX="163.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleRemoveButton" text="REMOVE" />
-      <Button id="button" fx:id="addButton" layoutX="50.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleAddButton" text="ADD" />
+      <Button id="button" fx:id="addButton" layoutX="50.0" layoutY="527.0" mnemonicParsing="false" onAction="#handleAddButton" prefWidth="75.0" text="ADD" />
    </children>
 </AnchorPane>

@@ -119,137 +119,133 @@ public class AddItemController {
 
     @FXML public void handleAddButton() throws IOException {
         check = 0;
-        switch (typeChoice.getValue().toString())
-        {
-            case "Letter":
-            {
-                for(int i=0;i<rooms.size();i++)
-                {
-                    if(rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText()))
-                    {
-                        rooms.get(i).setItem("Item in mailbox");
-                        Letter letter = new Letter(roomNumberField.getText(),senderNameField.getText(),
-                                receiverNameField.getText(),sizeChoice.getValue().toString(),
-                                java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
-                                currentStaff.getUsername(),"No paider","none","none","none");
-                        letters.add(1,letter);
-                        Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Add item Success");
-                        alert.setHeaderText("Add Letter success.");
-                        alert.setContentText("Add letter to room : "+roomNumberField.getText()
-                        +"\nSender : "+senderNameField.getText()
-                        +"\nReceiver : "+receiverNameField.getText()
-                        +"\nSize : "+sizeChoice.getValue().toString()
-                        +"\nStaff add : "+currentStaff.getUsername());
-                        alert.showAndWait();
-                        check=1;
-                        break;
+        if (target!=null) {
+            switch (typeChoice.getValue().toString()) {
+                case "Letter": {
+                    for (int i = 0; i < rooms.size(); i++) {
+                        if (rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText())) {
+                            rooms.get(i).setItem("Item in mailbox");
+                            Letter letter = new Letter(roomNumberField.getText(), senderNameField.getText(),
+                                    receiverNameField.getText(), sizeChoice.getValue().toString(),
+                                    java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), target.toUri().toString(),
+                                    currentStaff.getUsername(), "No paider", "none", "none", "none");
+                            letters.add(1, letter);
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Add item Success");
+                            alert.setHeaderText("Add Letter success.");
+                            alert.setContentText("Add letter to room : " + roomNumberField.getText()
+                                    + "\nSender : " + senderNameField.getText()
+                                    + "\nReceiver : " + receiverNameField.getText()
+                                    + "\nSize : " + sizeChoice.getValue().toString()
+                                    + "\nStaff add : " + currentStaff.getUsername());
+                            alert.showAndWait();
+                            check = 1;
+                            break;
+                        }
                     }
-                }
-                if(check == 0)
-                {
-                    file = new File(String.valueOf(target));
-                    file.delete();
-                    itemImage.setImage(null);
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Add item failed");
-                    alert.setHeaderText("Add Letter failed.");
-                    alert.setContentText("No room number you input");
-                    roomNumberField.setText("");
-                    alert.showAndWait();
-                }
-                break;
-            }
-            case "Package":
-            {
-                for(int i=0;i<rooms.size();i++)
-                {
-                    if(rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText()))
-                    {
-                        rooms.get(i).setItem("Item in mailbox");
-                        Package aPackage = new Package(roomNumberField.getText(),senderNameField.getText(),
-                                receiverNameField.getText(),sizeChoice.getValue().toString(),deliveryServiceField.getText(),
-                                trackingNumberField.getText(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
-                                currentStaff.getUsername(),"No paider","none","none","none");
-                        packages.add(1,aPackage);
+                    if (check == 0) {
+                        file = new File(String.valueOf(target));
+                        file.delete();
+                        itemImage.setImage(null);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Add item Success");
-                        alert.setHeaderText("Add Package success.");
-                        alert.setContentText("Add Package to room : "+roomNumberField.getText()
-                                +"\nSender : "+senderNameField.getText()
-                                +"\nReceiver : "+receiverNameField.getText()
-                                +"\nSize : "+sizeChoice.getValue().toString()
-                                +"\nTracking : "+trackingNumberField.getText()
-                                +"\nDelivery Service : "+deliveryServiceField.getText()
-                                +"\nStaff add : "+currentStaff.getUsername());
+                        alert.setTitle("Add item failed");
+                        alert.setHeaderText("Add Letter failed.");
+                        alert.setContentText("No room number you input");
+                        roomNumberField.setText("");
                         alert.showAndWait();
-                        check=1;
-                        break;
                     }
+                    break;
                 }
-                if(check == 0)
-                {
-                    file = new File(String.valueOf(target));
-                    file.delete();
-                    itemImage.setImage(null);
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Add item failed");
-                    alert.setHeaderText("Add Package failed.");
-                    alert.setContentText("No room number you input");
-                    roomNumberField.setText("");
-                    alert.showAndWait();
-                }
-                break;
-            }
-            case "Document":
-            {
-                for(int i=0;i<rooms.size();i++)
-                {
-                    if(rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText()))
-                    {
-                        rooms.get(i).setItem("Item in mailbox");
-                        Document document = new Document(roomNumberField.getText(),senderNameField.getText(),
-                                receiverNameField.getText(),sizeChoice.getValue().toString(),
-                                privacyChoice.getValue().toString(),java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),target.toUri().toString(),
-                                currentStaff.getUsername(),"No paider","none","none","none");
-                        documents.add(1,document);
+                case "Package": {
+                    for (int i = 0; i < rooms.size(); i++) {
+                        if (rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText())) {
+                            rooms.get(i).setItem("Item in mailbox");
+                            Package aPackage = new Package(roomNumberField.getText(), senderNameField.getText(),
+                                    receiverNameField.getText(), sizeChoice.getValue().toString(), deliveryServiceField.getText(),
+                                    trackingNumberField.getText(), java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), target.toUri().toString(),
+                                    currentStaff.getUsername(), "No paider", "none", "none", "none");
+                            packages.add(1, aPackage);
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Add item Success");
+                            alert.setHeaderText("Add Package success.");
+                            alert.setContentText("Add Package to room : " + roomNumberField.getText()
+                                    + "\nSender : " + senderNameField.getText()
+                                    + "\nReceiver : " + receiverNameField.getText()
+                                    + "\nSize : " + sizeChoice.getValue().toString()
+                                    + "\nTracking : " + trackingNumberField.getText()
+                                    + "\nDelivery Service : " + deliveryServiceField.getText()
+                                    + "\nStaff add : " + currentStaff.getUsername());
+                            alert.showAndWait();
+                            check = 1;
+                            break;
+                        }
+                    }
+                    if (check == 0) {
+                        file = new File(String.valueOf(target));
+                        file.delete();
+                        itemImage.setImage(null);
                         Alert alert = new Alert(Alert.AlertType.WARNING);
-                        alert.setTitle("Add item Success");
-                        alert.setHeaderText("Add Document success.");
-                        alert.setContentText("Add Document to room : "+roomNumberField.getText()
-                                +"\nSender : "+senderNameField.getText()
-                                +"\nReceiver : "+receiverNameField.getText()
-                                +"\nSize : "+sizeChoice.getValue().toString()
-                                +"\nPrivacy : "+privacyChoice.getValue().toString()
-                                +"\nStaff add : "+currentStaff.getUsername());
+                        alert.setTitle("Add item failed");
+                        alert.setHeaderText("Add Package failed.");
+                        alert.setContentText("No room number you input");
+                        roomNumberField.setText("");
                         alert.showAndWait();
-                        check=1;
-                        break;
                     }
+                    break;
                 }
-                if(check == 0)
-                {
-                    file = new File(String.valueOf(target));
-                    file.delete();
-                    itemImage.setImage(null);
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Add item failed");
-                    alert.setHeaderText("Add Document failed.");
-                    alert.setContentText("No room number you input");
-                    roomNumberField.setText("");
-                    alert.showAndWait();
+                case "Document": {
+                    for (int i = 0; i < rooms.size(); i++) {
+                        if (rooms.get(i).getRoomNumberFull().equals(roomNumberField.getText())) {
+                            rooms.get(i).setItem("Item in mailbox");
+                            Document document = new Document(roomNumberField.getText(), senderNameField.getText(),
+                                    receiverNameField.getText(), sizeChoice.getValue().toString(),
+                                    privacyChoice.getValue().toString(), java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), target.toUri().toString(),
+                                    currentStaff.getUsername(), "No paider", "none", "none", "none");
+                            documents.add(1, document);
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Add item Success");
+                            alert.setHeaderText("Add Document success.");
+                            alert.setContentText("Add Document to room : " + roomNumberField.getText()
+                                    + "\nSender : " + senderNameField.getText()
+                                    + "\nReceiver : " + receiverNameField.getText()
+                                    + "\nSize : " + sizeChoice.getValue().toString()
+                                    + "\nPrivacy : " + privacyChoice.getValue().toString()
+                                    + "\nStaff add : " + currentStaff.getUsername());
+                            alert.showAndWait();
+                            check = 1;
+                            break;
+                        }
+                    }
+                    if (check == 0) {
+                        file = new File(String.valueOf(target));
+                        file.delete();
+                        itemImage.setImage(null);
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Add item failed");
+                        alert.setHeaderText("Add Document failed.");
+                        alert.setContentText("No room number you input");
+                        roomNumberField.setText("");
+                        alert.showAndWait();
+                    }
+                    break;
                 }
-                break;
             }
+            csvControlInterface.writeRoomListToCSV(rooms);
+            csvControlInterface.writeDocumentListToCSV(documents);
+            csvControlInterface.writeLetterListToCSV(letters);
+            csvControlInterface.writePackageListToCSV(packages);
         }
-
-        csvControlInterface.writeRoomListToCSV(rooms);
-        csvControlInterface.writeDocumentListToCSV(documents);
-        csvControlInterface.writeLetterListToCSV(letters);
-        csvControlInterface.writePackageListToCSV(packages);
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Upload image first.");
+            alert.setHeaderText(null);
+            alert.getDialogPane().setPrefWidth(300);
+            alert.showAndWait();
+        }
         roomNumberField.clear();
         senderNameField.clear();
         receiverNameField.clear();
@@ -262,9 +258,8 @@ public class AddItemController {
 
     }
 
-    @FXML public void handleCancelButton(ActionEvent event){
-        Button b = (Button) event.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
+    @FXML public void handleCancelButton(){
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 }
