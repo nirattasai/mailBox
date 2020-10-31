@@ -26,7 +26,6 @@ public class SearchResidentController {
     TableView searchTable;
     @FXML
     Button backButton;
-
     @FXML public void initialize(ArrayList<RoomOwner> show)
     {
         ObservableList<RoomOwner> roomOwnerObservableList = FXCollections.observableList(show);
@@ -96,7 +95,7 @@ public class SearchResidentController {
         stage.setY((screenBounds.getHeight() - height) / 2);
         RoomDetailController dw = loader.getController();
         dw.initialize(select);
-        stage.show();
+        stage.showAndWait();
     }
 
     public void backClick() {

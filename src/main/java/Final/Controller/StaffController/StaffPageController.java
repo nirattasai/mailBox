@@ -235,7 +235,8 @@ public class StaffPageController {
                     stage.setY((screenBounds.getHeight() - height) / 2);
                     SearchResidentController dw = loader.getController();
                     dw.initialize(match);
-                    stage.show();
+                    stage.showAndWait();
+                    refresh();
                 }
             }
             else{

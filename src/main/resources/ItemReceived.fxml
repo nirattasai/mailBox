@@ -35,6 +35,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label id="label-button" fx:id="clear" alignment="CENTER" layoutY="341.0" onMouseClicked="#clearClick" prefHeight="55.0" prefWidth="200.0" text="CLEAR HISTORY">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <TableView fx:id="table" layoutX="250.0" layoutY="20.0" prefHeight="560.0" prefWidth="700.0" />

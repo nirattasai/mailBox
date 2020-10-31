@@ -47,11 +47,14 @@ public class AddRoomController {
             alert.showAndWait();
         }
         else {
-
+            String roomNumber;
+            if(!roomChoice.getValue().toString().equals("10"))
+                roomNumber = "0"+roomChoice.getValue().toString();
+            else
+                roomNumber = "10";
             for (Room room : rooms)
-                if (buildingChoice.getValue().toString().equals(room.getBuilding())
-                        && floorChoice.getValue().toString().equals(room.getFloor())
-                        && roomChoice.getValue().toString().equals(room.getRoomNumber())) {
+                if (room.getRoomNumberFull().equals(buildingChoice.getValue().toString()+
+                        floorChoice.getValue().toString()+roomNumber)) {
                     check = 1;
                     break;
                 }
@@ -63,19 +66,13 @@ public class AddRoomController {
                     maxResident = 1;
                 else if (typeChoice.getValue().toString().equals("1-bedroom Room"))
                     maxResident = 2;
-
                 Room roomAdd = new Room(buildingChoice.getValue().toString(), floorChoice.getValue().toString(),
-                        roomChoice.getValue().toString(), typeChoice.getValue().toString(),
+                        roomNumber, typeChoice.getValue().toString(),
                         "Room is not Owned","No item in mailbox",maxResident,0);
 
                 rooms.add(roomAdd);
 
-                Collections.sort(rooms, new Comparator<Room>() {
-                    @Override
-                    public int compare(Room o1, Room o2) {
-                        return o1.getRoomNumberFull().compareTo(o2.getRoomNumberFull());
-                    }
-                });
+                rooms.sort(Comparator.comparing(Room::getRoomNumberFull));
 
                 try {
                     csvControlInterface.writeRoomListToCSV(rooms);

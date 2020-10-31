@@ -15,20 +15,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ItemReceivedController {
     @FXML
-    Label letter,document,back,packages,staff;
+    Label letter, document, back, packages, staff, clear;
     @FXML
     TableView table;
 
@@ -41,6 +42,7 @@ public class ItemReceivedController {
     private ObservableList<Document> documentObservableList;
     private Staff currentStaff;
     private int check = 0;
+
     public void setCurrentStaff(Staff currentStaff) {
         this.currentStaff = currentStaff;
         staff.setText(currentStaff.getUsername());
@@ -57,10 +59,10 @@ public class ItemReceivedController {
 
         table.setPlaceholder(new Label("PLEASE SELECT ITEM FROM LEFT MENU"));
 
-        table.setRowFactory( tv -> {
+        table.setRowFactory(tv -> {
             TableRow<Object> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Object rowData = row.getItem();
                     try {
                         showDetail(rowData);
@@ -74,13 +76,12 @@ public class ItemReceivedController {
     }
 
     private void showDetail(Object rowData) throws IOException {
-        if (check == 1)
-        {
+        if (check == 1) {
             Letter letter = (Letter) rowData;
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LetterHistoryDetail.fxml"));
             stage.setTitle("Letter Detail");
-            stage.setScene(new Scene(loader.load(),800,600));
+            stage.setScene(new Scene(loader.load(), 800, 600));
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             double width = 800;
             double height = 600;
@@ -89,14 +90,12 @@ public class ItemReceivedController {
             LetterHistoryDetail dw = loader.getController();
             dw.initialize(letter);
             stage.show();
-        }
-        else if (check == 2)
-        {
+        } else if (check == 2) {
             Document document = (Document) rowData;
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/DocumentHistoryDetail.fxml"));
             stage.setTitle("Document Detail");
-            stage.setScene(new Scene(loader.load(),800,600));
+            stage.setScene(new Scene(loader.load(), 800, 600));
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             double width = 800;
             double height = 600;
@@ -105,14 +104,12 @@ public class ItemReceivedController {
             DocumentHistoryDetail dw = loader.getController();
             dw.initialize(document);
             stage.show();
-        }
-        else if (check == 3)
-        {
+        } else if (check == 3) {
             Package packages = (Package) rowData;
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/PackageHistoryDetail.fxml"));
             stage.setTitle("Package Detail");
-            stage.setScene(new Scene(loader.load(),800,600));
+            stage.setScene(new Scene(loader.load(), 800, 600));
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             double width = 800;
             double height = 600;
@@ -124,6 +121,7 @@ public class ItemReceivedController {
         }
     }
 
+    @FXML
     public void letterClick() {
         check = 1;
         table.setItems(letterObservableList);
@@ -185,6 +183,7 @@ public class ItemReceivedController {
         table.getColumns().add(col);
     }
 
+    @FXML
     public void documentClick() {
         check = 2;
         table.setItems(documentObservableList);
@@ -246,6 +245,7 @@ public class ItemReceivedController {
         table.getColumns().add(col);
     }
 
+    @FXML
     public void packageClick() {
         check = 3;
         table.setItems(packageObservableList);
@@ -307,10 +307,11 @@ public class ItemReceivedController {
         table.getColumns().add(col);
     }
 
+    @FXML
     public void backClick() throws IOException {
         Stage stage = (Stage) back.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
-        stage.setScene(new Scene(loader.load(),1000,600));
+        stage.setScene(new Scene(loader.load(), 1000, 600));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double width = 1000;
         double height = 600;
@@ -320,5 +321,64 @@ public class ItemReceivedController {
         MailBoxController dw = loader.getController();
         dw.setCurrentStaff(currentStaff);
         stage.show();
+    }
+
+    @FXML
+    public void clearClick() throws IOException {
+        clearHistory();
+    }
+
+    private void clearHistory() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Are you sure to clear history mailbox?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            File file = new File("CSV/documentHistory.csv");
+            FileWriter fileWriter = null;
+            try {
+                fileWriter = new FileWriter(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert fileWriter != null;
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.append("");
+            bufferedWriter.close();
+            fileWriter.close();
+
+            file = new File("CSV/letterHistory.csv");
+            fileWriter = null;
+            try {
+                fileWriter = new FileWriter(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert fileWriter != null;
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.append("");
+            bufferedWriter.close();
+            fileWriter.close();
+
+            file = new File("CSV/packageHistory.csv");
+            fileWriter = null;
+            try {
+                fileWriter = new FileWriter(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert fileWriter != null;
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.append("");
+            bufferedWriter.close();
+            fileWriter.close();
+            refresh();
+        }
+    }
+
+    private void refresh() throws IOException {
+        lettersHistory = csvControlInterface.createLetterHistoryListFromCSV();
+        letterObservableList = FXCollections.observableList(lettersHistory);
+        table.setItems(letterObservableList);
+        table.refresh();
     }
 }
