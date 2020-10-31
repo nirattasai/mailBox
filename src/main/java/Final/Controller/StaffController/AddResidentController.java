@@ -73,7 +73,7 @@ public class AddResidentController {
         if(check == 1)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Room Full");
+            alert.setContentText("Room is full");
             alert.getDialogPane().setPrefWidth(200);
             alert.setHeaderText(null);
             alert.showAndWait();
@@ -84,7 +84,7 @@ public class AddResidentController {
         else if(check == 0)
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Add success");
+            alert.setContentText("Add resident success");
             alert.getDialogPane().setPrefWidth(200);
             alert.setHeaderText(null);
             alert.showAndWait();

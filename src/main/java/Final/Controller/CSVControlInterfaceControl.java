@@ -22,7 +22,9 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         ArrayList<Staff> staff = new ArrayList<>();
         while ((line = bufferedReader.readLine()) != null) {
             String[] staffTmp = line.split(",");
-            Staff staffAdd = new Staff(staffTmp[3], staffTmp[4], staffTmp[1], staffTmp[2], staffTmp[5], staffTmp[6], staffTmp[7], staffTmp[8], staffTmp[9], Integer.parseInt(staffTmp[10]),staffTmp[11]);
+            Staff staffAdd = new Staff(staffTmp[3], staffTmp[4], staffTmp[1], staffTmp[2],
+                    staffTmp[5], staffTmp[6], staffTmp[7], staffTmp[8], staffTmp[9],
+                    Integer.parseInt(staffTmp[10]),staffTmp[11]);
             staff.add(staffAdd);
         }
         fileReader.close();
@@ -41,7 +43,10 @@ public class CSVControlInterfaceControl implements CSVControlInterface {
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
         String line;
         for (Staff value : staff) {
-            line = "staff" + "," + value.getUsername() + "," + value.getPassword() + "," + value.getName() + "," + value.getSurname() + "," + value.getEmail() + "," + value.getTel() + "," + value.getDate() + "," + value.getTime() + "," + value.getStatus() + "," + value.getTryBlockLogin()+","+value.getPicture();
+            line = "staff" + "," + value.getUsername() + "," + value.getPassword() + "," + value.getName() +
+                    "," + value.getSurname() + "," + value.getEmail() + "," + value.getTel() + "," +
+                    value.getDate() + "," + value.getTime() + "," + value.getStatus() + "," +
+                    value.getTryBlockLogin()+","+value.getPicture();
             bufferedWriter.append(line);
             bufferedWriter.newLine();
         }

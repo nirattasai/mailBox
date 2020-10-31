@@ -76,7 +76,7 @@ public class CheckStaffController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setContentText("You unblocked staff username: " + staff.getUsername());
-                alert.getDialogPane().setPrefWidth(300);
+                alert.getDialogPane().setPrefWidth(350);
                 statusText.setText(staff.getStatus());
                 triedText.setText(staff.getTryBlockLogin());
                 alert.showAndWait();

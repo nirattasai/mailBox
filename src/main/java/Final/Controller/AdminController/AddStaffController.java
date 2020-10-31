@@ -130,14 +130,7 @@ public class AddStaffController {
 
                 Button b = (Button) event.getSource();
                 Stage stage = (Stage) b.getScene().getWindow();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPage.fxml"));
-                stage.setScene(new Scene(loader.load(), 1000, 600));
-                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-                double width = 1000;
-                double height = 600;
-                stage.setX((screenBounds.getWidth() - width) / 2);
-                stage.setY((screenBounds.getHeight() - height) / 2);
-                stage.show();
+                stage.close();
             }
         }
     }

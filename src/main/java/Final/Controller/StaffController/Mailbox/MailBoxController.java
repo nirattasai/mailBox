@@ -342,7 +342,7 @@ public class MailBoxController {
                     if (check > 0) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Success");
-                        alert.setHeaderText("All item will be received");
+                        alert.setHeaderText("All item are received");
                         alert.setContentText("All item in mailbox room : " + roomChoose.getRoomNumberFull() + " are received");
 
                         csvControlInterface.writePackageListToCSV(packages);
