@@ -1,12 +1,10 @@
 package Final.Controller.AdminController;
 
 import Final.Controller.Account.Staff;
-import Final.Controller.Building.Room;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -152,7 +150,7 @@ public class AdminPageController {
 
     @FXML public void handleLogoutButton() throws IOException {
         Stage stage = (Stage) logoutButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Welcome.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         stage.setScene(new Scene(loader.load(),400,600));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double width = 400;

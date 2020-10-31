@@ -9,7 +9,7 @@ public class Account {
     private String password;
     protected String date;
     protected String time;
-
+    private String permission;
     public Account(String name, String surname, String username, String password, String email, String tel, String date, String time) {
         this.name = name;
         this.surname = surname;
@@ -21,11 +21,12 @@ public class Account {
         this.date = date;
     }
 
-    public Account(String username, String password, String name, String surname) {
+    public Account(String permission,String username, String password, String name, String surname) {
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
+        this.permission = permission;
     }
 
 
@@ -65,5 +66,9 @@ public class Account {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPermission() {
+        return permission;
     }
 }

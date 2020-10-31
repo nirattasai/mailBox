@@ -6,8 +6,8 @@ public class Staff extends Account {
     private int tryBlockLogin = 0;
     private String picture;
 
-    public Staff(String name, String surname, String username, String password) {
-        super(name,surname,username,password);
+    public Staff(String permission,String name, String surname, String username, String password) {
+        super(permission,name,surname,username,password);
     }
 
     public void setStatus(String status) {

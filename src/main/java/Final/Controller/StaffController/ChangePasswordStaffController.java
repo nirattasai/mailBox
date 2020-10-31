@@ -20,13 +20,16 @@ import java.util.ArrayList;
 
 public class ChangePasswordStaffController {
 
-    private int index;
+    private Staff currentStaff;
     private UserControlInterface userControlInterface = new ControlInterface();
     private CSVControlInterface csvControlInterface = new CSVControlInterfaceControl();
     private ArrayList<Staff> staffs;
-    public void initialize(int index) throws IOException {
+    private ArrayList<Account> accounts;
+
+    public void initialize(Staff staff) throws IOException {
         staffs = csvControlInterface.createStaffListFromCSV();
-        this.index = index;
+        accounts = userControlInterface.createAccountFromCSV();
+        this.currentStaff = staff;
     }
 
     @FXML
@@ -34,71 +37,24 @@ public class ChangePasswordStaffController {
     @FXML
     Button okButton,cancelButton;
     @FXML public void handleOKButton() throws IOException {
-        if (oldPassword.getText().equals(userControlInterface.passwordSend().get(index+1)) && confirmPassword.getText().equals(newPassword.getText()) && !newPassword.getText().equals(""))
+        if(oldPassword.getText().equals("") || newPassword.getText().equals("") || confirmPassword.getText().equals(""))
         {
-            String password = newPassword.getText();
-
-            File file = new File("CSV/User.csv");
-            new FileReader(file);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line;
-            ArrayList<Account> accounts = new ArrayList<>();
-            while((line = bufferedReader.readLine())!=null)
-            {
-                String[] accountTmp = line.split(",");
-                Account accountAdd = new Staff(accountTmp[1],accountTmp[2],accountTmp[3],accountTmp[4] );
-                accounts.add(accountAdd);
-            }
-            fileReader.close();
-            bufferedReader.close();
-
-            accounts.get(index+1).changePassword(password);
-            staffs.get(index).changePassword(password);
-
-            File file1 = new File("CSV/User.csv");
-            FileWriter fileWriter = null;
-            try {
-                fileWriter = new FileWriter(file1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            String line1;
-            for(int i=0;i<accounts.size();i++)
-            {
-                if (i==0) {
-                    line1 = "admin" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname();
-                }
-                else{
-                    line1 = "staff" + "," + accounts.get(i).getUsername() + "," + accounts.get(i).getPassword() + "," + accounts.get(i).getName() + "," + accounts.get(i).getSurname();
-                }
-                bufferedWriter.append(line1);
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.close();
-            fileWriter.close();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("SUCCESS");
-            alert.setHeaderText("Change password success.");
-            alert.setContentText("Password already changed.");
-            csvControlInterface.writeStaffListToCSV(staffs);
-            newPassword.clear();
-            confirmPassword.clear();
-            oldPassword.clear();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING");
+            alert.setHeaderText("Cannot change password.");
+            alert.setContentText("Don't leave blank space.");
             alert.showAndWait();
         }
-
-        else if (!oldPassword.getText().equals(userControlInterface.passwordSend().get(index+1)))
+        else if (!currentStaff.getPassword().equals(oldPassword.getText()))
         {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("WARNING");
             alert.setHeaderText("Cannot change password.");
             alert.setContentText("Wrong old password.");
             alert.showAndWait();
-            oldPassword.clear();
-            newPassword.clear();
-            confirmPassword.clear();
+            oldPassword.setText("");
+            newPassword.setText("");
+            confirmPassword.setText("");
         }
         else if (!newPassword.getText().equals(confirmPassword.getText()))
         {
@@ -107,16 +63,35 @@ public class ChangePasswordStaffController {
             alert.setHeaderText("Cannot change password.");
             alert.setContentText("New password not same.");
             alert.showAndWait();
+            oldPassword.setText("");
+            newPassword.setText("");
+            confirmPassword.setText("");
         }
-        else if (newPassword.getText().equals("")||confirmPassword.getText().equals(""))
-        {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("WARNING");
-            alert.setHeaderText("Cannot change password.");
-            alert.setContentText("Don't leave blank space.");
+        else {
+            for (Staff staff : staffs) {
+                if (staff.getUsername().equals(currentStaff.getUsername())) {
+                    staff.changePassword(newPassword.getText());
+                    break;
+                }
+            }
+            csvControlInterface.writeStaffListToCSV(staffs);
+
+            for (Account account : accounts) {
+                if (account.getUsername().equals(currentStaff.getUsername())) {
+                    account.changePassword(newPassword.getText());
+                    break;
+                }
+            }
+            userControlInterface.writeAccountToCSV(accounts);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("SUCCESS");
+            alert.setHeaderText("Change password success.");
+            alert.setContentText("Password already changed.");
+            oldPassword.setText("");
+            newPassword.setText("");
+            confirmPassword.setText("");
             alert.showAndWait();
         }
-
     }
     @FXML public void handleCancelButton(ActionEvent event){
         Button b = (Button) event.getSource();                                                                   // change scene

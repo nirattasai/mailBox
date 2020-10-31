@@ -1,5 +1,6 @@
 package Final.Controller.AdminController;
 
+import Final.Controller.Account.Account;
 import Final.Controller.Account.Staff;
 import Final.Controller.CSVControlInterface;
 import Final.Controller.CSVControlInterfaceControl;
@@ -173,4 +174,43 @@ public class ControlInterface implements UserControlInterface{
             e.printStackTrace();
         }
     }
+
+    @Override
+    public ArrayList<Account> createAccountFromCSV() throws IOException {
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        ArrayList<Account> accounts = new ArrayList<>();
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] accTmp = line.split(",");
+            Account account = new Account(accTmp[0],accTmp[1],accTmp[2],accTmp[3],accTmp[4] );
+            accounts.add(account);
+        }
+        fileReader.close();
+        bufferedReader.close();
+        return accounts;
+    }
+
+    @Override
+    public void writeAccountToCSV(ArrayList<Account> accounts) throws IOException {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        assert fileWriter != null;
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        String line;
+        for (Account account : accounts) {
+            line = account.getPermission()+","+account.getUsername()+","+account.getPassword()+","+account.getName()
+                    +","+account.getSurname();
+            bufferedWriter.append(line);
+            bufferedWriter.newLine();
+        }
+        bufferedWriter.close();
+        fileWriter.close();
+    }
+
+
 }

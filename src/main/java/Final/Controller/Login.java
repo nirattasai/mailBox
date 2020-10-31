@@ -26,7 +26,7 @@ public class Login {
     @FXML
     PasswordField passwordField;
     @FXML
-    Button loginButton,devButton,theme;
+    Button loginButton,devButton,register;
 
     private UserControlInterface userControlInterface = new ControlInterface();
     private CSVControlInterface CSVControlInterface = new CSVControlInterfaceControl();
@@ -74,7 +74,7 @@ public class Login {
                             loader = new FXMLLoader(getClass().getResource("/StaffPage.fxml"));
                             stage.setScene(new Scene(loader.load(), 1000, 600));
                             StaffPageController dw = loader.getController();
-                            dw.setStaffs(username,i);
+                            dw.setCurrentStaff(staff.get(i));
                             stage.setTitle("Staff Page");
                             stage.show();
                         } else {
@@ -92,8 +92,8 @@ public class Login {
                 }
 
                 break;
-            case "roomOwner": {
-                System.out.println("RoomOwner");
+            case "resident": {
+                System.out.println("Resident");
                 Button b = (Button) event.getSource();
                 Stage stage = (Stage) b.getScene().getWindow();
                 loader = new FXMLLoader(getClass().getResource("/RoomerPage.fxml"));
@@ -127,19 +127,16 @@ public class Login {
         stage.show();
     }
 
-    @FXML public void themeClick() throws IOException {
+    @FXML public void registerClick() throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DevDetail.fxml"));
-        Scene scene = new Scene(loader.load(),400,600);
-        scene.getStylesheets().remove("/css/blueTheme.css");
-        scene.getStylesheets().add("/css/stylesheet.css");
-        stage.setScene(scene);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/RegisterResident.fxml"));
+        stage.setScene(new Scene(loader.load(),400,600));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double width = 400;
         double height = 600;
         stage.setX((screenBounds.getWidth() - width) / 2);
         stage.setY((screenBounds.getHeight() - height) / 2);
-        stage.setTitle("Developer Detail");
+        stage.setTitle("Register Resident");
         stage.show();
     }
 }

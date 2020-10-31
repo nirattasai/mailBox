@@ -123,19 +123,19 @@ public class StaffPageController {
         staffLabel.setText(currentStaff.getUsername());
     }
 
-    public void setStaffs(String username,int index)
-    {
-        for(Staff staff : staffs)
-        {
-            if(staff.getUsername().equals(username))
-            {
-                currentStaff = staff;
-                staffLabel.setText(currentStaff.getUsername());
-                break;
-            }
-        }
-        this.index = index;
-    }
+//    public void setStaffs(String username,int index)
+//    {
+//        for(Staff staff : staffs)
+//        {
+//            if(staff.getUsername().equals(username))
+//            {
+//                currentStaff = staff;
+//                staffLabel.setText(currentStaff.getUsername());
+//                break;
+//            }
+//        }
+//        this.index = index;
+//    }
     @FXML public void handleAddRoomButton() throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddRoom.fxml"));
@@ -165,7 +165,7 @@ public class StaffPageController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChangePasswordStaff.fxml"));
         stage.setScene(new Scene(loader.load(),400,600));
         ChangePasswordStaffController dw = loader.getController();
-        dw.initialize(index);
+        dw.initialize(currentStaff);
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double width = 400;
         double height = 600;
@@ -177,7 +177,7 @@ public class StaffPageController {
 
     @FXML public void handleLogoutButton() throws IOException {
         Stage stage = (Stage) addRoomButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Welcome.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
         stage.setScene(new Scene(loader.load(),400,600));
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double width = 400;

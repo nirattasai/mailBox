@@ -30,7 +30,7 @@
          <font>
             <Font size="20.0" />
          </font></PasswordField>
-      <Button id="button" fx:id="loginButton" defaultButton="true" layoutX="240.0" layoutY="488.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="45.0" prefWidth="110.0" stylesheets="@css/blueTheme.css" text="LOGIN">
+      <Button id="button" fx:id="loginButton" defaultButton="true" layoutX="240.0" layoutY="472.0" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="45.0" prefWidth="110.0" stylesheets="@css/blueTheme.css" text="LOGIN">
          <font>
             <Font name="System Font" size="20.0" />
          </font>
@@ -45,6 +45,7 @@
             <Font name="System Font" size="50.0" />
          </font>
       </Text>
-      <Button id="button" fx:id="devButton" layoutX="14.0" layoutY="559.0" mnemonicParsing="false" onAction="#devClick" text="Dev detail" />
+      <Button id="button" fx:id="devButton" layoutX="14.0" layoutY="536.0" mnemonicParsing="false" onAction="#devClick" text="DEV DETAIL" />
+      <Button id="button" fx:id="register" layoutX="210.0" layoutY="536.0" mnemonicParsing="false" onAction="#registerClick" text="REGISTER RESIDENT" />
    </children>
 </AnchorPane>
