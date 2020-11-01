@@ -3,6 +3,7 @@ package Final.Controller;
 import Final.Controller.Account.Staff;
 import Final.Controller.AdminController.ControlInterface;
 import Final.Controller.AdminController.UserControlInterface;
+import Final.Controller.ResidentController.ResidentController;
 import Final.Controller.StaffController.StaffPageController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -98,6 +99,13 @@ public class Login {
                 Stage stage = (Stage) b.getScene().getWindow();
                 loader = new FXMLLoader(getClass().getResource("/RoomerPage.fxml"));
                 stage.setScene(new Scene(loader.load(), 1000, 600));
+                Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+                double width = 1000;
+                double height = 600;
+                stage.setX((screenBounds.getWidth() - width) / 2);
+                stage.setY((screenBounds.getHeight() - height) / 2);
+                ResidentController dw = loader.getController();
+                dw.initialize(usernameField.getText());
                 stage.show();
                 break;
             }

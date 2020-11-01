@@ -66,6 +66,10 @@ public class RegisterResidentController {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Cannot register");
                 alert.setContentText("Name isn't in resident database");
+                nameField.clear();
+                usernameField.clear();
+                passwordField.clear();
+                confirmField.clear();
                 alert.showAndWait();
             }
             else if (check == 1)
@@ -94,6 +98,10 @@ public class RegisterResidentController {
                     alert.setHeaderText("Register success");
                     alert.setContentText("Username : " + usernameField.getText()
                             + "\nName : " + nameField.getText());
+                    nameField.clear();
+                    usernameField.clear();
+                    passwordField.clear();
+                    confirmField.clear();
                     alert.showAndWait();
                 }
             }
