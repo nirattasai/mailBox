@@ -25,8 +25,7 @@ Add interface allFunction
 
 Add staff.csv to keep staff detail  
 Add getLog to get log from staff login  
-Add StaffInterface add method 	- write data to csv  
-								- read csv to write data  
+Add StaffInterface add method   
 Fixed bug when login then log lost  
 Admin can change password  
 Create acountClass and staffClass  
@@ -111,5 +110,5 @@ admin username : admin
 admin password : admin  
 staff username : staff  
 staff password : staff  
-resident username : roomer
+resident username : roomer  
 resident password : roomer
