@@ -53,7 +53,7 @@ public class ResidentController {
     private ArrayList<RoomOwner> roomOwners;
 
     public void initialize(String username) throws IOException {
-
+        this.username.setText(username);
         String name = null;
         roomOwners = csvControlInterface.createRoomOwnerListFromCSV();
         accounts = userControlInterface.createAccountFromCSV();
@@ -205,8 +205,16 @@ public class ResidentController {
         stage.show();
     }
 
-    public void logoutClick() {
+    public void logoutClick() throws IOException {
         Stage stage = (Stage) logout.getScene().getWindow();
-        stage.close();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+        stage.setScene(new Scene(loader.load(),400,600));
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double width = 400;
+        double height = 600;
+        stage.setX((screenBounds.getWidth() - width) / 2);
+        stage.setY((screenBounds.getHeight() - height) / 2);
+        stage.setTitle("Login");
+        stage.show();
     }
 }

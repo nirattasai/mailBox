@@ -1,1 +1,1 @@
-roomnumber,sender,receiver,size,privacy,date,time,picture
+roomnumber,sender,receiver,size,privacy,date,time,picture,getter,paider,datePaid,timePaid,resident

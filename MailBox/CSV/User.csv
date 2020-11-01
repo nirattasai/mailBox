@@ -1,9 +1,3 @@
-admin,admin,admin,nirattasai,haree
-staff,user1,user1,user1,user1
-staff,nirattasaiii,nirattasai1,nirattasai,haree
-staff,a,a,a,a
-staff,b,b,a,a
-staff,c,c,c,c
-staff,d,d,d,d
-staff,e,e,e,e
-staff,f,f,f,f
+admin,admin,admin,admin,admin
+staff,staff,staff,staffname,staffsurname
+resident,roomer,roomer,user,user

@@ -105,6 +105,7 @@ public class Login {
                 stage.setX((screenBounds.getWidth() - width) / 2);
                 stage.setY((screenBounds.getHeight() - height) / 2);
                 ResidentController dw = loader.getController();
+                stage.setTitle("Resident Page");
                 dw.initialize(usernameField.getText());
                 stage.show();
                 break;
