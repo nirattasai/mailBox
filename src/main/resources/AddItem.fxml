@@ -19,7 +19,7 @@
          <font>
             <Font size="20.0" />
          </font></Text>
-      <ChoiceBox id="glass" fx:id="typeChoice" layoutX="210.0" layoutY="155.0" prefHeight="30.0" prefWidth="79.0" />
+      <ChoiceBox id="glass" fx:id="typeChoice" layoutX="210.0" layoutY="155.0" prefHeight="30.0" prefWidth="95.0" />
       <Text fill="WHITE" layoutX="35.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
          <font>
             <Font size="20.0" />

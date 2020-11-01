@@ -22,7 +22,7 @@ public class DevDetailController {
         alert.showAndWait();
         if (Desktop.isDesktopSupported()) {
             try {
-                File myFile = new File("src/main/resources/6210407455.pdf");
+                File myFile = new File("images/6210407455.pdf");
                 Desktop.getDesktop().open(myFile);
             } catch (IOException ex) {
 //                System.out.println("Kell");

@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
-        primaryStage.setTitle("MailBox V.1 beta");
+        primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(root, 400, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
