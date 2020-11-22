@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.controller.staffController.Mailbox.MailBoxTestController">
+   <children>
+      <TableView fx:id="mailBoxTableView" layoutX="229.0" layoutY="50.0" prefHeight="500.0" prefWidth="300.0" />
+      <Pane id="pane" prefHeight="600.0" prefWidth="200.0">
+         <children>
+            <Label id="label" fx:id="staffLabel" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <font>
+                  <Font name="System Font" size="37.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="addItemButton" alignment="CENTER" layoutY="176.0" onMouseClicked="#handleAddItemButton" prefHeight="55.0" prefWidth="200.0" text="ADD ITEM">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="residentReceivedButton" alignment="CENTER" layoutY="231.0" onMouseClicked="#handleResidentReceivedButton" prefHeight="55.0" prefWidth="200.0" text="RESIDENT RECEIVE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="itemReceived" alignment="CENTER" layoutY="286.0" onMouseClicked="#handleItemReceived" prefHeight="55.0" prefWidth="200.0" text="ITEM RECEIVED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="backButton" alignment="CENTER" layoutY="545.0" onMouseClicked="#handleBackButton" prefHeight="55.0" prefWidth="200.0" text="BACK">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="label-button" fx:id="search" alignment="CENTER" layoutY="341.0" onMouseClicked="#searchClick" prefHeight="55.0" prefWidth="200.0" text="SEARCH">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ChoiceBox fx:id="sort" layoutX="644.0" layoutY="14.0" prefHeight="27.0" prefWidth="100.0" />
+      <Text fill="WHITE" layoutX="575.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SORT BY :" />
+      <ChoiceBox fx:id="sortRoom" layoutX="303.0" layoutY="14.0" prefWidth="100.0" />
+      <Text fill="WHITE" layoutX="234.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SORT BY :" />
+      <Text fill="WHITE" layoutX="791.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ROOM :">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="roomText" fill="WHITE" layoutX="866.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TableView fx:id="itemTable" layoutX="569.0" layoutY="50.0" prefHeight="500.0" prefWidth="400.0">
+         <columns>
+            <TableColumn fx:id="senderCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="SENDER" />
+            <TableColumn fx:id="receiverCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="RECEIVER" />
+            <TableColumn fx:id="typeCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="TYPE" />
+            <TableColumn fx:id="timeCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="TIME" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
