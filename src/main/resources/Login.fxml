@@ -37,7 +37,7 @@
       </Button>
       <ImageView fitHeight="98.0" fitWidth="71.0" layoutX="167.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Elements/keys-line-icon-lock-and-home-access-sign-vector-20557698.png" />
+            <Image url="@elements/keys-line-icon-lock-and-home-access-sign-vector-20557698.png" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="128.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">

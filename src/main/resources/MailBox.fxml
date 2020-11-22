@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.controller.staffController.Mailbox.MailBoxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="background" stylesheets="@css/blueTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Final.controller.staffController.mailbox.MailBoxController">
    <children>
       <TableView fx:id="mailBoxTableView" layoutX="229.0" layoutY="50.0" prefHeight="500.0" prefWidth="300.0" />
       <Pane id="pane" prefHeight="600.0" prefWidth="200.0">
@@ -46,27 +46,6 @@
             </Label>
          </children>
       </Pane>
-      <TableView fx:id="letterTable" layoutX="570.0" layoutY="50.0" prefHeight="150.0" prefWidth="400.0">
-         <columns>
-            <TableColumn fx:id="roomNumberLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="ROOM NUMBER" />
-            <TableColumn fx:id="senderLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="SENDER" />
-            <TableColumn fx:id="receiverLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="RECEIVER" />
-            <TableColumn fx:id="dateLetter" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="DATE" />
-         </columns></TableView>
-      <TableView fx:id="packageTable" layoutX="570.0" layoutY="225.0" prefHeight="150.0" prefWidth="400.0">
-         <columns>
-            <TableColumn fx:id="roomNumberPackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="ROOM NUMBER" />
-            <TableColumn fx:id="senderPackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="SENDER" />
-            <TableColumn fx:id="receiverPackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="RECEIVER" />
-            <TableColumn fx:id="datePackage" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="DATE" />
-         </columns></TableView>
-      <TableView fx:id="documentTable" layoutX="570.0" layoutY="400.0" prefHeight="150.0" prefWidth="400.0">
-         <columns>
-            <TableColumn fx:id="roomNumberDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="ROOM NUMBER" />
-            <TableColumn fx:id="senderDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="SENDER" />
-            <TableColumn fx:id="receiverDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="RECEIVER" />
-            <TableColumn fx:id="dateDoc" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="DATE" />
-         </columns></TableView>
       <ChoiceBox fx:id="sort" layoutX="644.0" layoutY="14.0" prefHeight="27.0" prefWidth="100.0" />
       <Text fill="WHITE" layoutX="575.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SORT BY :" />
       <ChoiceBox fx:id="sortRoom" layoutX="303.0" layoutY="14.0" prefWidth="100.0" />
@@ -81,5 +60,13 @@
             <Font size="20.0" />
          </font>
       </Text>
+      <TableView fx:id="itemTable" layoutX="569.0" layoutY="50.0" prefHeight="500.0" prefWidth="400.0">
+         <columns>
+            <TableColumn fx:id="senderCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="SENDER" />
+            <TableColumn fx:id="receiverCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="RECEIVER" />
+            <TableColumn fx:id="typeCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="TYPE" />
+            <TableColumn fx:id="timeCol" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="TIME" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

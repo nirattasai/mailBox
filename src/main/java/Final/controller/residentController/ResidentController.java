@@ -9,7 +9,7 @@ import Final.CSVControlInterfaceControl;
 import Final.item.Document;
 import Final.item.Letter;
 import Final.item.Package;
-import Final.controller.staffController.Mailbox.HistoryItemDetail.LetterHistoryDetail;
+import Final.controller.staffController.mailbox.historyItemDetail.LetterHistoryDetail;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

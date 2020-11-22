@@ -88,6 +88,9 @@ public class AddResidentController {
             nameField.clear();
             surnameField.clear();
             telField.clear();
+            Button b = (Button) event.getSource();
+            Stage stage = (Stage) b.getScene().getWindow();
+            stage.close();
         }
         else if(check == 2)
         {
@@ -99,9 +102,6 @@ public class AddResidentController {
         }
         csvControlInterface.writeRoomListToCSV(rooms);
         csvControlInterface.writeRoomOwnerListToCSV(roomOwners);
-        Button b = (Button) event.getSource();
-        Stage stage = (Stage) b.getScene().getWindow();
-        stage.close();
     }
 
     public void handleCancelButton(ActionEvent event){

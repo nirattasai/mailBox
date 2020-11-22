@@ -5,7 +5,7 @@ import Final.account.Staff;
 import Final.building.Room;
 import Final.CSVControlInterface;
 import Final.CSVControlInterfaceControl;
-import Final.controller.staffController.Mailbox.MailBoxController;
+import Final.controller.staffController.mailbox.MailBoxController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -152,7 +152,7 @@ public class StaffPageController {
 
     @FXML public void handleMailBoxButton() throws IOException {
         Stage stage = (Stage) mailBoxButton.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBoxTest.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MailBox.fxml"));
         stage.setScene(new Scene(loader.load(),1000,600));
         stage.setTitle("MailBox");
         MailBoxController dw = loader.getController();

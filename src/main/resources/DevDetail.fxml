@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="302.0" fitWidth="213.0" layoutX="94.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Elements/bath.jpg" />
+            <Image url="@elements/bath.jpg" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="59.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEVELOPER DETAILS">

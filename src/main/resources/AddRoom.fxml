@@ -44,7 +44,7 @@
       </Text>
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="150.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Elements/addRoom.png" />
+            <Image url="@elements/addRoom.png" />
          </image>
       </ImageView>
       <ChoiceBox id="choiceBox" fx:id="buildingChoice" layoutX="200.0" layoutY="223.0" prefHeight="30.0" prefWidth="56.0" />

@@ -45,7 +45,7 @@
       </Text>
       <ImageView fitHeight="80.0" fitWidth="75.0" layoutX="163.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Elements/addResident.png" />
+            <Image url="@elements/addResident.png" />
          </image>
       </ImageView>
    </children>

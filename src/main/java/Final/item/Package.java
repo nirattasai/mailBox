@@ -20,4 +20,8 @@ public class Package extends Letter {
         return trackNumber;
     }
 
+    @Override
+    public String getType() {
+        return "Package";
+    }
 }

@@ -1,4 +1,7 @@
 admin,admin,admin,admin,admin
 staff,staff,staff,staffname,staffsurname
 resident,roomer,roomer,user,user
-staff,test,test,test,test
+staff,staff1,staff1,staff1,staff1
+staff,staff2,staff2,staff2,staff2
+resident,b,b,b,b
+resident,A202,A202,A202_name,A202_sur

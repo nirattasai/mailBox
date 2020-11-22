@@ -14,4 +14,8 @@ public class Document extends Letter {
         return privacy;
     }
 
+    @Override
+    public String getType() {
+        return "Document";
+    }
 }

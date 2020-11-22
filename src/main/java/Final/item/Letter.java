@@ -97,5 +97,10 @@ public class Letter {
     public void setPaider(String paider) {
         this.paider = paider;
     }
+
+    public String getType()
+        {
+            return "Letter";
+        }
 }
 
