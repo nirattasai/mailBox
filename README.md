@@ -84,19 +84,19 @@ Add UML DIAGRAM
 	|-main  
 		|-java  
 			|-Final								(Contain main)  
-				|-Controller					(Contain controller of program)  
-					|-Account					(Contain Account class)  
-					|-AdminController			(Contain AdminPage's controller)  
-					|-Building					(Contain Room Class)  
-					|-Item 						(Contain Item class ex. letter, document, mailbox, package)  
-					|-ResidentController		(Contain Controller of resident page)  
-					|-StaffController			(Contain StaffPage's controller)  
-						|-Mailbox				(Contain Controller of mailbox page)  
-							|-HistoryItemDetail	(Contain Controller of item in history page)  
-							|-ItemDetail		(Contain Controller of item in mailbox page)  
+				|-account						(Contain Account class) 
+				|-building						(Contain Room Class)
+				|-controller					(Contain controller of program)  
+					|-adminController			(Contain AdminPage's controller)    
+					|-residentController		(Contain Controller of resident page)  
+					|-staffController			(Contain StaffPage's controller)  
+						|-mailbox				(Contain Controller of mailbox page)  
+							|-historyItemDetail	(Contain Controller of item in history page)  
+							|-itemDetail		(Contain Controller of item in mailbox page)  
+				|-item 							(Contain Item class ex. letter, document, mailbox, package)  
 		|-resource								(Contain all FXML scene)  
 			|-css								(Contain css file)  
-			|-Elements							(Contain picture embeded in jar file)
+			|-elements							(Contain picture embeded in jar file)
 ```
 # How to use #
 
@@ -112,3 +112,40 @@ staff username : staff
 staff password : staff  
 resident username : roomer  
 resident password : roomer
+
+# Edit First Time #
+
+* Update UML-DIAGRAM
+* Fixed close window when complete task ex. fill informations to create room, staff, add item.
+* Register resident and can login. (But it's can login when I clone project to my laptop.)
+* Refactor package (Change first character to lowercase, change directory of class is not controller.)
+* Update UI MailBox
+* Add polymorphism to project (Red Requirements)
+```
+	- Add polymorphism to class letter
+	- Add method getType to class letter for @Override
+	- Use polymorphism in class MailBoxTestController.java in method getType for show item in one table
+	
+	Example Code
+	
+		Letter Class
+		public String getType(){
+            return "Letter";
+        }
+		
+		Document Class
+		@Override
+    	public String getType() {
+        	return "Document";
+    	}
+		
+		Package Class
+		@Override
+    	public String getType() {
+        	return "Package";
+    	}
+	
+		MailBoxTestController
+		typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+		
+```
