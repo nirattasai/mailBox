@@ -149,3 +149,8 @@ resident password : roomer
 		typeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
 		
 ```
+
+# Edit Second Time #
+
+* add class ItemManage
+* add polymorph to project in class ItemManage in method residentReceiv()
