@@ -9,6 +9,7 @@ import Final.controller.staffController.mailbox.itemDetail.LetterDetailControlle
 import Final.controller.staffController.mailbox.itemDetail.PackageDetailController;
 import Final.controller.staffController.StaffPageController;
 import Final.item.Document;
+import Final.item.ItemManage;
 import Final.item.Letter;
 import Final.item.Package;
 import javafx.collections.FXCollections;
@@ -267,58 +268,54 @@ public class MailBoxController {
                     for (Room room : rooms) {
                         if (room.getRoomNumberFull().equals(roomChoose.getRoomNumberFull())) {
                             room.setItem("No item in mailbox");
+                            check+=1;
                             break;
                         }
                     }
-                    for (int i = 0; i < letters.size(); i++) {
-                        if (letters.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull())) {
-                            letters.get(i).setPaider(currentStaff.getUsername());
-                            letters.get(i).setResident(resident);
-                            letters.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-                            letterHistory.add(letters.get(i));
-                            letters.remove(letters.get(i));
-                            i--;
-                            check += 1;
-                        }
-                    }
-                    for (int i = 0; i < packages.size(); i++) {
-                        if (packages.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull())) {
-                            packages.get(i).setPaider(currentStaff.getUsername());
-                            packages.get(i).setResident(resident);
-                            packages.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-                            packageHistory.add(packages.get(i));
-                            packages.remove(packages.get(i));
-                            i--;
-                            check += 1;
-                        }
-                    }
-                    for (int i = 0; i < documents.size(); i++) {
-                        if (documents.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull())) {
-                            documents.get(i).setPaider(currentStaff.getUsername());
-                            documents.get(i).setResident(resident);
-                            documents.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
-                            documentHistory.add(documents.get(i));
-                            documents.remove(documents.get(i));
-                            i--;
-                            check += 1;
-                        }
-                    }
+//                    for (int i = 0; i < letters.size(); i++) {
+//                        if (letters.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull())) {
+//                            letters.get(i).setPaider(currentStaff.getUsername());
+//                            letters.get(i).setResident(resident);
+//                            letters.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+//                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+//                            letterHistory.add(letters.get(i));
+//                            letters.remove(letters.get(i));
+//                            i--;
+//                            check += 1;
+//                        }
+//                    }
+//                    for (int i = 0; i < packages.size(); i++) {
+//                        if (packages.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull())) {
+//                            packages.get(i).setPaider(currentStaff.getUsername());
+//                            packages.get(i).setResident(resident);
+//                            packages.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+//                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+//                            packageHistory.add(packages.get(i));
+//                            packages.remove(packages.get(i));
+//                            i--;
+//                            check += 1;
+//                        }
+//                    }
+//                    for (int i = 0; i < documents.size(); i++) {
+//                        if (documents.get(i).getRoomNumber().equals(roomChoose.getRoomNumberFull())) {
+//                            documents.get(i).setPaider(currentStaff.getUsername());
+//                            documents.get(i).setResident(resident);
+//                            documents.get(i).setOut(java.time.LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+//                                    java.time.LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+//                            documentHistory.add(documents.get(i));
+//                            documents.remove(documents.get(i));
+//                            i--;
+//                            check += 1;
+//                        }
+//                    }
+                    ItemManage itemManage = new ItemManage();
+                    itemManage.residentReceive(roomChoose.getRoomNumberFull(),resident,currentStaff.getUsername());
+                    csvControlInterface.writeRoomListToCSV(rooms);
                     if (check > 0) {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Success");
                         alert.setHeaderText("All item are received");
                         alert.setContentText("All item in mailbox room : " + roomChoose.getRoomNumberFull() + " are received");
-
-                        csvControlInterface.writePackageListToCSV(packages);
-                        csvControlInterface.writeLetterListToCSV(letters);
-                        csvControlInterface.writeDocumentListToCSV(documents);
-                        csvControlInterface.writeRoomListToCSV(rooms);
-                        csvControlInterface.writeDocumentHistoryListToCSV(documentHistory);
-                        csvControlInterface.writeLetterHistoryListToCSV(letterHistory);
-                        csvControlInterface.writePackageHistoryListToCSV(packageHistory);
                         alert.showAndWait();
                         refresh();
 

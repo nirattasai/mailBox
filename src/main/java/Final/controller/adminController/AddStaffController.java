@@ -115,8 +115,8 @@ public class AddStaffController {
                 Staff staff1 = new Staff(nameField.getText(), surnameField.getText(), usernameField.getText(), passwordField.getText(), emailField.getText(), telField.getText(), "-", "-", "normal", 0,target.toUri().toString());
                 staff.add(staff1);
                 csvControlInterface.writeStaffListToCSV(staff);
-                Account account = new Staff("staff",nameField.getText(),surnameField.getText(),usernameField.getText()
-                ,passwordField.getText());
+                Account account = new Staff("staff",usernameField.getText(),passwordField.getText(),nameField.getText()
+                ,surnameField.getText());
                 userControlInterface.addUser(account);
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
